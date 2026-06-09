@@ -271,12 +271,12 @@ body.resizing-h{ user-select:none; cursor:row-resize; }
 .results-body{flex:1;overflow-y:auto;}
 
 .test-case{display:grid;grid-template-columns:110px 1fr 1fr;border-bottom:1px solid rgba(48,54,61,.5);}
-.test-col{padding:7px 10px;font-size:11px;}
+.test-col{padding:7px 10px;font-size:13px;}
 .test-label{display:flex;align-items:center;gap:5px;font-weight:600;}
-.icon{width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;}
+.icon{width:15px;height:15px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;}
 .icon-pass{background:rgba(63,185,80,.2);color:var(--green);}
 .icon-fail{background:rgba(248,81,73,.2);color:var(--red);}
-.test-col pre{font-family:monospace;font-size:10px;white-space:pre-wrap;line-height:1.5;color:var(--text-muted);max-height:70px;overflow:auto;}
+.test-col pre{font-family:monospace;font-size:13px;white-space:pre-wrap;line-height:1.5;color:var(--text-muted);max-height:70px;overflow:auto;}
 .pre-right{color:var(--green);}
 .pre-wrong{color:var(--red);}
 .score-summary{display:flex;align-items:center;gap:14px;padding:10px 14px;font-size:12px;background:var(--panel-bg);border-top:1px solid var(--border);}

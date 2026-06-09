@@ -13,6 +13,7 @@ let editor = null;
 let pyodide = null;
 let pyodideLoading = false;
 let scores = {}; // { 'py_b964': {passed,total}, 'cpp_b964': ... }
+let openGroups = new Set(); // store section.diff for open groups
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
@@ -146,12 +147,12 @@ function renderProblemList() {
     const d = difficultyInfo(section.diff);
     const items = indexedProblems.filter(({ p }) => (p.diff || 'easy') === section.diff);
     
-    // 預設第一組展開，其他收合
-    const isCollapsed = sectionIdx === 0 ? '' : ' collapsed-group';
-    const isHidden = sectionIdx === 0 ? '' : ' group-hidden';
+    // 根據 openGroups 狀態決定是否展開
+    const isCollapsed = openGroups.has(section.diff) ? '' : ' collapsed-group';
+    const isHidden = openGroups.has(section.diff) ? '' : ' group-hidden';
 
     return `<div class="problem-group">
-      <div class="level-header${isCollapsed}" style="--level-color:${d.color};--level-bg:${d.bg};--level-border:${d.border};" onclick="toggleGroup(this)">
+      <div class="level-header${isCollapsed}" style="--level-color:${d.color};--level-bg:${d.bg};--level-border:${d.border};" onclick="toggleGroup('${section.diff}')">
         <div class="level-title-row">
           <span>${escH(section.icon)}</span>
           <span>${escH(d.label)}練習</span>
@@ -362,11 +363,11 @@ function renderResults(results, passed, total) {
         <span style="color:var(--${r.pass?'green':'red'})">測資 ${r.idx} · ${r.pass?'AC':'WA'}</span>
       </div></div>
       <div class="test-col">
-        <div style="font-size:9px;color:var(--text-muted);margin-bottom:4px">預期輸出</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">預期輸出</div>
         <pre>${escH(r.expected)}</pre>
       </div>
       <div class="test-col">
-        <div style="font-size:9px;color:var(--text-muted);margin-bottom:4px">你的輸出</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">你的輸出</div>
         <pre class="${r.pass?'pre-right':'pre-wrong'}">${escH(r.error || r.got || '(無輸出)')}</pre>
       </div>
     </div>`).join('');
@@ -433,12 +434,13 @@ function safeMarkdown(text) {
 // ── UI 互動邏輯（側欄、資料夾、拖曳） ──────────────────────────────────────────
 
 // 資料夾收合
-function toggleGroup(headerEl) {
-  headerEl.classList.toggle('collapsed-group');
-  const itemsContainer = headerEl.nextElementSibling;
-  if (itemsContainer) {
-    itemsContainer.classList.toggle('group-hidden');
+function toggleGroup(diff) {
+  if (openGroups.has(diff)) {
+    openGroups.delete(diff);
+  } else {
+    openGroups.add(diff);
   }
+  renderProblemList();
 }
 
 // 側欄收合
