@@ -1,104 +1,73 @@
-# APCS Multi-Language Online Judge / APCS 多語言線上評分系統
+# APCS Judge (Serverless Edition)
 
-> 一個專案、四種語言、300 道題目、71 章互動式基礎教學（含 🔥 高級題專章）、即時瀏覽器評分、附解題思路、專屬教師管理後台
-
-🔗 **教學頁面 / Tutorial**：[tutorial.html](https://yu-0312.github.io/apcs-judge/tutorial.html)  
-🔗 **Live Demo / 線上體驗**：**https://yu-0312.github.io/apcs-judge/**
+> 基於 Firebase Firestore 重構的 APCS 線上解題與管理系統，完美支援 GitHub Pages 部署。
+> **特別感謝原作者 [Yu-0312](https://github.com/Yu-0312) 開發的 [apcs-judge](https://github.com/Yu-0312/apcs-judge) 專案！本專案的核心介面、編譯架構與豐富的題庫皆來自於原作者的無私開源。**
 
 ---
 
-## 📖 簡介
+## 🌟 專案特色與魔改亮點
 
-**APCS Judge** 是一個輕量、高效的 APCS 練習站——從基礎語法教學到 ⭐⭐⭐⭐ 高級題實戰，一個網址全包。
-本專案採用純前端架構設計，打開分頁就能寫題、看解答、看思路、跑教學。近期經過大幅度重構，引入了更現代化的 UI/UX 與專屬的教師管理工具。
+本專案由原始的靜態 JSON/JS 資料結構進行了深度重構，加入了完整的**無伺服器 (Serverless)** 資料庫與權限管理，讓老師或管理者能夠直接在線上安全地新增、修改題目，且完全無需維護後端伺服器。
 
-### ✨ 核心特色與最新更新
-
-- 🌐 **模組化純靜態架構**：程式碼完全模組化 (`js/`、`css/`、`data/`)，無論是 GitHub Pages 或本地伺服器皆可秒開。
-- 👨‍🏫 **專屬教師後台 (`admin.html`)**：
-  - 內建輕量化本地 Express 伺服器，啟動後可進入圖形化介面。
-  - 支援題目與解答的 **CRUD (新增、編輯、刪除)**，並可一鍵儲存回本地的 `problems.js` / `solutions.js`，告別手動改 JS 檔的痛苦。
-- 💻 **VSCode 級別編輯體驗**：
-  - **智慧輔助**：支援括號與引號自動補全 (`autoCloseBrackets`)、括號匹配高亮 (`matchBrackets`)。
-  - **語法錯誤提示**：程式碼編譯或執行失敗時，會自動解析錯誤行號，並以**紅色波浪底線**精準標示錯誤位置。
-- 🎨 **現代化動態 UI 佈局**：
-  - **資料夾分級**：左側題目列表依難度分類為可收合的資料夾。
-  - **側欄收合**：一鍵收合左側題目欄，釋放最大螢幕空間。
-  - **自由拖曳調整**：支援滑鼠拖曳調整「題目面板 vs 編輯器」的左右寬度，以及「編輯器 vs 評測結果」的上下高度。
-  - **無段字體縮放**：題目說明與程式碼編輯器皆支援獨立的 `A+` / `A-` 字體大小縮放。
-- 🧩 **四語言全套解答**：Python / C++ / C / Java 對 300 道題目皆提供官解。
-- ⚡ **真實編譯執行**：Python 透過 Pyodide（WebAssembly）離線跑；C / C++ / Java 經 Judge0 CE 雲端執行。
-- 📚 **71 章互動教學**：涵蓋變數到 APCS 新制程式識讀，包含 7 個 🔥 高級題專章（快速冪、分治逆序對、區間 DP、Kadane 等）。
+### 與原專案的差異功能：
+1. ☁️ **Firebase Firestore 雲端資料庫**
+   - 捨棄了原本寫死在 `data/*.js` 裡面的靜態題目庫，改為即時連線的 Firestore。
+   - **極限省錢架構**：採用 `Meta 總表` 與 `Details 詳情` 分離的設計。學生進入網站時，無論題庫有幾百題，都只需消耗 **1 次資料庫讀取 (Read)** 來載入目錄。
+2. ⚡ **LocalStorage 永久快取機制**
+   - 點開過的題目與解答，會自動緩存於瀏覽器 LocalStorage。二次訪問時達到零延遲、零流量浪費。
+3. 🔒 **Firebase Authentication 登入鎖定**
+   - 後台管理介面 (`admin.html`) 加上了嚴密的 Email/Password 身分驗證。
+   - 結合 Firestore Security Rules，只有登入的管理員能修改題目，阻絕外人惡意竄改，讓後台可以直接暴露在公網上。
+4. 📂 **多層次樹狀分類系統**
+   - 打破了原本只能用「難度」分類的限制，新增了自訂的**主分類 > 子分類**系統。
+   - 您可以自由建立「資料結構」、「演算法」等章節，並將題目歸入特定的子分類中，原有的「難度（⭐）」屬性依然獨立保留。
 
 ---
 
-## 🎯 題目分布
+## 🚀 部署與使用方式
 
-| 難度 | 題數 | 分級理解 |
-|------|------|---------|
-| ⭐ 初級 | **36 題** | 基礎輸入輸出、算術、條件判斷、迴圈、簡單陣列與直接模擬。重點是「能把題目規則翻成程式」。 |
-| ⭐⭐ 中級 | **84 題** | 序列型資料處理：字串、list/array、二維陣列、排序、前綴和、雙指標、滑動視窗、基本 DP 與狀態模擬。 |
-| ⭐⭐⭐ 中高級 | **53 題** | 基礎資料結構與狀態管理：stack/queue/set/map/hash、BFS/DFS、DSU、樹、較完整的解析或多階段前處理。 |
-| ⭐⭐⭐⭐ 高級 | **127 題** | 演算法程序與最佳化：圖論最短路、進階 DP、分治、二分搜答案、字串雜湊、回溯與大型限制下的複雜度控制。 |
+因為本專案已經完全 Serverless 化，您**不需要 Node.js** 就可以將它部署到任何靜態網站代管平台（例如 GitHub Pages、Vercel、Netlify）。
 
-> 總計 **300 題**。題源涵蓋 APCS 官方歷屆、ZeroJudge、啟思博，以及進階訓練用的 Codeforces / CF Gym / USACO。
+### 1. 建立您的 Firebase 專案
+1. 到 Firebase Console 建立一個專案。
+2. 啟用 **Firestore Database** 與 **Authentication (Email/Password)**。
+3. 在 Authentication 面板手動為自己建立一組管理員帳號。
 
----
+### 2. 設定專案金鑰
+打開原始碼中的 `js/firebase-config.js`，將 `firebaseConfig` 替換為您自己專案的設定。
 
-## 🚀 使用方式
-
-### 方案 A：直接線上使用（學生練習）
-1. 開啟 **https://yu-0312.github.io/apcs-judge/**
-2. 上方切換你想練習的程式語言。
-3. 左側選一道題目（可展開/收合難度資料夾）。
-4. 撰寫程式碼後，點擊「▶ 執行並評分」。
-5. 若有語法錯誤，編輯器內會出現**紅波浪底線**提示。
-6. 可利用中央與下方的**拖曳分隔線**，自由調整適合的版面大小。
-
-### 方案 B：本地啟動含教師後台（適合出題者）
-若您需要新增/編輯題目與解答，請在本地啟動開發伺服器：
-
-```bash
-git clone https://github.com/Yu-0312/apcs-judge.git
-cd apcs-judge
-
-# 安裝依賴 (Express & Nodemon)
-npm install
-
-# 啟動本地伺服器
-npm run dev
+### 3. 設定安全性規則 (Security Rules)
+前往 Firestore 的 Rules 標籤，貼上以下規則以確保您的題庫安全：
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read: if true; // 所有人都能看題目
+      allow write: if request.auth != null; // 只有登入的管理員能改題目
+    }
+  }
+}
 ```
-啟動後：
-- 學生主系統：`http://localhost:3000/index.html`
-- **教師管理後台**：`http://localhost:3000/admin.html`
 
-在教師後台中，您可以透過視覺化表單新增題目、調整測資，並使用內嵌的 CodeMirror 編輯器撰寫各語言解答，最後點擊「儲存到檔案」即可自動更新至 `data/` 目錄。
-
----
-
-## 🛠️ 技術棧
-
-| 元件 | 說明 |
-|------|------|
-| **前端核心** | HTML5 / CSS3 (CSS Variables, Flexbox) / Vanilla JS |
-| **程式碼編輯器** | CodeMirror 5 (支援括號補全、語法高亮、錯誤紅底線標記) |
-| **Python 引擎** | Pyodide (編譯為 WebAssembly，全離線執行) |
-| **C/C++/Java 引擎**| Judge0 CE API (透過雲端安全沙盒編譯執行) |
-| **Markdown 渲染** | marked.js |
-| **後端 (教師後台用)** | Node.js + Express (純用於本地讀寫檔案，不影響靜態部署) |
+### 4. 部署
+將整個專案資料夾 Push 到 GitHub 並開啟 GitHub Pages 功能。
+- **學生前台**：`https://您的帳號.github.io/專案名稱/`
+- **教師後台**：`https://您的帳號.github.io/專案名稱/admin.html`
 
 ---
 
-## 📝 題目資料結構
+## 🛠️ 技術架構
 
-所有的題目與解答資料皆抽離至 `data/` 目錄中，並由後台系統自動維護：
-
-- `data/problems.js`：包含所有題目的元資料（標題、難度、Markdown 說明、測資、提示）。
-- `data/solutions.js`：包含所有題目對應的 Python, C++, C, Java 參考解答。
+- **前端框架**：Vanilla HTML / CSS / JS (ES Modules)
+- **資料庫**：Firebase Firestore (Cloud NoSQL)
+- **身分驗證**：Firebase Authentication
+- **程式碼執行**：Pyodide (WebAssembly 執行 Python) / Judge0 CE (雲端執行 C/C++/Java)
 
 ---
 
-## 🤝 貢獻與授權
+## 🙏 致謝
 
-歡迎發起 PR 進行貢獻（新增題目、改善 UI/UX、修復解答 Bug 等）。
-本專案採用 **MIT License**。題目敘述若引用自 APCS、ZeroJudge、啟思博等來源，相關著作權歸原作者所有。
+再次感謝 [Yu-0312/apcs-judge](https://github.com/Yu-0312/apcs-judge) 提供如此優秀的開源基底。原專案將 Pyodide、Judge0 與 CodeMirror 整合得十分完美，為前端的程式碼線上評測帶來了極佳的體驗。本專案站在巨人的肩膀上，補足了「動態資料管理」與「線上編輯題目」的最後一哩路。
+
+如果您喜歡這個架構，請不要忘記去原作者的專案點個 ⭐ Star！
