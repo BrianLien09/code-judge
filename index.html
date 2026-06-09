@@ -20,6 +20,12 @@
 <!-- 括號與引號自動補全、匹配 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+
+<!-- 自動提示 (Autocomplete) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/anyword-hint.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
@@ -102,8 +108,19 @@
       <!-- 上下拖曳分隔線 -->
       <div class="drag-handle-h" id="drag-handle-h"></div>
       
-      <div class="results-panel" id="results-panel">
-        <div class="results-hdr"><span>📊 評測結果</span><span id="results-summary" style="margin-left:auto;"></span></div>
+      <style>
+        .results-panel.collapsed { height: 32px !important; min-height: 32px !important; overflow: hidden; }
+        .results-panel.collapsed #results-body { display: none; }
+        .btn-collapse { background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 0 8px; font-size: 12px; transition: 0.2s; }
+        .btn-collapse:hover { color: var(--text); }
+        .results-panel.collapsed .btn-collapse { transform: rotate(180deg); }
+      </style>
+      <div class="results-panel collapsed" id="results-panel">
+        <div class="results-hdr">
+          <button class="btn-collapse" id="toggle-results-btn" onclick="toggleResults()" title="收合/展開">▼</button>
+          <span>📊 評測結果</span>
+          <span id="results-summary" style="margin-left:auto;"></span>
+        </div>
         <div id="results-body"><div class="no-results">選擇題目後撰寫程式，點擊「執行並評分」</div></div>
       </div>
     </div>

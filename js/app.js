@@ -24,10 +24,36 @@ window.addEventListener('DOMContentLoaded', async () => {
   editor = CodeMirror.fromTextArea(document.getElementById('code-editor'), {
     mode: 'python', theme: 'dracula', lineNumbers: true,
     indentUnit: 4, tabSize: 4, indentWithTabs: false,
-    extraKeys: { 'Tab': cm => cm.execCommand('indentMore'), 'Ctrl-Enter': runCode, 'Cmd-Enter': runCode },
+    extraKeys: { 
+      'Tab': cm => cm.execCommand('indentMore'), 
+      'Ctrl-Enter': runCode, 
+      'Cmd-Enter': runCode,
+      'Ctrl-Space': 'autocomplete'
+    },
     styleActiveLine: true,
     autoCloseBrackets: true,
     matchBrackets: true
+  });
+  
+  // 當輸入英文字母時，自動顯示提示下拉選單
+  editor.on("inputRead", function(cm, change) {
+    if (change.text && change.text.length > 0) {
+      const c = change.text[0];
+      if (c.match(/[a-zA-Z]/)) {
+        cm.showHint({ completeSingle: false });
+      }
+    }
+  });
+  
+  // 程式碼快取機制 (Debounced，避免阻塞自動補全)
+  let saveTimeout = null;
+  editor.on('change', () => {
+    if (saveTimeout) clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(() => {
+      if (currentProblem && currentLang) {
+        localStorage.setItem('code_' + currentLang + '_' + currentProblem.id, editor.getValue());
+      }
+    }, 2000);
   });
   
   // 載入 Firebase 資料
@@ -52,7 +78,25 @@ window.addEventListener('DOMContentLoaded', async () => {
   window.hideHint = hideHint;
   window.zoomDesc = zoomDesc;
   window.zoomCode = zoomCode;
+  window.toggleResults = toggleResults;
+
+  // 預設設定字體大小
+  zoomDesc(0);
+  zoomCode(0);
+
+  // 嘗試從網址 Hash 或快取中恢復上次的題目
+  const hashId = window.location.hash.slice(1);
+  const lastId = hashId || localStorage.getItem('last_problem_id');
+  if (lastId) {
+    const idx = PROBLEMS.findIndex(p => p.id === lastId);
+    if (idx >= 0) selectProblem(idx);
+  }
 });
+
+// ── UI 控制 ────────────────────────────────────────────────────────
+function toggleResults() {
+  document.getElementById('results-panel').classList.toggle('collapsed');
+}
 
 // ── Language switching ────────────────────────────────────────────────────────
 function switchLang(lang) {
@@ -253,6 +297,11 @@ function renderProblemItem(p, i, d) {
 // ── Select problem ────────────────────────────────────────────────────────────
 async function selectProblem(idx) {
   const pMeta = PROBLEMS[idx];
+  
+  // 儲存狀態以供下次恢復
+  localStorage.setItem('last_problem_id', pMeta.id);
+  window.history.replaceState(null, null, '#' + pMeta.id);
+
   // 非同步載入題目詳情
   const details = await dbService.getProblemDetails(pMeta.id);
   currentProblem = { ...pMeta, ...(details || {}) };
@@ -345,6 +394,9 @@ async function runCode() {
     const mark = editor.markText({line: L, ch: 0}, {line: L, ch: 1000}, {className: 'syntax-error', title: '執行/編譯錯誤'});
     errorMarks.push(mark);
   }
+
+  // 執行完畢後自動展開結果面板
+  document.getElementById('results-panel').classList.remove('collapsed');
 }
 
 async function runSingle(code, stdin, expectedRaw) {
@@ -414,13 +466,76 @@ _out`);
   }
 }
 
+function highlightLineDiff(expected, got) {
+  const vis = (s) => escH(s).replace(/ /g, '<span style="opacity:0.4;font-weight:bold;">·</span>');
+  
+  let i = 0;
+  while (i < expected.length && i < got.length && expected[i] === got[i]) { i++; }
+  
+  let j = 0;
+  while (j < expected.length - i && j < got.length - i && expected[expected.length - 1 - j] === got[got.length - 1 - j]) { j++; }
+  
+  const gotPrefix = got.slice(0, i);
+  const gotMid = got.slice(i, got.length - j);
+  const gotSuffix = got.slice(got.length - j);
+  
+  let res = vis(gotPrefix);
+  if (gotMid.length > 0) {
+    res += `<span style="background:rgba(255,80,80,0.3);color:#ff6666;border-radius:2px;padding:0 1px;">${vis(gotMid)}</span>`;
+  } else if (expected.length - i - j > 0) {
+    res += `<span style="background:rgba(255,80,80,0.3);color:#ff6666;border-radius:2px;" title="缺少字元">_</span>`;
+  }
+  res += vis(gotSuffix);
+  return res;
+}
+
+function getDiffHtml(expected, got) {
+  if (expected === got) return escH(got);
+  if (!got) return '<span style="color:var(--text-muted)">(無輸出)</span>';
+
+  const eLines = expected.split('\n');
+  const gLines = got.split('\n');
+  let html = '';
+  
+  const len = Math.max(eLines.length, gLines.length);
+  for (let i = 0; i < len; i++) {
+    const eLine = eLines[i];
+    const gLine = gLines[i];
+    
+    if (gLine === undefined) {
+      html += '<span style="color:var(--red);">[缺少此行]</span>\n';
+    } else if (eLine === undefined) {
+      // 多出這行
+      const visLine = escH(gLine).replace(/ /g, '<span style="opacity:0.4;font-weight:bold;">·</span>');
+      html += `<span style="background:rgba(255,80,80,0.3);color:#ff6666;border-radius:2px;padding:0 1px;">${visLine || '&nbsp;'}</span>\n`;
+    } else if (eLine !== gLine) {
+      // 該行有差異，進行局部高亮
+      html += highlightLineDiff(eLine, gLine) + '\n';
+    } else {
+      // 該行完全相同
+      html += escH(gLine) + '\n';
+    }
+  }
+  return html.replace(/\n$/, '');
+}
+
 function renderResults(results, passed, total) {
   const pct = Math.round(passed / total * 100);
   const sc = passed === total ? 'full' : passed > 0 ? 'partial' : 'zero';
   document.getElementById('results-summary').innerHTML =
     `<span style="color:var(--${passed===total?'green':passed>0?'yellow':'red'})">${passed}/${total} 通過</span>`;
 
-  const rows = results.map(r => `
+  const rows = results.map(r => {
+    let gotHtml = '';
+    if (r.error) {
+      gotHtml = escH(r.error);
+    } else if (r.pass) {
+      gotHtml = escH(r.got || '(無輸出)');
+    } else {
+      gotHtml = getDiffHtml(r.expected, r.got);
+    }
+
+    return `
     <div class="test-case">
       <div class="test-col"><div class="test-label">
         <div class="icon ${r.pass?'icon-pass':'icon-fail'}">${r.pass?'✓':'✗'}</div>
@@ -432,9 +547,10 @@ function renderResults(results, passed, total) {
       </div>
       <div class="test-col">
         <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">你的輸出</div>
-        <pre class="${r.pass?'pre-right':'pre-wrong'}">${escH(r.error || r.got || '(無輸出)')}</pre>
+        <pre class="${r.pass?'pre-right':'pre-wrong'}">${gotHtml}</pre>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 
   document.getElementById('results-body').innerHTML = `
     <div class="score-summary">
@@ -592,8 +708,8 @@ function initDrag() {
 }
 
 // ── 字體縮放 ────────────────────────────────────────────────────────────────
-let currentDescSize = 13;
-let currentCodeSize = 13;
+let currentDescSize = 14;
+let currentCodeSize = 14;
 
 function zoomDesc(dir) {
   currentDescSize += dir * 2;
