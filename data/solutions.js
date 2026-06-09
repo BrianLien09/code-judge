@@ -724,7 +724,8 @@ out = []
 for _ in range(q):
     r1, c1, r2, c2 = map(int, input().split())
     out.append(str(ps[r2+1][c2+1] - ps[r1][c2+1] - ps[r2+1][c1] + ps[r1][c1]))
-print('\n'.join(out))`,
+print('
+'.join(out))`,
 p101:`import sys
 input=sys.stdin.readline
 N,Q=map(int,input().split())
@@ -737,7 +738,8 @@ out=[]
 for _ in range(Q):
     r1,c1,r2,c2=map(int,input().split())
     out.append(str(ps[r2][c2]-ps[r1-1][c2]-ps[r2][c1-1]+ps[r1-1][c1-1]))
-print('\n'.join(out))`,
+print('
+'.join(out))`,
 p102:`from collections import Counter
 N=int(input());a=list(map(int,input().split()))
 c=Counter([0]);s=0;ans=0
@@ -778,7 +780,8 @@ out=[]
 for _ in range(Q):
     a,b=map(int,input().split())
     out.append(str(ps[b]-ps[a-1]))
-print('\n'.join(out))`,
+print('
+'.join(out))`,
 p106:`import sys
 from bisect import bisect_left,bisect_right
 input=sys.stdin.readline
@@ -788,7 +791,8 @@ out=[]
 for _ in range(Q):
     l,r=map(int,input().split())
     out.append(str(bisect_right(a,r)-bisect_left(a,l)))
-print('\n'.join(out))`,
+print('
+'.join(out))`,
 p107:`N,K=map(int,input().split())
 a=sorted(map(int,input().split()))
 mid=N//2
@@ -849,7 +853,8 @@ for m in cust:
     if i==0:out.append('-1')
     else:
         v=sl[i-1];out.append(str(v));sl.remove(v)
-print('\n'.join(out))`,
+print('
+'.join(out))`,
 p114:`N,M,K=map(int,input().split())
 a=sorted(map(int,input().split()))
 b=sorted(map(int,input().split()))
@@ -891,7 +896,8 @@ for _ in range(M):
     if ru!=rv:p[ru]=rv
 reps=[i for i in range(1,N+1) if find(i)==i]
 print(len(reps)-1)
-print('\n'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
+print('
+'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
 p118:`import sys
 from collections import deque
 input=sys.stdin.readline
@@ -1019,7 +1025,8 @@ for _ in range(T):
         if y==k:val=base+x
         else:val=k*k-(y-1)
     out.append(str(val))
-print('\n'.join(out))`,
+print('
+'.join(out))`,
 ia_range_sum:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1038,7 +1045,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 ia_diff_array:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1081,7 +1089,8 @@ for _ in range(q):
         best = min(best, abs(stations[idx - 1] - x))
     out.append(str(best))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 ia_dsu_groups:`import sys
 
 input = sys.stdin.readline
@@ -1114,7 +1123,8 @@ for _ in range(q):
     else:
         out.append("YES" if find(a) == find(b) else "NO")
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 ia_knapsack:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1178,7 +1188,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src133_i400:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1197,7 +1208,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src134_h027:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1216,7 +1228,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src135_b965:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1235,7 +1248,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src136_j607:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1254,7 +1268,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src137_f640:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1273,7 +1288,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src138_P_3_2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1495,7 +1511,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src153_202010P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1514,7 +1531,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src154_201610P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1533,7 +1551,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src155_201802P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1552,7 +1571,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src156_202111P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1571,7 +1591,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src157_202310P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1590,7 +1611,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src158_201810P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1609,7 +1631,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src159_202501P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1628,7 +1651,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src160_202206P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1647,7 +1671,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src161_201806P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1666,7 +1691,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src162_201703P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1685,7 +1711,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src163_201906P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1704,7 +1731,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src164_201910P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1723,7 +1751,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src165_202101P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1742,7 +1771,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src166_202306P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1761,7 +1791,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src167_202001P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1780,7 +1811,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src168_201603P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1799,7 +1831,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src169_201902P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1818,7 +1851,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src170_202410P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1837,7 +1871,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src171_202401P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1856,7 +1891,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src172_202201P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1875,7 +1911,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src173_202301P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1894,7 +1931,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src174_202210P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1913,7 +1951,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src175_202406P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1932,7 +1971,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src176_202007P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1951,7 +1991,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src177_202109P2:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -1970,7 +2011,8 @@ for _ in range(q):
     r = next(it)
     out.append(str(ps[r] - ps[l - 1]))
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src178_201810P3:`import sys
 from collections import deque
 input=sys.stdin.readline
@@ -2895,7 +2937,8 @@ for _ in range(q):
     else:
         out.append("YES" if find(a) == find(b) else "NO")
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src233_cses_1635:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -2999,7 +3042,8 @@ for _ in range(M):
     if ru!=rv:p[ru]=rv
 reps=[i for i in range(1,N+1) if find(i)==i]
 print(len(reps)-1)
-print('\n'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
+print('
+'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
 src239_cf_1385E:`from collections import deque
 import sys
 
@@ -3073,7 +3117,8 @@ for _ in range(M):
     if ru!=rv:p[ru]=rv
 reps=[i for i in range(1,N+1) if find(i)==i]
 print(len(reps)-1)
-print('\n'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
+print('
+'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
 src243_usaco_861:`import sys
 from collections import deque
 input=sys.stdin.readline
@@ -3323,7 +3368,8 @@ for _ in range(q):
     else:
         out.append("YES" if find(a) == find(b) else "NO")
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src256_usaco_789:`import sys
 
 input = sys.stdin.readline
@@ -3356,7 +3402,8 @@ for _ in range(q):
     else:
         out.append("YES" if find(a) == find(b) else "NO")
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src257_cf_1418C:`import sys
 input=sys.stdin.readline
 INF=10**9
@@ -3429,7 +3476,8 @@ for _ in range(q):
     else:
         out.append("YES" if find(a) == find(b) else "NO")
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src260_cses_1675:`import sys
 input=sys.stdin.readline
 N,M=map(int,input().split())
@@ -3443,7 +3491,8 @@ for _ in range(M):
     if ru!=rv:p[ru]=rv
 reps=[i for i in range(1,N+1) if find(i)==i]
 print(len(reps)-1)
-print('\n'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
+print('
+'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
 src261_cses_1678:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -3556,7 +3605,8 @@ for _ in range(M):
     if ru!=rv:p[ru]=rv
 reps=[i for i in range(1,N+1) if find(i)==i]
 print(len(reps)-1)
-print('\n'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
+print('
+'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
 src268_cf_687C:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -3654,7 +3704,8 @@ for _ in range(q):
     else:
         out.append("YES" if find(a) == find(b) else "NO")
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src273_cses_1093:`import sys
 
 data = list(map(int, sys.stdin.read().split()))
@@ -3702,7 +3753,8 @@ for _ in range(q):
     else:
         out.append("YES" if find(a) == find(b) else "NO")
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src275_usaco_717:`import sys
 from collections import deque
 input=sys.stdin.readline
@@ -3754,7 +3806,8 @@ for _ in range(q):
     else:
         out.append("YES" if find(a) == find(b) else "NO")
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src277_baltic_09_candy:`import sys
 input=sys.stdin.readline
 INF=10**9
@@ -3838,7 +3891,8 @@ out=[]
 for _ in range(Q):
     l,r=map(int,input().split())
     out.append(str(bisect_right(a,r)-bisect_left(a,l)))
-print('\n'.join(out))`,
+print('
+'.join(out))`,
 src284_usaco_647:`import sys
 input=sys.stdin.readline
 INF=10**9
@@ -3891,7 +3945,8 @@ for _ in range(q):
     else:
         out.append("YES" if find(a) == find(b) else "NO")
 
-print("\n".join(out))`,
+print("
+".join(out))`,
 src287_usaco_496:`import sys
 input=sys.stdin.readline
 INF=10**9
@@ -3974,7 +4029,8 @@ for _ in range(M):
     if ru!=rv:p[ru]=rv
 reps=[i for i in range(1,N+1) if find(i)==i]
 print(len(reps)-1)
-print('\n'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
+print('
+'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
 src293_usaco_946:`import sys
 input=sys.stdin.readline
 N,M=map(int,input().split())
@@ -3988,7 +4044,8 @@ for _ in range(M):
     if ru!=rv:p[ru]=rv
 reps=[i for i in range(1,N+1) if find(i)==i]
 print(len(reps)-1)
-print('\n'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
+print('
+'.join(f'{reps[0]} {reps[i]}' for i in range(1,len(reps))))`,
 src294_cses_1202:`import sys
 from collections import deque
 input=sys.stdin.readline
@@ -4077,7 +4134,8 @@ out=[]
 for _ in range(Q):
     l,r=map(int,input().split())
     out.append(str(bisect_right(a,r)-bisect_left(a,l)))
-print('\n'.join(out))`,
+print('
+'.join(out))`,
 custom_301:``
 },
 cpp:{
@@ -4091,11 +4149,16 @@ int main(){
     for(auto& x:s) cin>>x;
     sort(s.begin(),s.end());
     for(int i=0;i<n;i++){if(i)cout<<" ";cout<<s[i];}
-    cout<<"\n";
+    cout<<"
+";
     int hf=-1,lp=-1;
     for(int x:s){if(x<60)hf=x;else if(lp==-1)lp=x;}
-    if(hf==-1)cout<<"best case\n";else cout<<hf<<"\n";
-    if(lp==-1)cout<<"worst case\n";else cout<<lp<<"\n";
+    if(hf==-1)cout<<"best case
+";else cout<<hf<<"
+";
+    if(lp==-1)cout<<"worst case
+";else cout<<lp<<"
+";
 }`,
 c294:`#include <iostream>
 #include <algorithm>
@@ -4103,11 +4166,16 @@ using namespace std;
 int main(){
     int a[3];cin>>a[0]>>a[1]>>a[2];
     sort(a,a+3);
-    cout<<a[0]<<" "<<a[1]<<" "<<a[2]<<"\n";
-    if(a[0]+a[1]<=a[2])cout<<"No\n";
-    else if(a[0]*a[0]+a[1]*a[1]<a[2]*a[2])cout<<"Obtuse\n";
-    else if(a[0]*a[0]+a[1]*a[1]==a[2]*a[2])cout<<"Right\n";
-    else cout<<"Acute\n";
+    cout<<a[0]<<" "<<a[1]<<" "<<a[2]<<"
+";
+    if(a[0]+a[1]<=a[2])cout<<"No
+";
+    else if(a[0]*a[0]+a[1]*a[1]<a[2]*a[2])cout<<"Obtuse
+";
+    else if(a[0]*a[0]+a[1]*a[1]==a[2]*a[2])cout<<"Right
+";
+    else cout<<"Acute
+";
 }`,
 c290:`#include <iostream>
 #include <string>
@@ -4121,7 +4189,8 @@ int main(){
         if(i%2==0)odd+=s[i]-'0';
         else even+=s[i]-'0';
     }
-    cout<<abs(odd-even)<<"\n";
+    cout<<abs(odd-even)<<"
+";
 }`,
 c461:`#include <iostream>
 using namespace std;
@@ -4129,10 +4198,14 @@ int main(){
     int a,b,r;cin>>a>>b>>r;
     a=a?1:0;b=b?1:0;
     bool any=false;
-    if((a&b)==r){cout<<"AND\n";any=true;}
-    if((a|b)==r){cout<<"OR\n";any=true;}
-    if((a^b)==r){cout<<"XOR\n";any=true;}
-    if(!any)cout<<"IMPOSSIBLE\n";
+    if((a&b)==r){cout<<"AND
+";any=true;}
+    if((a|b)==r){cout<<"OR
+";any=true;}
+    if((a^b)==r){cout<<"XOR
+";any=true;}
+    if(!any)cout<<"IMPOSSIBLE
+";
 }`,
 e283:`#include <iostream>
 #include <string>
@@ -4148,7 +4221,8 @@ int main(){
             for(int j=0;j<4;j++){int x;cin>>x;key+=(char)('0'+x);}
             res+=code[key];
         }
-        cout<<res<<"\n";
+        cout<<res<<"
+";
     }
 }`,
 e313:`#include <iostream>
@@ -4163,7 +4237,8 @@ int main(){
         int c=set<char>(s.begin(),s.end()).size();
         if(c<bc||(c==bc&&s<best)){bc=c;best=s;}
     }
-    cout<<best<<"\n";
+    cout<<best<<"
+";
 }`,
 e286:`#include <iostream>
 using namespace std;
@@ -4173,9 +4248,14 @@ int main(){
     for(int i=0;i<4;i++){cin>>x;c1+=x;}
     for(int i=0;i<4;i++){cin>>x;h2+=x;}
     for(int i=0;i<4;i++){cin>>x;c2+=x;}
-    cout<<h1<<":"<<c1<<"\n"<<h2<<":"<<c2<<"\n";
+    cout<<h1<<":"<<c1<<"
+"<<h2<<":"<<c2<<"
+";
     int w=(h1>c1)+(h2>c2),l=(c1>h1)+(c2>h2);
-    if(w==2)cout<<"Win\n";else if(l==2)cout<<"Lose\n";else cout<<"Tie\n";
+    if(w==2)cout<<"Win
+";else if(l==2)cout<<"Lose
+";else cout<<"Tie
+";
 }`,
 h026:`#include <iostream>
 #include <vector>
@@ -4188,11 +4268,14 @@ int main(){
     int bro=F;bool done=false;
     for(int i=0;i<N;i++){
         cout<<bro<<" ";
-        if(bro==beat(y[i])){cout<<": Won at round "<<i+1<<"\n";done=true;break;}
-        else if(y[i]==beat(bro)){cout<<": Lost at round "<<i+1<<"\n";done=true;break;}
+        if(bro==beat(y[i])){cout<<": Won at round "<<i+1<<"
+";done=true;break;}
+        else if(y[i]==beat(bro)){cout<<": Lost at round "<<i+1<<"
+";done=true;break;}
         if(i+1<N)bro=(i>=1&&y[i]==y[i-1])?beat(y[i]):y[i];
     }
-    if(!done)cout<<": Drew at round "<<N<<"\n";
+    if(!done)cout<<": Drew at round "<<N<<"
+";
 }`,
 f579:`#include <iostream>
 using namespace std;
@@ -4206,7 +4289,8 @@ int main(){
         }
         if(ca>0&&cb>0)ans++;
     }
-    cout<<ans<<"\n";
+    cout<<ans<<"
+";
 }`,
 f312:`#include <iostream>
 #include <algorithm>
@@ -4220,7 +4304,8 @@ int main(){
         long long t=A1*x1*x1+B1*x1+C1+A2*x2*x2+B2*x2+C2;
         if(first||t>best){best=t;first=false;}
     }
-    cout<<best<<"\n";
+    cout<<best<<"
+";
 }`,
 f605:`#include <iostream>
 #include <algorithm>
@@ -4232,7 +4317,8 @@ int main(){
         int p[3];cin>>p[0]>>p[1]>>p[2];
         if(max({p[0],p[1],p[2]})-min({p[0],p[1],p[2]})>=d){cnt++;cost+=(p[0]+p[1]+p[2])/3;}
     }
-    cout<<cnt<<" "<<cost<<"\n";
+    cout<<cnt<<" "<<cost<<"
+";
 }`,
 g275:`#include <iostream>
 #include <string>
@@ -4247,7 +4333,8 @@ int main(){
         if(t[1]==t[3]||t[1]!=t[5]||b[1]==b[3]||b[1]!=b[5])bad+="A";
         if(t[6]!=1||b[6]!=0)bad+="B";
         if(t[1]==b[1]||t[3]==b[3]||t[5]==b[5])bad+="C";
-        cout<<(bad.empty()?"None":bad)<<"\n";
+        cout<<(bad.empty()?"None":bad)<<"
+";
     }
 }`,
 g595:`#include <iostream>
@@ -4265,7 +4352,8 @@ int main(){
         else if(i==n-1)ans+=h[n-2];
         else ans+=min(h[i-1],h[i+1]);
     }
-    cout<<ans<<"\n";
+    cout<<ans<<"
+";
 }`,
 h081:`#include <iostream>
 #include <vector>
@@ -4279,7 +4367,8 @@ int main(){
         if(holding){if(a[i]>=price+D){profit+=a[i]-price;price=a[i];holding=false;}}
         else{if(a[i]<=price-D){price=a[i];holding=true;}}
     }
-    cout<<profit<<"\n";
+    cout<<profit<<"
+";
 }`,
 i399:`#include <iostream>
 #include <vector>
@@ -4293,7 +4382,8 @@ int main(){
     sort(v.begin(),v.end(),greater<int>());
     cout<<P;int prev=-1;
     for(int x:v)if(x!=prev){cout<<" "<<x;prev=x;}
-    cout<<"\n";
+    cout<<"
+";
 }`,
 i428:`#include <iostream>
 #include <vector>
@@ -4308,7 +4398,8 @@ int main(){
         int d=abs(pts[i].first-pts[i-1].first)+abs(pts[i].second-pts[i-1].second);
         mx=max(mx,d);mn=min(mn,d);
     }
-    cout<<mx<<" "<<mn<<"\n";
+    cout<<mx<<" "<<mn<<"
+";
 }`,
 j605:`#include <iostream>
 #include <algorithm>
@@ -4317,7 +4408,8 @@ int main(){
     int K;cin>>K;
     int best=-1,bt=0,err=0;
     for(int i=0;i<K;i++){int t,s;cin>>t>>s;if(s==-1){err++;continue;}if(s>best){best=s;bt=t;}}
-    cout<<max(0,best-K-err*2)<<" "<<bt<<"\n";
+    cout<<max(0,best-K-err*2)<<" "<<bt<<"
+";
 }`,
 k731:`#include <iostream>
 #include <vector>
@@ -4335,7 +4427,8 @@ int main(){
         if(dot<0)bk++;else if(cross>0)lft++;else if(cross<0)rgt++;
         prev={dx,dy};
     }
-    cout<<lft<<" "<<rgt<<" "<<bk<<"\n";
+    cout<<lft<<" "<<rgt<<" "<<bk<<"
+";
 }`,
 m370:`#include <iostream>
 #include <vector>
@@ -4347,8 +4440,10 @@ int main(){
     for(auto& f:foods)cin>>f;
     vector<int> l,r;
     for(int f:foods){if(f<x)l.push_back(f);else r.push_back(f);}
-    if(l.size()>r.size())cout<<l.size()<<" "<<*min_element(l.begin(),l.end())<<"\n";
-    else cout<<r.size()<<" "<<*max_element(r.begin(),r.end())<<"\n";
+    if(l.size()>r.size())cout<<l.size()<<" "<<*min_element(l.begin(),l.end())<<"
+";
+    else cout<<r.size()<<" "<<*max_element(r.begin(),r.end())<<"
+";
 }`,
 m931:`#include <iostream>
 #include <vector>
@@ -4359,7 +4454,8 @@ int main(){
     vector<pair<int,pair<int,int>>> roles;
     for(int i=0;i<n;i++){int a,d;cin>>a>>d;roles.push_back({a*a+d*d,{a,d}});}
     sort(roles.begin(),roles.end(),greater<pair<int,pair<int,int>>>());
-    cout<<roles[1].second.first<<" "<<roles[1].second.second<<"\n";
+    cout<<roles[1].second.first<<" "<<roles[1].second.second<<"
+";
 }`,
 o076:`#include <iostream>
 #include <vector>
@@ -4371,7 +4467,8 @@ int main(){
     for(auto& x:h)cin>>x;
     int cur=1,ans=1;
     for(int i=1;i<n;i++){if(h[i]<h[i-1])cur++;else cur=1;ans=max(ans,cur);}
-    cout<<ans<<"\n";
+    cout<<ans<<"
+";
 }`,
 o711:`#include <iostream>
 #include <vector>
@@ -4385,7 +4482,8 @@ int main(){
     auto ht=[&](long long v)->long long{return v<=cap1?v/(w1*w1):h1+(v-cap1)/(w2*w2);};
     long long water=0,ans=0;
     for(int v:pour){long long oh=ht(water);water=min(total,water+(long long)v);ans=max(ans,ht(water)-oh);}
-    cout<<ans<<"\n";
+    cout<<ans<<"
+";
 }`,
 q181:`#include <iostream>
 using namespace std;
@@ -4394,7 +4492,8 @@ int main(){
     int n;cin>>n;
     int cycle=a+b,wait=0;
     for(int i=0;i<n;i++){int t;cin>>t;int r=t%cycle;if(r>=a)wait+=cycle-r;}
-    cout<<wait<<"\n";
+    cout<<wait<<"
+";
 }`,
 q836:`#include <iostream>
 using namespace std;
@@ -4402,7 +4501,8 @@ int main(){
     int k,x1,y1,x2,y2;
     cin>>k>>x1>>y1>>x2>>y2;
     int v=k,pos=0;
-    while(true){pos+=v;if(pos%x1==0)v-=y1;if(pos%x2==0)v-=y2;if(v<=0){cout<<pos<<"\n";break;}}
+    while(true){pos+=v;if(pos%x1==0)v-=y1;if(pos%x2==0)v-=y2;if(v<=0){cout<<pos<<"
+";break;}}
 }`,
 m001:`#include <iostream>
 #include <vector>
@@ -4413,16 +4513,19 @@ int main(){
     vector<long long>a(n);for(auto&x:a)cin>>x;
     long long cur=a[0],ans=a[0];
     for(int i=1;i<n;i++){cur=max(a[i],cur+a[i]);ans=max(ans,cur);}
-    cout<<ans<<"\n";
+    cout<<ans<<"
+";
 }`,
 m002:`#include <iostream>
 using namespace std;
 int main(){
     int n;cin>>n;
-    if(n==1){cout<<1<<"\n";return 0;}
+    if(n==1){cout<<1<<"
+";return 0;}
     long long a=1,b=2;
     for(int i=2;i<n;i++){long long t=a+b;a=b;b=t;}
-    cout<<b<<"\n";
+    cout<<b<<"
+";
 }`,
 m003:`#include <iostream>
 #include <string>
@@ -4433,11 +4536,14 @@ int main(){
     stack<char>st;
     for(char c:s){
         if(c=='('||c=='['||c=='{')st.push(c);
-        else{if(st.empty()){cout<<"Invalid\n";return 0;}
+        else{if(st.empty()){cout<<"Invalid
+";return 0;}
             char t=st.top();st.pop();
-            if((c==')'&&t!='(')||(c==']'&&t!='[')||(c=='}'&&t!='{')){cout<<"Invalid\n";return 0;}}
+            if((c==')'&&t!='(')||(c==']'&&t!='[')||(c=='}'&&t!='{')){cout<<"Invalid
+";return 0;}}
     }
-    cout<<(st.empty()?"Valid":"Invalid")<<"\n";
+    cout<<(st.empty()?"Valid":"Invalid")<<"
+";
 }`,
 m004:`#include <iostream>
 #include <vector>
@@ -4447,7 +4553,8 @@ int main(){
     vector<int>a(n);for(auto&x:a)cin>>x;
     while(m--){int x,lo=0,hi=n-1,ans=-1;cin>>x;
         while(lo<=hi){int mid=(lo+hi)/2;if(a[mid]>=x){ans=mid+1;hi=mid-1;}else lo=mid+1;}
-        cout<<ans<<"\n";}
+        cout<<ans<<"
+";}
 }`,
 m005:`#include <iostream>
 #include <vector>
@@ -4457,7 +4564,8 @@ int main(){
     int n;cin>>n;
     vector<int>a(n),dp(n,1);for(auto&x:a)cin>>x;
     for(int i=1;i<n;i++)for(int j=0;j<i;j++)if(a[j]<a[i])dp[i]=max(dp[i],dp[j]+1);
-    cout<<*max_element(dp.begin(),dp.end())<<"\n";
+    cout<<*max_element(dp.begin(),dp.end())<<"
+";
 }`,
 m006:`#include <iostream>
 #include <vector>
@@ -4468,7 +4576,8 @@ int main(){
     for(int i=2;(long long)i*i<=n;i++)if(sv[i])for(int j=i*i;j<=n;j+=i)sv[j]=false;
     bool first=true;
     for(int i=2;i<=n;i++)if(sv[i]){if(!first)cout<<" ";cout<<i;first=false;}
-    cout<<"\n";
+    cout<<"
+";
 }`,
 m007:`#include <iostream>
 #include <string>
@@ -4479,7 +4588,8 @@ int main(){
     string res;int carry=0,i=a.size()-1,j=b.size()-1;
     while(i>=0||j>=0||carry){int s=carry;if(i>=0)s+=a[i--]-'0';if(j>=0)s+=b[j--]-'0';res+=(char)('0'+s%10);carry=s/10;}
     reverse(res.begin(),res.end());
-    cout<<res<<"\n";
+    cout<<res<<"
+";
 }`,
 m008:`#include <iostream>
 #include <sstream>
@@ -4491,7 +4601,8 @@ int main(){
     istringstream iss(line);vector<string>words;string w;
     while(iss>>w)words.push_back(w);
     reverse(words.begin(),words.end());
-    for(int i=0;i<(int)words.size();i++){if(i)cout<<" ";cout<<words[i];}cout<<"\n";
+    for(int i=0;i<(int)words.size();i++){if(i)cout<<" ";cout<<words[i];}cout<<"
+";
 }`,
 h001:`#include <iostream>
 #include <vector>
@@ -4501,7 +4612,8 @@ int main(){
     int n,W;cin>>n>>W;
     vector<int>dp(W+1,0);
     for(int i=0;i<n;i++){int w,v;cin>>w>>v;for(int j=W;j>=w;j--)dp[j]=max(dp[j],dp[j-w]+v);}
-    cout<<dp[W]<<"\n";
+    cout<<dp[W]<<"
+";
 }`,
 h002:`#include <iostream>
 #include <string>
@@ -4513,7 +4625,8 @@ int main(){
     int m=A.size(),n=B.size();
     vector<vector<int>>dp(m+1,vector<int>(n+1,0));
     for(int i=1;i<=m;i++)for(int j=1;j<=n;j++){if(A[i-1]==B[j-1])dp[i][j]=dp[i-1][j-1]+1;else dp[i][j]=max(dp[i-1][j],dp[i][j-1]);}
-    cout<<dp[m][n]<<"\n";
+    cout<<dp[m][n]<<"
+";
 }`,
 h003:`#include <iostream>
 #include <vector>
@@ -4523,11 +4636,14 @@ int main(){
     int n,m;cin>>n>>m;
     vector<vector<int>>g(n,vector<int>(m)),dist(n,vector<int>(m,-1));
     for(auto&r:g)for(auto&x:r)cin>>x;
-    if(g[0][0]||g[n-1][m-1]){cout<<-1<<"\n";return 0;}
+    if(g[0][0]||g[n-1][m-1]){cout<<-1<<"
+";return 0;}
     queue<pair<int,int>>q;q.push({0,0});dist[0][0]=0;
     int dr[]={-1,1,0,0},dc[]={0,0,-1,1};
-    while(!q.empty()){auto[r,c]=q.front();q.pop();if(r==n-1&&c==m-1){cout<<dist[r][c]<<"\n";return 0;}for(int d=0;d<4;d++){int nr=r+dr[d],nc=c+dc[d];if(nr>=0&&nr<n&&nc>=0&&nc<m&&!g[nr][nc]&&dist[nr][nc]==-1){dist[nr][nc]=dist[r][c]+1;q.push({nr,nc});}}}
-    cout<<-1<<"\n";
+    while(!q.empty()){auto[r,c]=q.front();q.pop();if(r==n-1&&c==m-1){cout<<dist[r][c]<<"
+";return 0;}for(int d=0;d<4;d++){int nr=r+dr[d],nc=c+dc[d];if(nr>=0&&nr<n&&nc>=0&&nc<m&&!g[nr][nc]&&dist[nr][nc]==-1){dist[nr][nc]=dist[r][c]+1;q.push({nr,nc});}}}
+    cout<<-1<<"
+";
 }`,
 h004:`#include <iostream>
 #include <vector>
@@ -4542,13 +4658,15 @@ int main(){
         if(t<=b){for(int c=r;c>=l;c--)cout<<" "<<g[b][c];b--;}
         if(l<=r){for(int row=b;row>=t;row--)cout<<" "<<g[row][l];l++;}
     }
-    cout<<"\n";
+    cout<<"
+";
 }`,
 h005:`#include <iostream>
 using namespace std;
 typedef long long ll;
 ll pw(ll a,ll n,ll m){if(m==1)return 0;ll r=1;a%=m;while(n>0){if(n&1)r=r*a%m;a=a*a%m;n>>=1;}return r;}
-int main(){ll a,n,m;cin>>a>>n>>m;cout<<pw(a,n,m)<<"\n";}`,
+int main(){ll a,n,m;cin>>a>>n>>m;cout<<pw(a,n,m)<<"
+";}`,
 p2_color_b:`#include <iostream>
 #include <vector>
 using namespace std;
@@ -4558,7 +4676,8 @@ int main(){
     for(int i=0;i<k;i++){int r,c;cin>>r>>c;g[r][c]=1;}
     int cnt=0;
     for(auto&row:g)for(int x:row)if(x)cnt++;
-    cout<<cnt<<"\n";
+    cout<<cnt<<"
+";
 }`,
 p2_color_m:`#include <iostream>
 #include <vector>
@@ -4572,7 +4691,8 @@ int main(){
     }
     int cnt=0,s=0;
     for(auto&row:g)for(int x:row)if(x){cnt++;s+=x;}
-    cout<<cnt<<" "<<s<<"\n";
+    cout<<cnt<<" "<<s<<"
+";
 }`,
 p2_str_b:`#include <iostream>
 #include <string>
@@ -4582,7 +4702,8 @@ int main(){
     string s;getline(cin,s);
     int cnt=0;
     for(char c:s)if(isalpha((unsigned char)c))cnt++;
-    cout<<cnt<<"\n";
+    cout<<cnt<<"
+";
 }`,
 p2_str_m:`#include <iostream>
 #include <string>
@@ -4601,7 +4722,8 @@ int main(){
             cur=prev+rep;
         }else cur+=c;
     }
-    cout<<cur<<"\n";
+    cout<<cur<<"
+";
 }`,
 p2_bee_b:`#include <iostream>
 #include <vector>
@@ -4610,7 +4732,8 @@ using namespace std;
 int main(){
     int n;cin>>n;
     vector<int>t(n);for(auto&x:t)cin>>x;
-    cout<<*max_element(t.begin(),t.end())-*min_element(t.begin(),t.end())<<"\n";
+    cout<<*max_element(t.begin(),t.end())-*min_element(t.begin(),t.end())<<"
+";
 }`,
 p2_bee_m:`#include <iostream>
 #include <vector>
@@ -4624,7 +4747,8 @@ int main(){
         while(t[r]-t[l]>w)l++;
         ans=max(ans,r-l+1);
     }
-    cout<<ans<<"\n";
+    cout<<ans<<"
+";
 }`,
 p2_card_b:`#include <iostream>
 #include <vector>
@@ -4636,7 +4760,8 @@ int main(){
     sort(a.begin(),a.end());
     long long s=0;
     for(int i=n-k;i<n;i++)s+=a[i];
-    cout<<s<<"\n";
+    cout<<s<<"
+";
 }`,
 p2_card_m:`#include <iostream>
 #include <vector>
@@ -4655,7 +4780,8 @@ int main(){
             if(!used[i]&&a[i]>x){used[i]=true;score++;break;}
         }
     }
-    cout<<score<<"\n";
+    cout<<score<<"
+";
 }`,
 o_avg:`#include <iostream>
 #include <vector>
@@ -4664,31 +4790,38 @@ int main(){
     int n;cin>>n;
     long long s=0;int x;
     for(int i=0;i<n;i++){cin>>x;s+=x;}
-    cout<<(s*2+n)/(2LL*n)<<"\n";
+    cout<<(s*2+n)/(2LL*n)<<"
+";
 }`,
 o_isprime:`#include <iostream>
 using namespace std;
 int main(){
     long long n;cin>>n;
-    if(n<2){cout<<"No\n";return 0;}
-    for(long long i=2;i*i<=n;i++)if(n%i==0){cout<<"No\n";return 0;}
-    cout<<"Yes\n";
+    if(n<2){cout<<"No
+";return 0;}
+    for(long long i=2;i*i<=n;i++)if(n%i==0){cout<<"No
+";return 0;}
+    cout<<"Yes
+";
 }`,
 o_count_digit:`#include <iostream>
 using namespace std;
 int main(){
     long long n;cin>>n;
-    if(n==0){cout<<1<<"\n";return 0;}
+    if(n==0){cout<<1<<"
+";return 0;}
     int cnt=0;
     while(n>0){cnt++;n/=10;}
-    cout<<cnt<<"\n";
+    cout<<cnt<<"
+";
 }`,
 o_reverse_num:`#include <iostream>
 using namespace std;
 int main(){
     long long n,rev=0;cin>>n;
     while(n>0){rev=rev*10+n%10;n/=10;}
-    cout<<rev<<"\n";
+    cout<<rev<<"
+";
 }`,
 o_count_char:`#include <iostream>
 #include <string>
@@ -4697,7 +4830,8 @@ int main(){
     string s;char c;cin>>s>>c;
     int cnt=0;
     for(char x:s)if(x==c)cnt++;
-    cout<<cnt<<"\n";
+    cout<<cnt<<"
+";
 }`,
 o_prefix:`#include <iostream>
 #include <vector>
@@ -4706,7 +4840,8 @@ int main(){
     int n,q;cin>>n>>q;
     vector<long long>pref(n+1,0);
     for(int i=0;i<n;i++){int x;cin>>x;pref[i+1]=pref[i]+x;}
-    while(q--){int l,r;cin>>l>>r;cout<<pref[r]-pref[l-1]<<"\n";}
+    while(q--){int l,r;cin>>l>>r;cout<<pref[r]-pref[l-1]<<"
+";}
 }`,
 o_twosum:`#include <iostream>
 #include <vector>
@@ -4717,7 +4852,8 @@ int main(){
     unordered_map<int,int>seen;
     for(int i=0;i<n;i++){
         int x;cin>>x;
-        if(seen.count(target-x)){cout<<seen[target-x]+1<<" "<<i+1<<"\n";return 0;}
+        if(seen.count(target-x)){cout<<seen[target-x]+1<<" "<<i+1<<"
+";return 0;}
         seen[x]=i;
     }
 }`,
@@ -4728,9 +4864,11 @@ int main(){
     int n;cin>>n;
     set<int,greater<int>>s;
     for(int i=0;i<n;i++){int x;cin>>x;s.insert(x);}
-    if(s.size()<2){cout<<-1<<"\n";return 0;}
+    if(s.size()<2){cout<<-1<<"
+";return 0;}
     auto it=s.begin();++it;
-    cout<<*it<<"\n";
+    cout<<*it<<"
+";
 }`,
 o_transpose:`#include <iostream>
 #include <vector>
@@ -4741,7 +4879,8 @@ int main(){
     for(auto&r:a)for(auto&x:r)cin>>x;
     for(int j=0;j<m;j++){
         for(int i=0;i<n;i++){if(i)cout<<" ";cout<<a[i][j];}
-        cout<<"\n";
+        cout<<"
+";
     }
 }`,
 o_str_compress:`#include <iostream>
@@ -4756,7 +4895,8 @@ int main(){
         cout<<s[i]<<(j-i);
         i=j;
     }
-    cout<<"\n";
+    cout<<"
+";
 }`,
 o_edit_dist:`#include <iostream>
 #include <string>
@@ -4773,7 +4913,8 @@ int main(){
         if(A[i-1]==B[j-1])dp[i][j]=dp[i-1][j-1];
         else dp[i][j]=1+min({dp[i-1][j],dp[i][j-1],dp[i-1][j-1]});
     }
-    cout<<dp[m][n]<<"\n";
+    cout<<dp[m][n]<<"
+";
 }`,
 o_nqueen:`#include <iostream>
 #include <set>
@@ -4791,7 +4932,8 @@ void solve(int row){
 }
 int main(){
     cin>>n;solve(0);
-    cout<<cnt<<"\n";
+    cout<<cnt<<"
+";
 }`,
 o_kth_min:`#include <iostream>
 #include <vector>
@@ -4801,7 +4943,8 @@ int main(){
     int n,k;cin>>n>>k;
     vector<int>a(n);for(auto&x:a)cin>>x;
     sort(a.begin(),a.end());
-    cout<<a[k-1]<<"\n";
+    cout<<a[k-1]<<"
+";
 }`,
 m_two_sum:`#include <iostream>
 #include <unordered_map>
@@ -4809,118 +4952,145 @@ using namespace std;
 int main(){
     int n,K;cin>>n>>K;
     unordered_map<int,int>m;
-    for(int i=1;i<=n;i++){int x;cin>>x;if(m.count(K-x)){cout<<m[K-x]<<" "<<i<<"\n";return 0;}m[x]=i;}
+    for(int i=1;i<=n;i++){int x;cin>>x;if(m.count(K-x)){cout<<m[K-x]<<" "<<i<<"
+";return 0;}m[x]=i;}
 }`,
 m_uniq_cnt:`#include <iostream>
 #include <set>
 using namespace std;
-int main(){int n;cin>>n;set<int>s;for(int i=0;i<n;i++){int x;cin>>x;s.insert(x);}cout<<s.size()<<"\n";}`,
+int main(){int n;cin>>n;set<int>s;for(int i=0;i<n;i++){int x;cin>>x;s.insert(x);}cout<<s.size()<<"
+";}`,
 m_lcis:`#include <iostream>
 using namespace std;
-int main(){int n;cin>>n;int prev,cur=1,best=1,x;cin>>prev;for(int i=1;i<n;i++){cin>>x;cur=(x>prev)?cur+1:1;if(cur>best)best=cur;prev=x;}cout<<best<<"\n";}`,
+int main(){int n;cin>>n;int prev,cur=1,best=1,x;cin>>prev;for(int i=1;i<n;i++){cin>>x;cur=(x>prev)?cur+1:1;if(cur>best)best=cur;prev=x;}cout<<best<<"
+";}`,
 m_intervals:`#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
-int main(){int n;cin>>n;vector<pair<int,int>>v(n);for(auto&p:v)cin>>p.first>>p.second;sort(v.begin(),v.end());int cnt=1,R=v[0].second;for(int i=1;i<n;i++){if(v[i].first<=R)R=max(R,v[i].second);else{cnt++;R=v[i].second;}}cout<<cnt<<"\n";}`,
+int main(){int n;cin>>n;vector<pair<int,int>>v(n);for(auto&p:v)cin>>p.first>>p.second;sort(v.begin(),v.end());int cnt=1,R=v[0].second;for(int i=1;i<n;i++){if(v[i].first<=R)R=max(R,v[i].second);else{cnt++;R=v[i].second;}}cout<<cnt<<"
+";}`,
 m_sliding_max:`#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
-int main(){int n,k;cin>>n>>k;vector<int>a(n);for(auto&x:a)cin>>x;for(int i=0;i<=n-k;i++){if(i)cout<<" ";cout<<*max_element(a.begin()+i,a.begin()+i+k);}cout<<"\n";}`,
+int main(){int n,k;cin>>n>>k;vector<int>a(n);for(auto&x:a)cin>>x;for(int i=0;i<=n-k;i++){if(i)cout<<" ";cout<<*max_element(a.begin()+i,a.begin()+i+k);}cout<<"
+";}`,
 m_palindrome:`#include <iostream>
 #include <string>
 #include <cctype>
 using namespace std;
-int main(){string s;getline(cin,s);string t;for(char c:s)if(isalnum(c))t+=tolower(c);string r=t;reverse(r.begin(),r.end());cout<<(t==r?"Yes":"No")<<"\n";}`,
+int main(){string s;getline(cin,s);string t;for(char c:s)if(isalnum(c))t+=tolower(c);string r=t;reverse(r.begin(),r.end());cout<<(t==r?"Yes":"No")<<"
+";}`,
 m_bsearch:`#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
-int main(){int n,q;cin>>n>>q;vector<int>a(n);for(auto&x:a)cin>>x;while(q--){int x;cin>>x;auto it=lower_bound(a.begin(),a.end(),x);if(it!=a.end()&&*it==x)cout<<(it-a.begin()+1)<<"\n";else cout<<-1<<"\n";}}`,
+int main(){int n,q;cin>>n>>q;vector<int>a(n);for(auto&x:a)cin>>x;while(q--){int x;cin>>x;auto it=lower_bound(a.begin(),a.end(),x);if(it!=a.end()&&*it==x)cout<<(it-a.begin()+1)<<"
+";else cout<<-1<<"
+";}}`,
 m_prime_cnt:`#include <iostream>
 #include <vector>
 using namespace std;
-int main(){int N;cin>>N;if(N<2){cout<<0<<"\n";return 0;}vector<bool>s(N+1,true);s[0]=s[1]=false;for(int i=2;(long long)i*i<=N;i++)if(s[i])for(int j=i*i;j<=N;j+=i)s[j]=false;int c=0;for(int i=2;i<=N;i++)if(s[i])c++;cout<<c<<"\n";}`,
+int main(){int N;cin>>N;if(N<2){cout<<0<<"
+";return 0;}vector<bool>s(N+1,true);s[0]=s[1]=false;for(int i=2;(long long)i*i<=N;i++)if(s[i])for(int j=i*i;j<=N;j+=i)s[j]=false;int c=0;for(int i=2;i<=N;i++)if(s[i])c++;cout<<c<<"
+";}`,
 m_gcd_arr:`#include <iostream>
 #include <numeric>
 using namespace std;
-int main(){int n;cin>>n;int g=0,x;for(int i=0;i<n;i++){cin>>x;g=gcd(g,x);}cout<<g<<"\n";}`,
+int main(){int n;cin>>n;int g=0,x;for(int i=0;i<n;i++){cin>>x;g=gcd(g,x);}cout<<g<<"
+";}`,
 m_mat_rot:`#include <iostream>
 #include <vector>
 using namespace std;
-int main(){int N;cin>>N;vector<vector<int>>a(N,vector<int>(N));for(auto&r:a)for(auto&x:r)cin>>x;for(int j=0;j<N;j++){for(int i=N-1;i>=0;i--){if(i<N-1)cout<<" ";cout<<a[i][j];}cout<<"\n";}}`,
+int main(){int N;cin>>N;vector<vector<int>>a(N,vector<int>(N));for(auto&r:a)for(auto&x:r)cin>>x;for(int j=0;j<N;j++){for(int i=N-1;i>=0;i--){if(i<N-1)cout<<" ";cout<<a[i][j];}cout<<"
+";}}`,
 m_paren:`#include <iostream>
 #include <stack>
 #include <string>
 using namespace std;
-int main(){string s;cin>>s;stack<char>st;bool ok=true;for(char c:s){if(c=='('||c=='['||c=='{')st.push(c);else{if(st.empty()){ok=false;break;}char t=st.top();if((c==')'&&t!='(')||(c==']'&&t!='[')||(c=='}'&&t!='{')){ok=false;break;}st.pop();}}cout<<((ok&&st.empty())?"Yes":"No")<<"\n";}`,
+int main(){string s;cin>>s;stack<char>st;bool ok=true;for(char c:s){if(c=='('||c=='['||c=='{')st.push(c);else{if(st.empty()){ok=false;break;}char t=st.top();if((c==')'&&t!='(')||(c==']'&&t!='[')||(c=='}'&&t!='{')){ok=false;break;}st.pop();}}cout<<((ok&&st.empty())?"Yes":"No")<<"
+";}`,
 m_postfix:`#include <iostream>
 #include <stack>
 #include <string>
 using namespace std;
-int main(){stack<long long>st;string t;while(cin>>t){if(t=="+"||t=="-"||t=="*"||t=="/"){long long b=st.top();st.pop();long long a=st.top();st.pop();if(t=="+")st.push(a+b);else if(t=="-")st.push(a-b);else if(t=="*")st.push(a*b);else st.push(a/b);}else st.push(stoll(t));}cout<<st.top()<<"\n";}`,
+int main(){stack<long long>st;string t;while(cin>>t){if(t=="+"||t=="-"||t=="*"||t=="/"){long long b=st.top();st.pop();long long a=st.top();st.pop();if(t=="+")st.push(a+b);else if(t=="-")st.push(a-b);else if(t=="*")st.push(a*b);else st.push(a/b);}else st.push(stoll(t));}cout<<st.top()<<"
+";}`,
 m_reverse_num:`#include <iostream>
 #include <string>
 #include <algorithm>
 using namespace std;
-int main(){long long x;cin>>x;int sign=x<0?-1:1;string s=to_string(x<0?-x:x);reverse(s.begin(),s.end());long long r=sign*stoll(s);if(r>2147483647LL||r<-2147483648LL)r=0;cout<<r<<"\n";}`,
+int main(){long long x;cin>>x;int sign=x<0?-1:1;string s=to_string(x<0?-x:x);reverse(s.begin(),s.end());long long r=sign*stoll(s);if(r>2147483647LL||r<-2147483648LL)r=0;cout<<r<<"
+";}`,
 m_prefix_sum_q:`#include <iostream>
 #include <vector>
 using namespace std;
-int main(){int n,q;cin>>n>>q;vector<long long>ps(n+1,0);for(int i=1;i<=n;i++){int x;cin>>x;ps[i]=ps[i-1]+x;}while(q--){int l,r;cin>>l>>r;cout<<ps[r]-ps[l-1]<<"\n";}}`,
+int main(){int n,q;cin>>n>>q;vector<long long>ps(n+1,0);for(int i=1;i<=n;i++){int x;cin>>x;ps[i]=ps[i-1]+x;}while(q--){int l,r;cin>>l>>r;cout<<ps[r]-ps[l-1]<<"
+";}}`,
 m_two_ptr:`#include <iostream>
 #include <vector>
 using namespace std;
-int main(){int n;cin>>n;vector<int>a(n);for(auto&x:a)cin>>x;int i=0,j=n-1;long long best=0;while(i<j){long long v=(long long)min(a[i],a[j])*(j-i);if(v>best)best=v;if(a[i]<a[j])i++;else j--;}cout<<best<<"\n";}`,
+int main(){int n;cin>>n;vector<int>a(n);for(auto&x:a)cin>>x;int i=0,j=n-1;long long best=0;while(i<j){long long v=(long long)min(a[i],a[j])*(j-i);if(v>best)best=v;if(a[i]<a[j])i++;else j--;}cout<<best<<"
+";}`,
 h_lis_logn:`#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
-int main(){int n;cin>>n;vector<int>t;for(int i=0;i<n;i++){int x;cin>>x;auto it=lower_bound(t.begin(),t.end(),x);if(it==t.end())t.push_back(x);else *it=x;}cout<<t.size()<<"\n";}`,
+int main(){int n;cin>>n;vector<int>t;for(int i=0;i<n;i++){int x;cin>>x;auto it=lower_bound(t.begin(),t.end(),x);if(it==t.end())t.push_back(x);else *it=x;}cout<<t.size()<<"
+";}`,
 h_knap_unbound:`#include <iostream>
 #include <vector>
 using namespace std;
-int main(){int n,W;cin>>n>>W;vector<int>dp(W+1,0);for(int i=0;i<n;i++){int w,v;cin>>w>>v;for(int j=w;j<=W;j++)if(dp[j-w]+v>dp[j])dp[j]=dp[j-w]+v;}cout<<dp[W]<<"\n";}`,
+int main(){int n,W;cin>>n>>W;vector<int>dp(W+1,0);for(int i=0;i<n;i++){int w,v;cin>>w>>v;for(int j=w;j<=W;j++)if(dp[j-w]+v>dp[j])dp[j]=dp[j-w]+v;}cout<<dp[W]<<"
+";}`,
 h_dijkstra:`#include <iostream>
 #include <vector>
 #include <queue>
 using namespace std;
-int main(){int n,m;cin>>n>>m;vector<vector<pair<int,int>>>adj(n+1);for(int i=0;i<m;i++){int u,v,w;cin>>u>>v>>w;adj[u].push_back({v,w});adj[v].push_back({u,w});}vector<long long>d(n+1,1e18);d[1]=0;priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<>>pq;pq.push({0,1});while(!pq.empty()){auto[di,u]=pq.top();pq.pop();if(di>d[u])continue;for(auto[v,w]:adj[u])if(di+w<d[v]){d[v]=di+w;pq.push({d[v],v});}}for(int i=1;i<=n;i++){if(i>1)cout<<" ";cout<<(d[i]==(long long)1e18?-1:d[i]);}cout<<"\n";}`,
+int main(){int n,m;cin>>n>>m;vector<vector<pair<int,int>>>adj(n+1);for(int i=0;i<m;i++){int u,v,w;cin>>u>>v>>w;adj[u].push_back({v,w});adj[v].push_back({u,w});}vector<long long>d(n+1,1e18);d[1]=0;priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<>>pq;pq.push({0,1});while(!pq.empty()){auto[di,u]=pq.top();pq.pop();if(di>d[u])continue;for(auto[v,w]:adj[u])if(di+w<d[v]){d[v]=di+w;pq.push({d[v],v});}}for(int i=1;i<=n;i++){if(i>1)cout<<" ";cout<<(d[i]==(long long)1e18?-1:d[i]);}cout<<"
+";}`,
 h_dsu_island:`#include <iostream>
 #include <vector>
 #include <set>
 using namespace std;
 vector<int>p;
 int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
-int main(){int n,m;cin>>n>>m;p.resize(n+1);for(int i=0;i<=n;i++)p[i]=i;for(int i=0;i<m;i++){int u,v;cin>>u>>v;int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}set<int>s;for(int i=1;i<=n;i++)s.insert(find(i));cout<<s.size()<<"\n";}`,
+int main(){int n,m;cin>>n>>m;p.resize(n+1);for(int i=0;i<=n;i++)p[i]=i;for(int i=0;i<m;i++){int u,v;cin>>u>>v;int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}set<int>s;for(int i=1;i<=n;i++)s.insert(find(i));cout<<s.size()<<"
+";}`,
 h_matchain:`#include <iostream>
 #include <vector>
 using namespace std;
-int main(){int n;cin>>n;vector<long long>p(n+1);for(auto&x:p)cin>>x;vector<vector<long long>>dp(n+1,vector<long long>(n+1,0));for(int L=2;L<=n;L++)for(int i=1;i+L-1<=n;i++){int j=i+L-1;dp[i][j]=(long long)1e18;for(int k=i;k<j;k++){long long c=dp[i][k]+dp[k+1][j]+p[i-1]*p[k]*p[j];if(c<dp[i][j])dp[i][j]=c;}}cout<<dp[1][n]<<"\n";}`,
+int main(){int n;cin>>n;vector<long long>p(n+1);for(auto&x:p)cin>>x;vector<vector<long long>>dp(n+1,vector<long long>(n+1,0));for(int L=2;L<=n;L++)for(int i=1;i+L-1<=n;i++){int j=i+L-1;dp[i][j]=(long long)1e18;for(int k=i;k<j;k++){long long c=dp[i][k]+dp[k+1][j]+p[i-1]*p[k]*p[j];if(c<dp[i][j])dp[i][j]=c;}}cout<<dp[1][n]<<"
+";}`,
 h_fast_pow:`#include <iostream>
 using namespace std;
-int main(){long long a,b,m;cin>>a>>b>>m;long long r=1%m;a%=m;while(b){if(b&1)r=r*a%m;a=a*a%m;b>>=1;}cout<<r<<"\n";}`,
+int main(){long long a,b,m;cin>>a>>b>>m;long long r=1%m;a%=m;while(b){if(b&1)r=r*a%m;a=a*a%m;b>>=1;}cout<<r<<"
+";}`,
 h_inversion:`#include <iostream>
 #include <vector>
 using namespace std;
 long long merge_count(vector<int>&a,int l,int r){if(r-l<=1)return 0;int m=(l+r)/2;long long c=merge_count(a,l,m)+merge_count(a,m,r);vector<int>tmp;int i=l,j=m;while(i<m&&j<r){if(a[i]<=a[j])tmp.push_back(a[i++]);else{tmp.push_back(a[j++]);c+=m-i;}}while(i<m)tmp.push_back(a[i++]);while(j<r)tmp.push_back(a[j++]);for(int k=0;k<(int)tmp.size();k++)a[l+k]=tmp[k];return c;}
-int main(){int n;cin>>n;vector<int>a(n);for(auto&x:a)cin>>x;cout<<merge_count(a,0,n)<<"\n";}`,
+int main(){int n;cin>>n;vector<int>a(n);for(auto&x:a)cin>>x;cout<<merge_count(a,0,n)<<"
+";}`,
 h_kadane2d:`#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
-int main(){int n,m;cin>>n>>m;vector<vector<int>>g(n,vector<int>(m));for(auto&r:g)for(auto&x:r)cin>>x;int best=g[0][0];for(int u=0;u<n;u++){vector<int>col(m,0);for(int d=u;d<n;d++){for(int j=0;j<m;j++)col[j]+=g[d][j];int cur=col[0],mx=col[0];for(int j=1;j<m;j++){cur=max(col[j],cur+col[j]);if(cur>mx)mx=cur;}if(mx>best)best=mx;}}cout<<best<<"\n";}`,
+int main(){int n,m;cin>>n>>m;vector<vector<int>>g(n,vector<int>(m));for(auto&r:g)for(auto&x:r)cin>>x;int best=g[0][0];for(int u=0;u<n;u++){vector<int>col(m,0);for(int d=u;d<n;d++){for(int j=0;j<m;j++)col[j]+=g[d][j];int cur=col[0],mx=col[0];for(int j=1;j<m;j++){cur=max(col[j],cur+col[j]);if(cur>mx)mx=cur;}if(mx>best)best=mx;}}cout<<best<<"
+";}`,
 h_string_hash:`#include <iostream>
 #include <string>
 using namespace std;
-int main(){string S,T;cin>>S>>T;int L=T.size(),cnt=0;for(int i=0;i+L<=(int)S.size();i++)if(S.substr(i,L)==T)cnt++;cout<<cnt<<"\n";}`,
+int main(){string S,T;cin>>S>>T;int L=T.size(),cnt=0;for(int i=0;i+L<=(int)S.size();i++)if(S.substr(i,L)==T)cnt++;cout<<cnt<<"
+";}`,
 h_edit_dist2:`#include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm>
 using namespace std;
-int main(){string A,B;cin>>A>>B;int m=A.size(),n=B.size();vector<vector<int>>dp(m+1,vector<int>(n+1,0));for(int i=0;i<=m;i++)dp[i][0]=i;for(int j=0;j<=n;j++)dp[0][j]=j;for(int i=1;i<=m;i++)for(int j=1;j<=n;j++){if(A[i-1]==B[j-1])dp[i][j]=dp[i-1][j-1];else dp[i][j]=1+min({dp[i-1][j],dp[i][j-1],dp[i-1][j-1]});}cout<<dp[m][n]<<"\n";}`,
+int main(){string A,B;cin>>A>>B;int m=A.size(),n=B.size();vector<vector<int>>dp(m+1,vector<int>(n+1,0));for(int i=0;i<=m;i++)dp[i][0]=i;for(int j=0;j<=n;j++)dp[0][j]=j;for(int i=1;i<=m;i++)for(int j=1;j<=n;j++){if(A[i-1]==B[j-1])dp[i][j]=dp[i-1][j-1];else dp[i][j]=1+min({dp[i-1][j],dp[i][j-1],dp[i-1][j-1]});}cout<<dp[m][n]<<"
+";}`,
 j_str_digits:`#include <iostream>
 #include <string>
 using namespace std;
@@ -4928,7 +5098,8 @@ int main(){
     string s; getline(cin, s);
     string r = "";
     for(char c : s) if(c>='0' && c<='9') r += c;
-    cout << (r.empty() ? "-1" : r) << "\n";
+    cout << (r.empty() ? "-1" : r) << "
+";
 }`,
 j_gem_pick:`#include <iostream>
 #include <algorithm>
@@ -4937,10 +5108,12 @@ int main(){
     int n; cin >> n;
     int v[100005];
     for(int i = 0; i < n; i++) cin >> v[i];
-    if(n == 1){ cout << v[0] << "\n"; return 0; }
+    if(n == 1){ cout << v[0] << "
+"; return 0; }
     int a = v[0], b = max(v[0], v[1]);
     for(int i = 2; i < n; i++){ int c = max(b, a + v[i]); a = b; b = c; }
-    cout << b << "\n";
+    cout << b << "
+";
 }`,
 j_canvas_cc:`#include <iostream>
 #include <vector>
@@ -4963,7 +5136,8 @@ int main(){
     for(int i = 0; i < n; i++)
         for(int j = 0; j < m; j++)
             if(g[i][j]=='B' && !seen[i][j]){ cnt++; dfs(i,j); }
-    cout << cnt << "\n";
+    cout << cnt << "
+";
 }`,
 j_bee_path:`#include <iostream>
 #include <string>
@@ -4981,7 +5155,8 @@ int main(){
         else if(c=='L') x--;
         v.insert({x,y});
     }
-    cout << v.size() << "\n";
+    cout << v.size() << "
+";
 }`,
 j_card_ends:`#include <iostream>
 using namespace std;
@@ -4997,7 +5172,8 @@ int main(){
         right -= a[n-k+i-1];
         if(left + right > best) best = left + right;
     }
-    cout << best << "\n";
+    cout << best << "
+";
 }`,
 j_special_pos:`#include <iostream>
 using namespace std;
@@ -5008,7 +5184,8 @@ int main(){
     int cnt = 0;
     for(int i=0;i<n;i++) for(int j=0;j<n;j++)
         if(A[i][j] == rs[i] - cs[j]) cnt++;
-    cout << cnt << "\n";
+    cout << cnt << "
+";
 }`,
 j_char_freq:`#include <iostream>
 #include <string>
@@ -5022,7 +5199,8 @@ int main(){
     }
     int best = 0;
     for(int i = 1; i < 26; i++) if(cnt[i] > cnt[best]) best = i;
-    cout << (char)(best + 'a') << " " << cnt[best] << "\n";
+    cout << (char)(best + 'a') << " " << cnt[best] << "
+";
 }`,
 j_rle_decode:`#include <iostream>
 #include <string>
@@ -5039,7 +5217,8 @@ int main(){
             num = 0;
         }
     }
-    cout << res << "\n";
+    cout << res << "
+";
 }`,
 j_match_winner:`#include <iostream>
 using namespace std;
@@ -5050,7 +5229,8 @@ int main(){
         int a, b; cin >> a >> b;
         if(a > b) A++; else if(b > a) B++;
     }
-    cout << (A > B ? "A" : B > A ? "B" : "Tie") << "\n";
+    cout << (A > B ? "A" : B > A ? "B" : "Tie") << "
+";
 }`,
 j_flow_peak:`#include <iostream>
 using namespace std;
@@ -5062,7 +5242,8 @@ int main(){
         cur += p - q;
         if(cur > best) best = cur;
     }
-    cout << best << "\n";
+    cout << best << "
+";
 }`,
 j_dice_roll:`#include <iostream>
 #include <string>
@@ -5077,7 +5258,8 @@ int main(){
         else if(c == 'E'){ top = w; E = t; bot = e; W = b; }
         else if(c == 'W'){ top = e; W = t; bot = w; E = b; }
     }
-    cout << top << "\n";
+    cout << top << "
+";
 }`,
 j_submatrix_sum:`#include <iostream>
 using namespace std;
@@ -5092,7 +5274,8 @@ int main(){
         }
     while(q--){
         int r1, c1, r2, c2; cin >> r1 >> c1 >> r2 >> c2;
-        cout << ps[r2+1][c2+1] - ps[r1][c2+1] - ps[r2+1][c1] + ps[r1][c1] << "\n";
+        cout << ps[r2+1][c2+1] - ps[r1][c2+1] - ps[r2+1][c1] + ps[r1][c1] << "
+";
     }
 }`,
 p101:`#include <algorithm>
@@ -5114,7 +5297,8 @@ vector<vector<int>> ps(N+1,vector<int>(N+1,0));
 for(int i=1;i<=N;i++){char r[1005];scanf("%s",r);
  for(int j=1;j<=N;j++)ps[i][j]=ps[i-1][j]+ps[i][j-1]-ps[i-1][j-1]+(r[j-1]=='*');}
 while(Q--){int r1,c1,r2,c2;scanf("%d %d %d %d",&r1,&c1,&r2,&c2);
- printf("%d\n",ps[r2][c2]-ps[r1-1][c2]-ps[r2][c1-1]+ps[r1-1][c1-1]);}
+ printf("%d
+",ps[r2][c2]-ps[r1-1][c2]-ps[r2][c1-1]+ps[r1-1][c1-1]);}
 return 0;}`,
 p102:`#include <algorithm>
 #include <cstdio>
@@ -5133,7 +5317,8 @@ using namespace std;
 int main(){int N;scanf("%d",&N);map<long long,long long> c;c[0]=1;
 long long s=0,ans=0;
 for(int i=0;i<N;i++){long long x;scanf("%lld",&x);s=((s+x)%N+N)%N;ans+=c[s];c[s]++;}
-printf("%lld\n",ans);return 0;}`,
+printf("%lld
+",ans);return 0;}`,
 p103:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5151,7 +5336,8 @@ using namespace std;
 int main(){int N;long long X;scanf("%d %lld",&N,&X);unordered_map<long long,long long> c;c[0]=1;
 long long s=0,ans=0;
 for(int i=0;i<N;i++){long long x;scanf("%lld",&x);s+=x;ans+=c[s-X];c[s]++;}
-printf("%lld\n",ans);return 0;}`,
+printf("%lld
+",ans);return 0;}`,
 p104:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5168,7 +5354,8 @@ p104:`#include <algorithm>
 using namespace std;
 int main(){int N,M;scanf("%d %d",&N,&M);vector<long long> d(N+2,0);
 while(M--){int l,r;long long v;scanf("%d %d %lld",&l,&r,&v);d[l]+=v;d[r+1]-=v;}
-long long c=0;for(int i=1;i<=N;i++){c+=d[i];printf("%lld%c",c,i==N?'\n':' ');}
+long long c=0;for(int i=1;i<=N;i++){c+=d[i];printf("%lld%c",c,i==N?'
+':' ');}
 return 0;}`,
 p105:`#include <algorithm>
 #include <cstdio>
@@ -5188,7 +5375,8 @@ int d[200005],ps[200005];
 int main(){int N,K,Q;scanf("%d %d %d",&N,&K,&Q);
 while(N--){int l,r;scanf("%d %d",&l,&r);d[l]++;d[r+1]--;}
 int c=0;for(int i=1;i<=200000;i++){c+=d[i];ps[i]=ps[i-1]+(c>=K);}
-while(Q--){int a,b;scanf("%d %d",&a,&b);printf("%d\n",ps[b]-ps[a-1]);}
+while(Q--){int a,b;scanf("%d %d",&a,&b);printf("%d
+",ps[b]-ps[a-1]);}
 return 0;}`,
 p106:`#include <algorithm>
 #include <cstdio>
@@ -5207,7 +5395,8 @@ using namespace std;
 int main(){int N,Q;scanf("%d %d",&N,&Q);vector<int> a(N);
 for(auto&x:a)scanf("%d",&x);sort(a.begin(),a.end());
 while(Q--){int l,r;scanf("%d %d",&l,&r);
- printf("%ld\n",upper_bound(a.begin(),a.end(),r)-lower_bound(a.begin(),a.end(),l));}
+ printf("%ld
+",upper_bound(a.begin(),a.end(),r)-lower_bound(a.begin(),a.end(),l));}
 return 0;}`,
 p107:`#include <algorithm>
 #include <cstdio>
@@ -5229,7 +5418,8 @@ long long lo=a[mid],hi=a[mid]+K;
 while(lo<hi){long long m=(lo+hi+1)/2,c=0;
  for(int i=mid;i<N;i++){if(a[i]<m)c+=m-a[i];if(c>K)break;}
  if(c<=K)lo=m;else hi=m-1;}
-printf("%lld\n",lo);return 0;}`,
+printf("%lld
+",lo);return 0;}`,
 p108:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5249,7 +5439,8 @@ for(auto&x:a)scanf("%d",&x);
 unordered_map<int,int> last;int l=0,ans=0;
 for(int r=0;r<N;r++){auto it=last.find(a[r]);if(it!=last.end()&&it->second>=l)l=it->second+1;
  last[a[r]]=r;if(r-l+1>ans)ans=r-l+1;}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 p109:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5267,9 +5458,11 @@ using namespace std;
 int main(){int N;long long X;scanf("%d %lld",&N,&X);
 unordered_map<long long,int> seen;
 for(int i=0;i<N;i++){long long x;scanf("%lld",&x);
- auto it=seen.find(X-x);if(it!=seen.end()){printf("%d %d\n",it->second+1,i+1);return 0;}
+ auto it=seen.find(X-x);if(it!=seen.end()){printf("%d %d
+",it->second+1,i+1);return 0;}
  seen[x]=i;}
-printf("IMPOSSIBLE\n");return 0;}`,
+printf("IMPOSSIBLE
+");return 0;}`,
 p110:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5287,7 +5480,8 @@ using namespace std;
 int main(){int N;scanf("%d",&N);vector<long long> a(N);
 for(auto&x:a)scanf("%lld",&x);sort(a.begin(),a.end());
 long long m=a[N/2],ans=0;for(auto x:a)ans+=abs(x-m);
-printf("%lld\n",ans);return 0;}`,
+printf("%lld
+",ans);return 0;}`,
 p111:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5306,7 +5500,8 @@ int main(){int N;scanf("%d",&N);vector<pair<int,int>> v(N);
 for(auto&p:v)scanf("%d %d",&p.second,&p.first);
 sort(v.begin(),v.end());
 long long end=-1,ans=0;for(auto&p:v)if(p.second>=end){ans++;end=p.first;}
-printf("%lld\n",ans);return 0;}`,
+printf("%lld
+",ans);return 0;}`,
 p112:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5325,7 +5520,8 @@ int main(){int N;scanf("%d",&N);vector<pair<int,int>> ev;
 for(int i=0;i<N;i++){int a,b;scanf("%d %d",&a,&b);ev.push_back({a,1});ev.push_back({b,-1});}
 sort(ev.begin(),ev.end());int cur=0,ans=0;
 for(auto&p:ev){cur+=p.second;if(cur>ans)ans=cur;}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 p113:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5343,7 +5539,9 @@ using namespace std;
 int main(){int N,M;scanf("%d %d",&N,&M);multiset<int> ms;
 for(int i=0;i<N;i++){int x;scanf("%d",&x);ms.insert(x);}
 while(M--){int m;scanf("%d",&m);auto it=ms.upper_bound(m);
- if(it==ms.begin())printf("-1\n");else{--it;printf("%d\n",*it);ms.erase(it);}}
+ if(it==ms.begin())printf("-1
+");else{--it;printf("%d
+",*it);ms.erase(it);}}
 return 0;}`,
 p114:`#include <algorithm>
 #include <cstdio>
@@ -5364,7 +5562,8 @@ for(auto&x:a)scanf("%d",&x);for(auto&x:b)scanf("%d",&x);
 sort(a.begin(),a.end());sort(b.begin(),b.end());
 int i=0,j=0,ans=0;while(i<N&&j<M){
  if(abs(a[i]-b[j])<=K){ans++;i++;j++;}else if(a[i]<b[j])i++;else j++;}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 p115:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5381,7 +5580,8 @@ p115:`#include <algorithm>
 using namespace std;
 int main(){int N;scanf("%d",&N);vector<int> a(N);
 for(auto&x:a)scanf("%d",&x);sort(a.begin(),a.end());
-printf("%ld\n",unique(a.begin(),a.end())-a.begin());return 0;}`,
+printf("%ld
+",unique(a.begin(),a.end())-a.begin());return 0;}`,
 p116:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5405,7 +5605,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 p117:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5425,7 +5626,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);p.resize(N+1);iota(p.begin(),p.end(),0);
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 vector<int> r;for(int i=1;i<=N;i++)if(find(i)==i)r.push_back(i);
-printf("%ld\n",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d\n",r[0],r[i]);
+printf("%ld
+",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d
+",r[0],r[i]);
 return 0;}`,
 p118:`#include <algorithm>
 #include <cstdio>
@@ -5451,7 +5654,8 @@ while(!q.empty()){tuple<int,int,int> tt=q.front();q.pop();int r=get<0>(tt),c=get
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.push({nr,nc,d+1});}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 p119:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5469,7 +5673,8 @@ using namespace std;
 int main(){int N;scanf("%d",&N);vector<int> b(N+1,0),cnt(N+1,0);
 for(int i=2;i<=N;i++)scanf("%d",&b[i]);
 for(int i=N;i>=2;i--)cnt[b[i]]+=cnt[i]+1;
-for(int i=1;i<=N;i++)printf("%d%c",cnt[i],i==N?'\n':' ');
+for(int i=1;i<=N;i++)printf("%d%c",cnt[i],i==N?'
+':' ');
 return 0;}`,
 p120:`#include <algorithm>
 #include <cstdio>
@@ -5489,7 +5694,8 @@ const int MOD=1e9+7;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);vector<long long> dp(X+1,0);dp[0]=1;
 for(int x=1;x<=X;x++){long long s=0;for(int v:c)if(v<=x)s+=dp[x-v];dp[x]=s%MOD;}
-printf("%lld\n",dp[X]);return 0;}`,
+printf("%lld
+",dp[X]);return 0;}`,
 p121:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5508,7 +5714,8 @@ const int MOD=1e9+7;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);vector<long long> dp(X+1,0);dp[0]=1;
 for(int v:c)for(int x=v;x<=X;x++)dp[x]=(dp[x]+dp[x-v])%MOD;
-printf("%lld\n",dp[X]);return 0;}`,
+printf("%lld
+",dp[X]);return 0;}`,
 p122:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5526,7 +5733,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 p123:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5543,7 +5751,8 @@ p123:`#include <algorithm>
 using namespace std;
 int main(){int N;scanf("%d",&N);vector<int> dp(N+1,0);
 for(int x=1;x<=N;x++){int best=1e9;int y=x;while(y){int d=y%10;if(d&&dp[x-d]+1<best)best=dp[x-d]+1;y/=10;}dp[x]=best;}
-printf("%d\n",dp[N]);return 0;}`,
+printf("%d
+",dp[N]);return 0;}`,
 p124:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5566,7 +5775,8 @@ if(g[0][0]=='.')dp[0][0]=1;
 for(int i=0;i<N;i++)for(int j=0;j<N;j++){
  if(g[i][j]=='*'){dp[i][j]=0;continue;}if(i==0&&j==0)continue;
  long long v=0;if(i)v+=dp[i-1][j];if(j)v+=dp[i][j-1];dp[i][j]=v%MOD;}
-printf("%lld\n",dp[N-1][N-1]);return 0;}`,
+printf("%lld
+",dp[N-1][N-1]);return 0;}`,
 p125:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5582,10 +5792,14 @@ p125:`#include <algorithm>
 #include <vector>
 using namespace std;
 int main(){long long N;scanf("%lld",&N);long long S=N*(N+1)/2;
-if(S%2){printf("NO\n");return 0;}
+if(S%2){printf("NO
+");return 0;}
 long long half=S/2,got=0;vector<long long> A,B;
 for(long long v=N;v>=1;v--){if(got+v<=half){A.push_back(v);got+=v;}else B.push_back(v);}
-printf("YES\n%ld",A.size());for(auto x:A)printf(" %lld",x);printf("\n%ld",B.size());for(auto x:B)printf(" %lld",x);printf("\n");
+printf("YES
+%ld",A.size());for(auto x:A)printf(" %lld",x);printf("
+%ld",B.size());for(auto x:B)printf(" %lld",x);printf("
+");
 return 0;}`,
 p126:`#include <algorithm>
 #include <cstdio>
@@ -5603,7 +5817,8 @@ p126:`#include <algorithm>
 using namespace std;
 int main(){long long N;scanf("%lld",&N);long long MOD=1e9+7,r=1,a=2;
 while(N){if(N&1)r=r*a%MOD;a=a*a%MOD;N>>=1;}
-printf("%lld\n",r);return 0;}`,
+printf("%lld
+",r);return 0;}`,
 p127:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5619,7 +5834,8 @@ p127:`#include <algorithm>
 #include <vector>
 using namespace std;
 int main(){long long N;scanf("%lld",&N);long long ans=0;
-while(N){N/=5;ans+=N;}printf("%lld\n",ans);return 0;}`,
+while(N){N/=5;ans+=N;}printf("%lld
+",ans);return 0;}`,
 p128:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5636,7 +5852,8 @@ p128:`#include <algorithm>
 using namespace std;
 int main(){int N;scanf("%d",&N);long long m,ans=0,x;scanf("%lld",&m);
 for(int i=1;i<N;i++){scanf("%lld",&x);if(x<m)ans+=m-x;else m=x;}
-printf("%lld\n",ans);return 0;}`,
+printf("%lld
+",ans);return 0;}`,
 p129:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5652,11 +5869,14 @@ p129:`#include <algorithm>
 #include <vector>
 using namespace std;
 int main(){int N;scanf("%d",&N);
-if(N==1){printf("1\n");return 0;}
-if(N<4){printf("NO SOLUTION\n");return 0;}
+if(N==1){printf("1
+");return 0;}
+if(N<4){printf("NO SOLUTION
+");return 0;}
 bool first=true;
 for(int i=2;i<=N;i+=2){if(!first)printf(" ");printf("%d",i);first=false;}
-for(int i=1;i<=N;i+=2){printf(" %d",i);}printf("\n");return 0;}`,
+for(int i=1;i<=N;i+=2){printf(" %d",i);}printf("
+");return 0;}`,
 p130:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -5675,7 +5895,8 @@ int main(){int T;scanf("%d",&T);
 while(T--){long long y,x;scanf("%lld %lld",&y,&x);long long k=max(y,x),base=(k-1)*(k-1),val;
  if(k%2==0){if(x==k)val=base+y;else val=k*k-(x-1);}
  else{if(y==k)val=base+x;else val=k*k-(y-1);}
- printf("%lld\n",val);}
+ printf("%lld
+",val);}
 return 0;}`,
 ia_range_sum:`#include <iostream>
 #include <vector>
@@ -5697,7 +5918,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -5727,7 +5949,8 @@ int main() {
         if (i > 1) cout << ' ';
         cout << cur;
     }
-    cout << '\n';
+    cout << '
+';
     return 0;
 }`,
 ia_nearest_station:`#include <algorithm>
@@ -5753,7 +5976,8 @@ int main() {
         long long best = (1LL << 62);
         if (idx < n) best = min(best, llabs(s[idx] - x));
         if (idx > 0) best = min(best, llabs(s[idx - 1] - x));
-        cout << best << '\n';
+        cout << best << '
+';
     }
     return 0;
 }`,
@@ -5799,7 +6023,8 @@ int main() {
         if (op == "union") {
             dsu.unite(a, b);
         } else {
-            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '\n';
+            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '
+';
         }
     }
     return 0;
@@ -5825,7 +6050,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 ia_toposort_courses:`#include <algorithm>
@@ -5869,8 +6095,10 @@ int main() {
         }
     }
 
-    if (seen == n) cout << ans << '\n';
-    else cout << "IMPOSSIBLE\n";
+    if (seen == n) cout << ans << '
+';
+    else cout << "IMPOSSIBLE
+";
     return 0;
 }`,
 src132_c462:`#include <iostream>
@@ -5893,7 +6121,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -5917,7 +6146,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -5941,7 +6171,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -5965,7 +6196,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -5989,7 +6221,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6013,7 +6246,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6038,7 +6272,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src139_c471:`#include <algorithm>
@@ -6062,7 +6297,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src140_APCSOnline_C2_nqueen:`#include <algorithm>
@@ -6086,7 +6322,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src141_APCSOnline_C2_permutation:`#include <algorithm>
@@ -6110,7 +6347,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src142_APCSOnline_C3_team:`#include <algorithm>
@@ -6134,7 +6372,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src143_APCSOnline_C3_ring:`#include <algorithm>
@@ -6158,7 +6397,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src144_e287:`#include <algorithm>
@@ -6185,7 +6425,8 @@ while(!q.empty()){tuple<int,int,int> tt=q.front();q.pop();int r=get<0>(tt),c=get
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.push({nr,nc,d+1});}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src145_b967:`#include <algorithm>
 #include <iostream>
 #include <vector>
@@ -6207,7 +6448,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src146_i401:`#include <algorithm>
@@ -6234,7 +6476,8 @@ while(!q.empty()){tuple<int,int,int> tt=q.front();q.pop();int r=get<0>(tt),c=get
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.push({nr,nc,d+1});}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src147_f314:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -6252,7 +6495,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src148_e465:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -6270,7 +6514,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src149_g278:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -6288,7 +6533,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src150_h084:`#include <algorithm>
 #include <iostream>
 #include <vector>
@@ -6310,7 +6556,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src151_j608:`#include <algorithm>
@@ -6334,7 +6581,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src152_201710P2:`#include <iostream>
@@ -6357,7 +6605,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6381,7 +6630,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6405,7 +6655,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6429,7 +6680,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6453,7 +6705,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6477,7 +6730,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6501,7 +6755,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6525,7 +6780,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6549,7 +6805,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6573,7 +6830,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6597,7 +6855,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6621,7 +6880,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6645,7 +6905,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6669,7 +6930,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6693,7 +6955,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6717,7 +6980,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6741,7 +7005,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6765,7 +7030,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6789,7 +7055,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6813,7 +7080,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6837,7 +7105,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6861,7 +7130,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6885,7 +7155,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6909,7 +7180,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6933,7 +7205,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6957,7 +7230,8 @@ int main() {
     while (q--) {
         int l, r;
         cin >> l >> r;
-        cout << ps[r] - ps[l - 1] << '\n';
+        cout << ps[r] - ps[l - 1] << '
+';
     }
     return 0;
 }`,
@@ -6984,7 +7258,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src179_201906P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7008,7 +7283,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src180_201910P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7032,7 +7308,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src181_202301P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7056,7 +7333,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src182_201902P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7080,7 +7358,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src183_202101P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7104,7 +7383,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src184_202010P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7128,7 +7408,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src185_202007P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7152,7 +7433,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src186_201610P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7176,7 +7458,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src187_201806P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7200,7 +7483,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src188_202109P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7224,7 +7508,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src189_202310P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7248,7 +7533,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src190_201802P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7272,7 +7558,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src191_202201P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7296,7 +7583,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src192_201703P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7320,7 +7608,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src193_202111P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7344,7 +7633,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src194_202210P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7368,7 +7658,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src195_202306P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7392,7 +7683,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src196_201603P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7416,7 +7708,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src197_202406P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7440,7 +7733,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src198_202001P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7464,7 +7758,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src199_202410P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7488,7 +7783,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src200_201710P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7512,7 +7808,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src201_202401P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7536,7 +7833,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src202_202501P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7560,7 +7858,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src203_202206P3:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -7584,7 +7883,8 @@ void bfs(int sr,int sc){queue<pair<int,int>> q;q.push({sr,sc});g[sr][sc]='#';
 int main(){scanf("%d %d",&N,&M);g.resize(N);
 for(int i=0;i<N;i++){char buf[1005];scanf("%s",buf);g[i]=buf;}
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src204_202010P4:`#include <algorithm>
 #include <iostream>
 #include <vector>
@@ -7606,7 +7906,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src205_202206P4:`#include <algorithm>
@@ -7630,7 +7931,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src206_202406P4:`#include <algorithm>
@@ -7654,7 +7956,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src207_202501P4:`#include <algorithm>
@@ -7678,7 +7981,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src208_201910P4:`#include <algorithm>
@@ -7702,7 +8006,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src209_201806P4:`#include <algorithm>
@@ -7726,7 +8031,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src210_202401P4:`#include <algorithm>
@@ -7750,7 +8056,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src211_201703P4:`#include <algorithm>
@@ -7774,7 +8081,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src212_201902P4:`#include <algorithm>
@@ -7798,7 +8106,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src213_202310P4:`#include <algorithm>
@@ -7822,7 +8131,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src214_202410P4:`#include <algorithm>
@@ -7846,7 +8156,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src215_201610P4:`#include <algorithm>
@@ -7870,7 +8181,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src216_202301P4:`#include <algorithm>
@@ -7894,7 +8206,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src217_202201P4:`#include <algorithm>
@@ -7918,7 +8231,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src218_201710P4:`#include <algorithm>
@@ -7942,7 +8256,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src219_202007P4:`#include <algorithm>
@@ -7966,7 +8281,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src220_202111P4:`#include <algorithm>
@@ -7990,7 +8306,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src221_201810P4:`#include <algorithm>
@@ -8014,7 +8331,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src222_202109P4:`#include <algorithm>
@@ -8038,7 +8356,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src223_201906P4:`#include <algorithm>
@@ -8062,7 +8381,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src224_202210P4:`#include <algorithm>
@@ -8086,7 +8406,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src225_201603P4:`#include <algorithm>
@@ -8110,7 +8431,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src226_202001P4:`#include <algorithm>
@@ -8134,7 +8456,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src227_202306P4:`#include <algorithm>
@@ -8158,7 +8481,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src228_201802P4:`#include <algorithm>
@@ -8182,7 +8506,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src229_202101P4:`#include <algorithm>
@@ -8206,7 +8531,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src230_sapo_15_SpaceJazz:`#include <algorithm>
@@ -8233,7 +8559,8 @@ while(!q.empty()){tuple<int,int,int> tt=q.front();q.pop();int r=get<0>(tt),c=get
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.push({nr,nc,d+1});}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src231_cses_1158:`#include <algorithm>
 #include <iostream>
 #include <vector>
@@ -8255,7 +8582,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src232_usaco_646:`#include <iostream>
@@ -8300,7 +8628,8 @@ int main() {
         if (op == "union") {
             dsu.unite(a, b);
         } else {
-            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '\n';
+            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '
+';
         }
     }
     return 0;
@@ -8326,7 +8655,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src234_cses_1636:`#include <algorithm>
@@ -8350,7 +8680,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src235_cses_1688:`#include <algorithm>
@@ -8374,7 +8705,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src236_cf_977F:`#include <algorithm>
@@ -8398,7 +8730,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src237_cses_1679:`#include <algorithm>
@@ -8442,8 +8775,10 @@ int main() {
         }
     }
 
-    if (seen == n) cout << ans << '\n';
-    else cout << "IMPOSSIBLE\n";
+    if (seen == n) cout << ans << '
+';
+    else cout << "IMPOSSIBLE
+";
     return 0;
 }`,
 src238_cf_472D:`#include <algorithm>
@@ -8465,7 +8800,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);p.resize(N+1);iota(p.begin(),p.end(),0);
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 vector<int> r;for(int i=1;i<=N;i++)if(find(i)==i)r.push_back(i);
-printf("%ld\n",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d\n",r[0],r[i]);
+printf("%ld
+",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d
+",r[0],r[i]);
 return 0;}`,
 src239_cf_1385E:`#include <algorithm>
 #include <iostream>
@@ -8508,8 +8845,10 @@ int main() {
         }
     }
 
-    if (seen == n) cout << ans << '\n';
-    else cout << "IMPOSSIBLE\n";
+    if (seen == n) cout << ans << '
+';
+    else cout << "IMPOSSIBLE
+";
     return 0;
 }`,
 src240_cses_1135:`#include <algorithm>
@@ -8533,7 +8872,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src241_cses_1139:`#include <algorithm>
@@ -8557,7 +8897,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src242_usaco_623:`#include <algorithm>
@@ -8579,7 +8920,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);p.resize(N+1);iota(p.begin(),p.end(),0);
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 vector<int> r;for(int i=1;i<=N;i++)if(find(i)==i)r.push_back(i);
-printf("%ld\n",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d\n",r[0],r[i]);
+printf("%ld
+",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d
+",r[0],r[i]);
 return 0;}`,
 src243_usaco_861:`#include <algorithm>
 #include <cstdio>
@@ -8605,7 +8948,8 @@ while(!q.empty()){tuple<int,int,int> tt=q.front();q.pop();int r=get<0>(tt),c=get
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.push({nr,nc,d+1});}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src244_cses_1195:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -8630,7 +8974,8 @@ while(!q.empty()){tuple<int,int,int> tt=q.front();q.pop();int r=get<0>(tt),c=get
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.push({nr,nc,d+1});}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src245_cf_510C:`#include <algorithm>
 #include <iostream>
 #include <queue>
@@ -8672,8 +9017,10 @@ int main() {
         }
     }
 
-    if (seen == n) cout << ans << '\n';
-    else cout << "IMPOSSIBLE\n";
+    if (seen == n) cout << ans << '
+';
+    else cout << "IMPOSSIBLE
+";
     return 0;
 }`,
 src246_ac_frog1:`#include <algorithm>
@@ -8693,7 +9040,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src247_cses_1681:`#include <algorithm>
 #include <iostream>
 #include <queue>
@@ -8735,8 +9083,10 @@ int main() {
         }
     }
 
-    if (seen == n) cout << ans << '\n';
-    else cout << "IMPOSSIBLE\n";
+    if (seen == n) cout << ans << '
+';
+    else cout << "IMPOSSIBLE
+";
     return 0;
 }`,
 src248_usaco_694:`#include <algorithm>
@@ -8756,7 +9106,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src249_cf_1082E:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -8774,7 +9125,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src250_cses_1145:`#include <algorithm>
 #include <iostream>
 #include <vector>
@@ -8796,7 +9148,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src251_cses_1680:`#include <algorithm>
@@ -8840,8 +9193,10 @@ int main() {
         }
     }
 
-    if (seen == n) cout << ans << '\n';
-    else cout << "IMPOSSIBLE\n";
+    if (seen == n) cout << ans << '
+';
+    else cout << "IMPOSSIBLE
+";
     return 0;
 }`,
 src252_usaco_969:`#include <algorithm>
@@ -8868,7 +9223,8 @@ while(!q.empty()){tuple<int,int,int> tt=q.front();q.pop();int r=get<0>(tt),c=get
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.push({nr,nc,d+1});}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src253_usaco_1114:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -8886,7 +9242,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src254_cses_1745:`#include <algorithm>
 #include <iostream>
 #include <vector>
@@ -8908,7 +9265,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src255_usaco_669:`#include <iostream>
@@ -8953,7 +9311,8 @@ int main() {
         if (op == "union") {
             dsu.unite(a, b);
         } else {
-            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '\n';
+            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '
+';
         }
     }
     return 0;
@@ -9000,7 +9359,8 @@ int main() {
         if (op == "union") {
             dsu.unite(a, b);
         } else {
-            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '\n';
+            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '
+';
         }
     }
     return 0;
@@ -9022,7 +9382,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src258_kattis_quantumsuperposition:`#include <algorithm>
 #include <iostream>
 #include <queue>
@@ -9064,8 +9425,10 @@ int main() {
         }
     }
 
-    if (seen == n) cout << ans << '\n';
-    else cout << "IMPOSSIBLE\n";
+    if (seen == n) cout << ans << '
+';
+    else cout << "IMPOSSIBLE
+";
     return 0;
 }`,
 src259_cses_1676:`#include <iostream>
@@ -9110,7 +9473,8 @@ int main() {
         if (op == "union") {
             dsu.unite(a, b);
         } else {
-            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '\n';
+            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '
+';
         }
     }
     return 0;
@@ -9134,7 +9498,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);p.resize(N+1);iota(p.begin(),p.end(),0);
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 vector<int> r;for(int i=1;i<=N;i++)if(find(i)==i)r.push_back(i);
-printf("%ld\n",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d\n",r[0],r[i]);
+printf("%ld
+",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d
+",r[0],r[i]);
 return 0;}`,
 src261_cses_1678:`#include <algorithm>
 #include <iostream>
@@ -9157,7 +9523,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src262_cses_1671:`#include <algorithm>
@@ -9184,7 +9551,8 @@ while(!q.empty()){tuple<int,int,int> tt=q.front();q.pop();int r=get<0>(tt),c=get
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.push({nr,nc,d+1});}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src263_ys_StaticRMQ:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -9202,7 +9570,8 @@ using namespace std;
 int main(){int N;scanf("%d",&N);vector<int> b(N+1,0),cnt(N+1,0);
 for(int i=2;i<=N;i++)scanf("%d",&b[i]);
 for(int i=N;i>=2;i--)cnt[b[i]]+=cnt[i]+1;
-for(int i=1;i<=N;i++)printf("%d%c",cnt[i],i==N?'\n':' ');
+for(int i=1;i<=N;i++)printf("%d%c",cnt[i],i==N?'
+':' ');
 return 0;}`,
 src264_ac_subsetSumQueries:`#include <algorithm>
 #include <iostream>
@@ -9225,7 +9594,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src265_cf_919D:`#include <algorithm>
@@ -9269,8 +9639,10 @@ int main() {
         }
     }
 
-    if (seen == n) cout << ans << '\n';
-    else cout << "IMPOSSIBLE\n";
+    if (seen == n) cout << ans << '
+';
+    else cout << "IMPOSSIBLE
+";
     return 0;
 }`,
 src266_cses_1137:`#include <algorithm>
@@ -9290,7 +9662,8 @@ using namespace std;
 int main(){int N;scanf("%d",&N);vector<int> b(N+1,0),cnt(N+1,0);
 for(int i=2;i<=N;i++)scanf("%d",&b[i]);
 for(int i=N;i>=2;i--)cnt[b[i]]+=cnt[i]+1;
-for(int i=1;i<=N;i++)printf("%d%c",cnt[i],i==N?'\n':' ');
+for(int i=1;i<=N;i++)printf("%d%c",cnt[i],i==N?'
+':' ');
 return 0;}`,
 src267_usaco_531:`#include <algorithm>
 #include <cstdio>
@@ -9311,7 +9684,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);p.resize(N+1);iota(p.begin(),p.end(),0);
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 vector<int> r;for(int i=1;i<=N;i++)if(find(i)==i)r.push_back(i);
-printf("%ld\n",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d\n",r[0],r[i]);
+printf("%ld
+",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d
+",r[0],r[i]);
 return 0;}`,
 src268_cf_687C:`#include <algorithm>
 #include <iostream>
@@ -9334,7 +9709,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src269_usaco_993:`#include <algorithm>
@@ -9354,7 +9730,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src270_usaco_1017:`#include <algorithm>
 #include <iostream>
 #include <queue>
@@ -9396,8 +9773,10 @@ int main() {
         }
     }
 
-    if (seen == n) cout << ans << '\n';
-    else cout << "IMPOSSIBLE\n";
+    if (seen == n) cout << ans << '
+';
+    else cout << "IMPOSSIBLE
+";
     return 0;
 }`,
 src271_cses_1073:`#include <algorithm>
@@ -9417,7 +9796,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src272_usaco_245:`#include <iostream>
 #include <numeric>
 #include <string>
@@ -9460,7 +9840,8 @@ int main() {
         if (op == "union") {
             dsu.unite(a, b);
         } else {
-            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '\n';
+            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '
+';
         }
     }
     return 0;
@@ -9486,7 +9867,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src274_ys_UnionFind:`#include <iostream>
@@ -9531,7 +9913,8 @@ int main() {
         if (op == "union") {
             dsu.unite(a, b);
         } else {
-            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '\n';
+            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '
+';
         }
     }
     return 0;
@@ -9560,7 +9943,8 @@ while(!q.empty()){tuple<int,int,int> tt=q.front();q.pop();int r=get<0>(tt),c=get
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.push({nr,nc,d+1});}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src276_usaco_992:`#include <iostream>
 #include <numeric>
 #include <string>
@@ -9603,7 +9987,8 @@ int main() {
         if (op == "union") {
             dsu.unite(a, b);
         } else {
-            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '\n';
+            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '
+';
         }
     }
     return 0;
@@ -9625,7 +10010,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src278_usaco_622:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -9643,7 +10029,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src279_usaco_972:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -9661,7 +10048,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src280_cf_1472G:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -9686,7 +10074,8 @@ while(!q.empty()){tuple<int,int,int> tt=q.front();q.pop();int r=get<0>(tt),c=get
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.push({nr,nc,d+1});}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src281_baltic_10_pcb:`#include <algorithm>
 #include <iostream>
 #include <vector>
@@ -9708,7 +10097,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src282_sapo_14_genghis:`#include <algorithm>
@@ -9728,7 +10118,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src283_joi_15_inheritance:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -9746,7 +10137,8 @@ using namespace std;
 int main(){int N,Q;scanf("%d %d",&N,&Q);vector<int> a(N);
 for(auto&x:a)scanf("%d",&x);sort(a.begin(),a.end());
 while(Q--){int l,r;scanf("%d %d",&l,&r);
- printf("%ld\n",upper_bound(a.begin(),a.end(),r)-lower_bound(a.begin(),a.end(),l));}
+ printf("%ld
+",upper_bound(a.begin(),a.end(),r)-lower_bound(a.begin(),a.end(),l));}
 return 0;}`,
 src284_usaco_647:`#include <algorithm>
 #include <cstdio>
@@ -9765,7 +10157,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src285_cc_INOI1602:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -9783,7 +10176,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src286_ac_choosetwo:`#include <iostream>
 #include <numeric>
 #include <string>
@@ -9826,7 +10220,8 @@ int main() {
         if (op == "union") {
             dsu.unite(a, b);
         } else {
-            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '\n';
+            cout << (dsu.find(a) == dsu.find(b) ? "YES" : "NO") << '
+';
         }
     }
     return 0;
@@ -9848,7 +10243,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src288_usaco_921:`#include <algorithm>
 #include <iostream>
 #include <vector>
@@ -9870,7 +10266,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src289_cses_1080:`#include <algorithm>
@@ -9890,7 +10287,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src290_ac_exactlyKSteps:`#include <algorithm>
 #include <iostream>
 #include <vector>
@@ -9912,7 +10310,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src291_cses_1196:`#include <algorithm>
@@ -9939,7 +10338,8 @@ while(!q.empty()){tuple<int,int,int> tt=q.front();q.pop();int r=get<0>(tt),c=get
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.push({nr,nc,d+1});}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src292_cf_1513D:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -9959,7 +10359,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);p.resize(N+1);iota(p.begin(),p.end(),0);
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 vector<int> r;for(int i=1;i<=N;i++)if(find(i)==i)r.push_back(i);
-printf("%ld\n",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d\n",r[0],r[i]);
+printf("%ld
+",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d
+",r[0],r[i]);
 return 0;}`,
 src293_usaco_946:`#include <algorithm>
 #include <cstdio>
@@ -9980,7 +10382,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);p.resize(N+1);iota(p.begin(),p.end(),0);
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 vector<int> r;for(int i=1;i<=N;i++)if(find(i)==i)r.push_back(i);
-printf("%ld\n",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d\n",r[0],r[i]);
+printf("%ld
+",r.size()-1);for(size_t i=1;i<r.size();i++)printf("%d %d
+",r[0],r[i]);
 return 0;}`,
 src294_cses_1202:`#include <algorithm>
 #include <cstdio>
@@ -10006,7 +10410,8 @@ while(!q.empty()){tuple<int,int,int> tt=q.front();q.pop();int r=get<0>(tt),c=get
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.push({nr,nc,d+1});}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src295_noi_18_knapsack:`#include <algorithm>
 #include <iostream>
 #include <vector>
@@ -10028,7 +10433,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src296_cf_1582F1:`#include <algorithm>
@@ -10048,7 +10454,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src297_cf_10D:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -10066,7 +10473,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src298_cfgym_102951C:`#include <algorithm>
 #include <cstdio>
 #include <cstdlib>
@@ -10084,7 +10492,8 @@ using namespace std;
 int main(){int N,X;scanf("%d %d",&N,&X);vector<int> c(N);
 for(auto&v:c)scanf("%d",&v);const int INF=1e9;vector<int> dp(X+1,INF);dp[0]=0;
 for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);return 0;}`,
 src299_usaco_970:`#include <algorithm>
 #include <iostream>
 #include <vector>
@@ -10106,7 +10515,8 @@ int main() {
         }
     }
 
-    cout << dp[W] << '\n';
+    cout << dp[W] << '
+';
     return 0;
 }`,
 src300_usaco_838:`#include <algorithm>
@@ -10126,7 +10536,8 @@ using namespace std;
 int main(){int N,Q;scanf("%d %d",&N,&Q);vector<int> a(N);
 for(auto&x:a)scanf("%d",&x);sort(a.begin(),a.end());
 while(Q--){int l,r;scanf("%d %d",&l,&r);
- printf("%ld\n",upper_bound(a.begin(),a.end(),r)-lower_bound(a.begin(),a.end(),l));}
+ printf("%ld
+",upper_bound(a.begin(),a.end(),r)-lower_bound(a.begin(),a.end(),l));}
 return 0;}`
 },
 c:{
@@ -10137,11 +10548,16 @@ int main(){
     int n;scanf("%d",&n);
     int s[20];for(int i=0;i<n;i++)scanf("%d",&s[i]);
     qsort(s,n,sizeof(int),cmp);
-    for(int i=0;i<n;i++){if(i)printf(" ");printf("%d",s[i]);}printf("\n");
+    for(int i=0;i<n;i++){if(i)printf(" ");printf("%d",s[i]);}printf("
+");
     int hf=-1,lp=-1;
     for(int i=0;i<n;i++){if(s[i]<60)hf=s[i];else if(lp==-1)lp=s[i];}
-    if(hf==-1)printf("best case\n");else printf("%d\n",hf);
-    if(lp==-1)printf("worst case\n");else printf("%d\n",lp);
+    if(hf==-1)printf("best case
+");else printf("%d
+",hf);
+    if(lp==-1)printf("worst case
+");else printf("%d
+",lp);
     return 0;
 }`,
 c294:`#include <stdio.h>
@@ -10150,11 +10566,16 @@ int cmp(const void*a,const void*b){return *(int*)a-*(int*)b;}
 int main(){
     int a[3];scanf("%d %d %d",&a[0],&a[1],&a[2]);
     qsort(a,3,sizeof(int),cmp);
-    printf("%d %d %d\n",a[0],a[1],a[2]);
-    if(a[0]+a[1]<=a[2])printf("No\n");
-    else if(a[0]*a[0]+a[1]*a[1]<a[2]*a[2])printf("Obtuse\n");
-    else if(a[0]*a[0]+a[1]*a[1]==a[2]*a[2])printf("Right\n");
-    else printf("Acute\n");
+    printf("%d %d %d
+",a[0],a[1],a[2]);
+    if(a[0]+a[1]<=a[2])printf("No
+");
+    else if(a[0]*a[0]+a[1]*a[1]<a[2]*a[2])printf("Obtuse
+");
+    else if(a[0]*a[0]+a[1]*a[1]==a[2]*a[2])printf("Right
+");
+    else printf("Acute
+");
     return 0;
 }`,
 c290:`#include <stdio.h>
@@ -10166,7 +10587,8 @@ int main(){
     int n=strlen(s);rev(s,n);
     int odd=0,even=0;
     for(int i=0;i<n;i++){if(i%2==0)odd+=s[i]-'0';else even+=s[i]-'0';}
-    printf("%d\n",abs(odd-even));
+    printf("%d
+",abs(odd-even));
     return 0;
 }`,
 c461:`#include <stdio.h>
@@ -10174,10 +10596,14 @@ int main(){
     int a,b,r;scanf("%d %d %d",&a,&b,&r);
     a=a?1:0;b=b?1:0;
     int any=0;
-    if((a&b)==r){printf("AND\n");any=1;}
-    if((a|b)==r){printf("OR\n");any=1;}
-    if((a^b)==r){printf("XOR\n");any=1;}
-    if(!any)printf("IMPOSSIBLE\n");
+    if((a&b)==r){printf("AND
+");any=1;}
+    if((a|b)==r){printf("OR
+");any=1;}
+    if((a^b)==r){printf("XOR
+");any=1;}
+    if(!any)printf("IMPOSSIBLE
+");
     return 0;
 }`,
 e283:`#include <stdio.h>
@@ -10196,7 +10622,8 @@ int main(){
     while(scanf("%d",&n)==1){
         char res[101]="";int len=0;
         for(int i=0;i<n;i++){char key[5]="";for(int j=0;j<4;j++){int x;scanf("%d",&x);key[j]='0'+x;}key[4]=0;res[len++]=dec(key);}
-        res[len]=0;printf("%s\n",res);
+        res[len]=0;printf("%s
+",res);
     }
     return 0;
 }`,
@@ -10207,7 +10634,8 @@ int main(){
     int n;scanf("%d",&n);
     char best[1000]="",cur[1000];int bc=300;
     for(int i=0;i<n;i++){scanf("%s",cur);int c=dist(cur);if(c<bc||(c==bc&&strcmp(cur,best)<0)){bc=c;strcpy(best,cur);}}
-    printf("%s\n",best);
+    printf("%s
+",best);
     return 0;
 }`,
 e286:`#include <stdio.h>
@@ -10217,9 +10645,14 @@ int main(){
     for(int i=0;i<4;i++){scanf("%d",&x);c1+=x;}
     for(int i=0;i<4;i++){scanf("%d",&x);h2+=x;}
     for(int i=0;i<4;i++){scanf("%d",&x);c2+=x;}
-    printf("%d:%d\n%d:%d\n",h1,c1,h2,c2);
+    printf("%d:%d
+%d:%d
+",h1,c1,h2,c2);
     int w=(h1>c1)+(h2>c2),l=(c1>h1)+(c2>h2);
-    if(w==2)printf("Win\n");else if(l==2)printf("Lose\n");else printf("Tie\n");
+    if(w==2)printf("Win
+");else if(l==2)printf("Lose
+");else printf("Tie
+");
     return 0;
 }`,
 h026:`#include <stdio.h>
@@ -10230,11 +10663,14 @@ int main(){
     int bro=F,done=0;
     for(int i=0;i<N;i++){
         printf("%d ",bro);
-        if(bro==beat(y[i])){printf(": Won at round %d\n",i+1);done=1;break;}
-        else if(y[i]==beat(bro)){printf(": Lost at round %d\n",i+1);done=1;break;}
+        if(bro==beat(y[i])){printf(": Won at round %d
+",i+1);done=1;break;}
+        else if(y[i]==beat(bro)){printf(": Lost at round %d
+",i+1);done=1;break;}
         if(i+1<N)bro=(i>=1&&y[i]==y[i-1])?beat(y[i]):y[i];
     }
-    if(!done)printf(": Drew at round %d\n",N);
+    if(!done)printf(": Drew at round %d
+",N);
     return 0;
 }`,
 f579:`#include <stdio.h>
@@ -10245,7 +10681,8 @@ int main(){
         while(scanf("%d",&x)&&x!=0){if(x==a)ca++;else if(x==-a)ca--;else if(x==b)cb++;else if(x==-b)cb--;}
         if(ca>0&&cb>0)ans++;
     }
-    printf("%d\n",ans);
+    printf("%d
+",ans);
     return 0;
 }`,
 f312:`#include <stdio.h>
@@ -10254,7 +10691,8 @@ int main(){
     scanf("%lld %lld %lld",&A1,&B1,&C1);scanf("%lld %lld %lld",&A2,&B2,&C2);scanf("%lld",&n);
     long long best=0;int first=1;
     for(int x1=0;x1<=n;x1++){int x2=n-x1;long long t=A1*x1*x1+B1*x1+C1+A2*x2*x2+B2*x2+C2;if(first||t>best){best=t;first=0;}}
-    printf("%lld\n",best);
+    printf("%lld
+",best);
     return 0;
 }`,
 f605:`#include <stdio.h>
@@ -10264,7 +10702,8 @@ int main(){
     int n,d;scanf("%d %d",&n,&d);
     int cnt=0,cost=0;
     for(int i=0;i<n;i++){int p[3];scanf("%d %d %d",&p[0],&p[1],&p[2]);if(max3(p[0],p[1],p[2])-min3(p[0],p[1],p[2])>=d){cnt++;cost+=(p[0]+p[1]+p[2])/3;}}
-    printf("%d %d\n",cnt,cost);
+    printf("%d %d
+",cnt,cost);
     return 0;
 }`,
 g275:`#include <stdio.h>
@@ -10278,7 +10717,9 @@ int main(){
         if(t[1]==t[3]||t[1]!=t[5]||b[1]==b[3]||b[1]!=b[5])bad[k++]='A';
         if(t[6]!=1||b[6]!=0)bad[k++]='B';
         if(t[1]==b[1]||t[3]==b[3]||t[5]==b[5])bad[k++]='C';
-        if(k==0)printf("None\n");else printf("%s\n",bad);
+        if(k==0)printf("None
+");else printf("%s
+",bad);
     }
     return 0;
 }`,
@@ -10289,7 +10730,8 @@ int main(){
     int h[100];for(int i=0;i<n;i++)scanf("%d",&h[i]);
     int ans=0;
     for(int i=0;i<n;i++){if(h[i]!=0)continue;if(i==0)ans+=h[1];else if(i==n-1)ans+=h[n-2];else ans+=min2(h[i-1],h[i+1]);}
-    printf("%d\n",ans);
+    printf("%d
+",ans);
     return 0;
 }`,
 h081:`#include <stdio.h>
@@ -10298,7 +10740,8 @@ int main(){
     int a[100];for(int i=0;i<n;i++)scanf("%d",&a[i]);
     int holding=1,price=a[0],profit=0;
     for(int i=1;i<n;i++){if(holding){if(a[i]>=price+D){profit+=a[i]-price;price=a[i];holding=0;}}else{if(a[i]<=price-D){price=a[i];holding=1;}}}
-    printf("%d\n",profit);
+    printf("%d
+",profit);
     return 0;
 }`,
 i399:`#include <stdio.h>
@@ -10308,7 +10751,8 @@ int main(){
     int v[3];scanf("%d %d %d",&v[0],&v[1],&v[2]);
     int P=1;for(int i=0;i<3;i++){int c=0;for(int j=0;j<3;j++)if(v[j]==v[i])c++;if(c>P)P=c;}
     qsort(v,3,sizeof(int),cmpD);
-    printf("%d",P);int prev=-1;for(int i=0;i<3;i++)if(v[i]!=prev){printf(" %d",v[i]);prev=v[i];}printf("\n");
+    printf("%d",P);int prev=-1;for(int i=0;i<3;i++)if(v[i]!=prev){printf(" %d",v[i]);prev=v[i];}printf("
+");
     return 0;
 }`,
 i428:`#include <stdio.h>
@@ -10319,7 +10763,8 @@ int main(){
     int x[100],y[100];for(int i=0;i<n;i++)scanf("%d %d",&x[i],&y[i]);
     int mx=-INF,mn=INF;
     for(int i=1;i<n;i++){int d=abs(x[i]-x[i-1])+abs(y[i]-y[i-1]);if(d>mx)mx=d;if(d<mn)mn=d;}
-    printf("%d %d\n",mx,mn);
+    printf("%d %d
+",mx,mn);
     return 0;
 }`,
 j605:`#include <stdio.h>
@@ -10328,7 +10773,8 @@ int main(){
     int best=-1,bt=0,err=0;
     for(int i=0;i<K;i++){int t,s;scanf("%d %d",&t,&s);if(s==-1){err++;continue;}if(s>best){best=s;bt=t;}}
     int f=best-K-err*2;if(f<0)f=0;
-    printf("%d %d\n",f,bt);
+    printf("%d %d
+",f,bt);
     return 0;
 }`,
 k731:`#include <stdio.h>
@@ -10338,7 +10784,8 @@ int main(){
     for(int i=1;i<=n;i++)scanf("%d %d",&px[i],&py[i]);
     int lft=0,rgt=0,bk=0,pdx=1,pdy=0;
     for(int i=1;i<=n;i++){int dx=(px[i]>px[i-1])?1:(px[i]<px[i-1])?-1:0;int dy=(py[i]>py[i-1])?1:(py[i]<py[i-1])?-1:0;int cross=pdx*dy-pdy*dx,dot=pdx*dx+pdy*dy;if(dot<0)bk++;else if(cross>0)lft++;else if(cross<0)rgt++;pdx=dx;pdy=dy;}
-    printf("%d %d %d\n",lft,rgt,bk);
+    printf("%d %d %d
+",lft,rgt,bk);
     return 0;
 }`,
 m370:`#include <stdio.h>
@@ -10348,8 +10795,10 @@ int main(){
     int x,n;scanf("%d %d",&x,&n);
     int lft[20],rgt[20],lc=0,rc=0,f;
     for(int i=0;i<n;i++){scanf("%d",&f);if(f<x)lft[lc++]=f;else rgt[rc++]=f;}
-    if(lc>rc){qsort(lft,lc,sizeof(int),cmpA);printf("%d %d\n",lc,lft[0]);}
-    else{qsort(rgt,rc,sizeof(int),cmpA);printf("%d %d\n",rc,rgt[rc-1]);}
+    if(lc>rc){qsort(lft,lc,sizeof(int),cmpA);printf("%d %d
+",lc,lft[0]);}
+    else{qsort(rgt,rc,sizeof(int),cmpA);printf("%d %d
+",rc,rgt[rc-1]);}
     return 0;
 }`,
 m931:`#include <stdio.h>
@@ -10360,7 +10809,8 @@ int main(){
     int n;scanf("%d",&n);
     R r[20];for(int i=0;i<n;i++){scanf("%d %d",&r[i].a,&r[i].d);r[i].pw=r[i].a*r[i].a+r[i].d*r[i].d;}
     qsort(r,n,sizeof(R),cmpR);
-    printf("%d %d\n",r[1].a,r[1].d);
+    printf("%d %d
+",r[1].a,r[1].d);
     return 0;
 }`,
 o076:`#include <stdio.h>
@@ -10369,7 +10819,8 @@ int main(){
     int h[100];for(int i=0;i<n;i++)scanf("%d",&h[i]);
     int cur=1,ans=1;
     for(int i=1;i<n;i++){if(h[i]<h[i-1])cur++;else cur=1;if(cur>ans)ans=cur;}
-    printf("%d\n",ans);
+    printf("%d
+",ans);
     return 0;
 }`,
 o711:`#include <stdio.h>
@@ -10379,7 +10830,8 @@ int main(){
     long long w1,w2,h1,h2;scanf("%lld %lld %lld %lld",&w1,&w2,&h1,&h2);
     long long cap1=w1*w1*h1,total=cap1+w2*w2*h2,water=0,ans=0;
     for(int i=0;i<n;i++){int v;scanf("%d",&v);long long oh=ht(water,w1,h1,w2,cap1);water+=v;if(water>total)water=total;long long nh=ht(water,w1,h1,w2,cap1);if(nh-oh>ans)ans=nh-oh;}
-    printf("%lld\n",ans);
+    printf("%lld
+",ans);
     return 0;
 }`,
 q181:`#include <stdio.h>
@@ -10388,7 +10840,8 @@ int main(){
     int n;scanf("%d",&n);
     int cycle=a+b,wait=0;
     for(int i=0;i<n;i++){int t;scanf("%d",&t);int r=t%cycle;if(r>=a)wait+=cycle-r;}
-    printf("%d\n",wait);
+    printf("%d
+",wait);
     return 0;
 }`,
 q836:`#include <stdio.h>
@@ -10396,7 +10849,8 @@ int main(){
     int k,x1,y1,x2,y2;
     scanf("%d",&k);scanf("%d %d",&x1,&y1);scanf("%d %d",&x2,&y2);
     int v=k,pos=0;
-    while(1){pos+=v;if(pos%x1==0)v-=y1;if(pos%x2==0)v-=y2;if(v<=0){printf("%d\n",pos);break;}}
+    while(1){pos+=v;if(pos%x1==0)v-=y1;if(pos%x2==0)v-=y2;if(v<=0){printf("%d
+",pos);break;}}
     return 0;
 }`,
 m001:`#include <stdio.h>
@@ -10407,15 +10861,18 @@ int main(){
     for(int i=0;i<n;i++)scanf("%lld",&a[i]);
     long long cur=a[0],ans=a[0];
     for(int i=1;i<n;i++){if(cur+a[i]>a[i])cur+=a[i];else cur=a[i];if(cur>ans)ans=cur;}
-    printf("%lld\n",ans);free(a);return 0;
+    printf("%lld
+",ans);free(a);return 0;
 }`,
 m002:`#include <stdio.h>
 int main(){
     int n;scanf("%d",&n);
-    if(n==1){printf("1\n");return 0;}
+    if(n==1){printf("1
+");return 0;}
     long long a=1,b=2;
     for(int i=2;i<n;i++){long long t=a+b;a=b;b=t;}
-    printf("%lld\n",b);
+    printf("%lld
+",b);
 }`,
 m003:`#include <stdio.h>
 #include <string.h>
@@ -10425,9 +10882,12 @@ int main(){
     char s[10001];scanf("%s",s);
     for(int i=0;s[i];i++){
         if(s[i]=='('||s[i]=='['||s[i]=='{')st[top++]=s[i];
-        else{if(top==0||!match(st[top-1],s[i])){printf("Invalid\n");return 0;}top--;}
+        else{if(top==0||!match(st[top-1],s[i])){printf("Invalid
+");return 0;}top--;}
     }
-    printf(top==0?"Valid\n":"Invalid\n");
+    printf(top==0?"Valid
+":"Invalid
+");
 }`,
 m004:`#include <stdio.h>
 int a[100001];
@@ -10436,7 +10896,8 @@ int main(){
     for(int i=0;i<n;i++)scanf("%d",&a[i]);
     while(m--){int x,lo=0,hi=n-1,ans=-1;scanf("%d",&x);
         while(lo<=hi){int mid=(lo+hi)/2;if(a[mid]>=x){ans=mid+1;hi=mid-1;}else lo=mid+1;}
-        printf("%d\n",ans);}
+        printf("%d
+",ans);}
 }`,
 m005:`#include <stdio.h>
 int a[1001],dp[1001];
@@ -10445,7 +10906,8 @@ int main(){
     for(int i=0;i<n;i++){scanf("%d",&a[i]);dp[i]=1;}
     int ans=1;
     for(int i=1;i<n;i++){for(int j=0;j<i;j++)if(a[j]<a[i]&&dp[j]+1>dp[i])dp[i]=dp[j]+1;if(dp[i]>ans)ans=dp[i];}
-    printf("%d\n",ans);
+    printf("%d
+",ans);
 }`,
 m006:`#include <stdio.h>
 #include <string.h>
@@ -10456,7 +10918,8 @@ int main(){
     for(int i=2;(long long)i*i<=n;i++)if(sv[i])for(int j=i*i;j<=n;j+=i)sv[j]=0;
     int first=1;
     for(int i=2;i<=n;i++)if(sv[i]){if(!first)printf(" ");printf("%d",i);first=0;}
-    printf("\n");
+    printf("
+");
 }`,
 m007:`#include <stdio.h>
 #include <string.h>
@@ -10466,23 +10929,27 @@ int main(){
     int i=strlen(a)-1,j=strlen(b)-1,carry=0;
     char res[1002];int k=0;
     while(i>=0||j>=0||carry){int s=carry;if(i>=0)s+=a[i--]-'0';if(j>=0)s+=b[j--]-'0';res[k++]='0'+s%10;carry=s/10;}
-    res[k]=0;rev(res,k);printf("%s\n",res);
+    res[k]=0;rev(res,k);printf("%s
+",res);
 }`,
 m008:`#include <stdio.h>
 #include <string.h>
 int main(){
     char line[10001];fgets(line,sizeof(line),stdin);
-    int len=strlen(line);if(line[len-1]=='\n')line[--len]=0;
+    int len=strlen(line);if(line[len-1]=='
+')line[--len]=0;
     char*words[5000];int wc=0;
     char*p=strtok(line," ");while(p){words[wc++]=p;p=strtok(NULL," ");}
-    for(int i=wc-1;i>=0;i--){if(i<wc-1)printf(" ");printf("%s",words[i]);}printf("\n");
+    for(int i=wc-1;i>=0;i--){if(i<wc-1)printf(" ");printf("%s",words[i]);}printf("
+");
 }`,
 h001:`#include <stdio.h>
 int dp[1001];
 int main(){
     int n,W;scanf("%d %d",&n,&W);
     for(int i=0;i<n;i++){int w,v;scanf("%d %d",&w,&v);for(int j=W;j>=w;j--)if(dp[j-w]+v>dp[j])dp[j]=dp[j-w]+v;}
-    printf("%d\n",dp[W]);
+    printf("%d
+",dp[W]);
 }`,
 h002:`#include <stdio.h>
 #include <string.h>
@@ -10494,7 +10961,8 @@ int main(){
         if(A[i-1]==B[j-1])dp[i][j]=dp[i-1][j-1]+1;
         else dp[i][j]=dp[i-1][j]>dp[i][j-1]?dp[i-1][j]:dp[i][j-1];
     }
-    printf("%d\n",dp[m][n]);
+    printf("%d
+",dp[m][n]);
 }`,
 h003:`#include <stdio.h>
 #include <string.h>
@@ -10503,14 +10971,17 @@ int g[MAXN][MAXN],dist[MAXN][MAXN],qr[MAXN*MAXN],qc[MAXN*MAXN];
 int main(){
     int n,m;scanf("%d %d",&n,&m);
     for(int i=0;i<n;i++)for(int j=0;j<m;j++)scanf("%d",&g[i][j]);
-    if(g[0][0]||g[n-1][m-1]){printf("-1\n");return 0;}
+    if(g[0][0]||g[n-1][m-1]){printf("-1
+");return 0;}
     memset(dist,-1,sizeof(dist));dist[0][0]=0;
     int head=0,tail=0;qr[tail]=0;qc[tail++]=0;
     int dr[]={-1,1,0,0},dc[]={0,0,-1,1};
     while(head<tail){int r=qr[head],c=qc[head++];
-        if(r==n-1&&c==m-1){printf("%d\n",dist[r][c]);return 0;}
+        if(r==n-1&&c==m-1){printf("%d
+",dist[r][c]);return 0;}
         for(int d=0;d<4;d++){int nr=r+dr[d],nc=c+dc[d];if(nr>=0&&nr<n&&nc>=0&&nc<m&&!g[nr][nc]&&dist[nr][nc]==-1){dist[nr][nc]=dist[r][c]+1;qr[tail]=nr;qc[tail++]=nc;}}}
-    printf("-1\n");
+    printf("-1
+");
 }`,
 h004:`#include <stdio.h>
 int g[51][51];
@@ -10524,13 +10995,15 @@ int main(){
         if(t<=b){for(int c=r;c>=l;c--)printf(" %d",g[b][c]);b--;}
         if(l<=r){for(int row=b;row>=t;row--)printf(" %d",g[row][l]);l++;}
     }
-    printf("\n");
+    printf("
+");
 }`,
 h005:`#include <stdio.h>
 typedef long long ll;
 typedef unsigned long long ull;
 ll pw(ll a,ull n,ll m){if(m==1)return 0;ll r=1;a%=m;while(n>0){if(n&1)r=r*a%m;a=a*a%m;n>>=1;}return r;}
-int main(){ll a,m;ull n;scanf("%lld %llu %lld",&a,&n,&m);printf("%lld\n",pw(a,n,m));}`,
+int main(){ll a,m;ull n;scanf("%lld %llu %lld",&a,&n,&m);printf("%lld
+",pw(a,n,m));}`,
 p2_color_b:`#include <stdio.h>
 int g[50][50];
 int main(){
@@ -10538,7 +11011,8 @@ int main(){
     for(int i=0;i<k;i++){int r,c;scanf("%d %d",&r,&c);g[r][c]=1;}
     int cnt=0;
     for(int i=0;i<n;i++)for(int j=0;j<n;j++)if(g[i][j])cnt++;
-    printf("%d\n",cnt);
+    printf("%d
+",cnt);
 }`,
 p2_color_m:`#include <stdio.h>
 int g[100][100];
@@ -10550,7 +11024,8 @@ int main(){
     }
     int cnt=0,s=0;
     for(int i=0;i<n;i++)for(int j=0;j<n;j++)if(g[i][j]){cnt++;s+=g[i][j];}
-    printf("%d %d\n",cnt,s);
+    printf("%d %d
+",cnt,s);
 }`,
 p2_str_b:`#include <stdio.h>
 #include <ctype.h>
@@ -10558,7 +11033,8 @@ int main(){
     char s[200];fgets(s,sizeof(s),stdin);
     int cnt=0;
     for(int i=0;s[i];i++)if(isalpha((unsigned char)s[i]))cnt++;
-    printf("%d\n",cnt);
+    printf("%d
+",cnt);
 }`,
 p2_str_m:`#include <stdio.h>
 #include <string.h>
@@ -10579,14 +11055,16 @@ int main(){
             strcpy(cur,tmp);curlen=strlen(cur);
         }else{cur[curlen++]=c;cur[curlen]=0;}
     }
-    printf("%s\n",cur);
+    printf("%s
+",cur);
 }`,
 p2_bee_b:`#include <stdio.h>
 int main(){
     int n;scanf("%d",&n);
     int t[100],mx=-1,mn=1000000;
     for(int i=0;i<n;i++){scanf("%d",&t[i]);if(t[i]>mx)mx=t[i];if(t[i]<mn)mn=t[i];}
-    printf("%d\n",mx-mn);
+    printf("%d
+",mx-mn);
 }`,
 p2_bee_m:`#include <stdio.h>
 int main(){
@@ -10598,7 +11076,8 @@ int main(){
         while(t[r]-t[l]>w)l++;
         if(r-l+1>ans)ans=r-l+1;
     }
-    printf("%d\n",ans);
+    printf("%d
+",ans);
 }`,
 p2_card_b:`#include <stdio.h>
 #include <stdlib.h>
@@ -10610,7 +11089,8 @@ int main(){
     qsort(a,n,sizeof(int),cmp);
     long long s=0;
     for(int i=n-k;i<n;i++)s+=a[i];
-    printf("%lld\n",s);
+    printf("%lld
+",s);
 }`,
 p2_card_m:`#include <stdio.h>
 #include <stdlib.h>
@@ -10627,35 +11107,43 @@ int main(){
             if(!used[j]&&a[j]>b[i]){used[j]=1;score++;break;}
         }
     }
-    printf("%d\n",score);
+    printf("%d
+",score);
 }`,
 o_avg:`#include <stdio.h>
 int main(){
     int n;scanf("%d",&n);
     long long s=0;int x;
     for(int i=0;i<n;i++){scanf("%d",&x);s+=x;}
-    printf("%lld\n",(s*2+n)/(2LL*n));
+    printf("%lld
+",(s*2+n)/(2LL*n));
 }`,
 o_isprime:`#include <stdio.h>
 int main(){
     long long n;scanf("%lld",&n);
-    if(n<2){printf("No\n");return 0;}
-    for(long long i=2;i*i<=n;i++)if(n%i==0){printf("No\n");return 0;}
-    printf("Yes\n");
+    if(n<2){printf("No
+");return 0;}
+    for(long long i=2;i*i<=n;i++)if(n%i==0){printf("No
+");return 0;}
+    printf("Yes
+");
 }`,
 o_count_digit:`#include <stdio.h>
 int main(){
     long long n;scanf("%lld",&n);
-    if(n==0){printf("1\n");return 0;}
+    if(n==0){printf("1
+");return 0;}
     int cnt=0;
     while(n>0){cnt++;n/=10;}
-    printf("%d\n",cnt);
+    printf("%d
+",cnt);
 }`,
 o_reverse_num:`#include <stdio.h>
 int main(){
     long long n,rev=0;scanf("%lld",&n);
     while(n>0){rev=rev*10+n%10;n/=10;}
-    printf("%lld\n",rev);
+    printf("%lld
+",rev);
 }`,
 o_count_char:`#include <stdio.h>
 #include <string.h>
@@ -10664,21 +11152,24 @@ int main(){
     scanf("%s %c",s,&c);
     int cnt=0;
     for(int i=0;s[i];i++)if(s[i]==c)cnt++;
-    printf("%d\n",cnt);
+    printf("%d
+",cnt);
 }`,
 o_prefix:`#include <stdio.h>
 long long pref[100001];
 int main(){
     int n,q;scanf("%d %d",&n,&q);
     for(int i=0;i<n;i++){int x;scanf("%d",&x);pref[i+1]=pref[i]+x;}
-    while(q--){int l,r;scanf("%d %d",&l,&r);printf("%lld\n",pref[r]-pref[l-1]);}
+    while(q--){int l,r;scanf("%d %d",&l,&r);printf("%lld
+",pref[r]-pref[l-1]);}
 }`,
 o_twosum:`#include <stdio.h>
 int a[100001];
 int main(){
     int n,target;scanf("%d %d",&n,&target);
     for(int i=0;i<n;i++)scanf("%d",&a[i]);
-    for(int i=0;i<n;i++)for(int j=i+1;j<n;j++)if(a[i]+a[j]==target){printf("%d %d\n",i+1,j+1);return 0;}
+    for(int i=0;i<n;i++)for(int j=i+1;j<n;j++)if(a[i]+a[j]==target){printf("%d %d
+",i+1,j+1);return 0;}
 }`,
 o_2nd_max:`#include <stdio.h>
 #include <stdlib.h>
@@ -10690,7 +11181,8 @@ int main(){
     qsort(a,n,sizeof(int),cmp);
     int sec=-1;
     for(int i=1;i<n;i++)if(a[i]!=a[0]){sec=a[i];break;}
-    printf("%d\n",sec);
+    printf("%d
+",sec);
 }`,
 o_transpose:`#include <stdio.h>
 int a[51][51];
@@ -10699,7 +11191,8 @@ int main(){
     for(int i=0;i<n;i++)for(int j=0;j<m;j++)scanf("%d",&a[i][j]);
     for(int j=0;j<m;j++){
         for(int i=0;i<n;i++){if(i)printf(" ");printf("%d",a[i][j]);}
-        printf("\n");
+        printf("
+");
     }
 }`,
 o_str_compress:`#include <stdio.h>
@@ -10713,7 +11206,8 @@ int main(){
         printf("%c%d",s[i],j-i);
         i=j;
     }
-    printf("\n");
+    printf("
+");
 }`,
 o_edit_dist:`#include <stdio.h>
 #include <string.h>
@@ -10728,7 +11222,8 @@ int main(){
         if(A[i-1]==B[j-1])dp[i][j]=dp[i-1][j-1];
         else dp[i][j]=1+min3(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);
     }
-    printf("%d\n",dp[m][n]);
+    printf("%d
+",dp[m][n]);
 }`,
 o_nqueen:`#include <stdio.h>
 int n,cnt=0;
@@ -10745,7 +11240,8 @@ void solve(int row){
 int main(){
     scanf("%d",&n);
     solve(0);
-    printf("%d\n",cnt);
+    printf("%d
+",cnt);
 }`,
 o_kth_min:`#include <stdio.h>
 #include <stdlib.h>
@@ -10755,58 +11251,78 @@ int main(){
     int a[100000];
     for(int i=0;i<n;i++)scanf("%d",&a[i]);
     qsort(a,n,sizeof(int),cmp);
-    printf("%d\n",a[k-1]);
+    printf("%d
+",a[k-1]);
 }`,
 m_two_sum:`#include <stdio.h>
-int main(){int n,K;scanf("%d %d",&n,&K);int a[5000];for(int i=0;i<n;i++)scanf("%d",&a[i]);for(int i=0;i<n;i++)for(int j=i+1;j<n;j++)if(a[i]+a[j]==K){printf("%d %d\n",i+1,j+1);return 0;}return 0;}`,
+int main(){int n,K;scanf("%d %d",&n,&K);int a[5000];for(int i=0;i<n;i++)scanf("%d",&a[i]);for(int i=0;i<n;i++)for(int j=i+1;j<n;j++)if(a[i]+a[j]==K){printf("%d %d
+",i+1,j+1);return 0;}return 0;}`,
 m_uniq_cnt:`#include <stdio.h>
 #include <stdlib.h>
 int cmp(const void*a,const void*b){return *(int*)a-*(int*)b;}
-int main(){int n;scanf("%d",&n);int a[100000];for(int i=0;i<n;i++)scanf("%d",&a[i]);qsort(a,n,sizeof(int),cmp);int c=n?1:0;for(int i=1;i<n;i++)if(a[i]!=a[i-1])c++;printf("%d\n",c);return 0;}`,
+int main(){int n;scanf("%d",&n);int a[100000];for(int i=0;i<n;i++)scanf("%d",&a[i]);qsort(a,n,sizeof(int),cmp);int c=n?1:0;for(int i=1;i<n;i++)if(a[i]!=a[i-1])c++;printf("%d
+",c);return 0;}`,
 m_lcis:`#include <stdio.h>
-int main(){int n;scanf("%d",&n);int prev,x,cur=1,best=1;scanf("%d",&prev);for(int i=1;i<n;i++){scanf("%d",&x);cur=(x>prev)?cur+1:1;if(cur>best)best=cur;prev=x;}printf("%d\n",best);return 0;}`,
+int main(){int n;scanf("%d",&n);int prev,x,cur=1,best=1;scanf("%d",&prev);for(int i=1;i<n;i++){scanf("%d",&x);cur=(x>prev)?cur+1:1;if(cur>best)best=cur;prev=x;}printf("%d
+",best);return 0;}`,
 m_intervals:`#include <stdio.h>
 #include <stdlib.h>
 typedef struct{int l,r;}Seg;
 int cmp(const void*a,const void*b){return ((Seg*)a)->l-((Seg*)b)->l;}
-int main(){int n;scanf("%d",&n);Seg s[100000];for(int i=0;i<n;i++)scanf("%d %d",&s[i].l,&s[i].r);qsort(s,n,sizeof(Seg),cmp);int cnt=1,R=s[0].r;for(int i=1;i<n;i++){if(s[i].l<=R){if(s[i].r>R)R=s[i].r;}else{cnt++;R=s[i].r;}}printf("%d\n",cnt);return 0;}`,
+int main(){int n;scanf("%d",&n);Seg s[100000];for(int i=0;i<n;i++)scanf("%d %d",&s[i].l,&s[i].r);qsort(s,n,sizeof(Seg),cmp);int cnt=1,R=s[0].r;for(int i=1;i<n;i++){if(s[i].l<=R){if(s[i].r>R)R=s[i].r;}else{cnt++;R=s[i].r;}}printf("%d
+",cnt);return 0;}`,
 m_sliding_max:`#include <stdio.h>
-int main(){int n,k;scanf("%d %d",&n,&k);int a[2000];for(int i=0;i<n;i++)scanf("%d",&a[i]);for(int i=0;i<=n-k;i++){int mx=a[i];for(int j=1;j<k;j++)if(a[i+j]>mx)mx=a[i+j];if(i)printf(" ");printf("%d",mx);}printf("\n");return 0;}`,
+int main(){int n,k;scanf("%d %d",&n,&k);int a[2000];for(int i=0;i<n;i++)scanf("%d",&a[i]);for(int i=0;i<=n-k;i++){int mx=a[i];for(int j=1;j<k;j++)if(a[i+j]>mx)mx=a[i+j];if(i)printf(" ");printf("%d",mx);}printf("
+");return 0;}`,
 m_palindrome:`#include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-int main(){char s[10005],t[10005];int n=0;char c;while((c=getchar())!=EOF&&c!='\n')if(isalnum(c))t[n++]=tolower(c);t[n]=0;int ok=1;for(int i=0;i<n/2;i++)if(t[i]!=t[n-1-i]){ok=0;break;}printf("%s\n",ok?"Yes":"No");return 0;}`,
+int main(){char s[10005],t[10005];int n=0;char c;while((c=getchar())!=EOF&&c!='
+')if(isalnum(c))t[n++]=tolower(c);t[n]=0;int ok=1;for(int i=0;i<n/2;i++)if(t[i]!=t[n-1-i]){ok=0;break;}printf("%s
+",ok?"Yes":"No");return 0;}`,
 m_bsearch:`#include <stdio.h>
-int main(){int n,q;scanf("%d %d",&n,&q);int a[100000];for(int i=0;i<n;i++)scanf("%d",&a[i]);while(q--){int x;scanf("%d",&x);int lo=0,hi=n-1,r=-1;while(lo<=hi){int m=(lo+hi)/2;if(a[m]==x){r=m+1;break;}if(a[m]<x)lo=m+1;else hi=m-1;}printf("%d\n",r);}return 0;}`,
+int main(){int n,q;scanf("%d %d",&n,&q);int a[100000];for(int i=0;i<n;i++)scanf("%d",&a[i]);while(q--){int x;scanf("%d",&x);int lo=0,hi=n-1,r=-1;while(lo<=hi){int m=(lo+hi)/2;if(a[m]==x){r=m+1;break;}if(a[m]<x)lo=m+1;else hi=m-1;}printf("%d
+",r);}return 0;}`,
 m_prime_cnt:`#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-int main(){int N;scanf("%d",&N);if(N<2){printf("0\n");return 0;}char*s=calloc(N+1,1);for(int i=2;i<=N;i++)s[i]=1;for(int i=2;(long long)i*i<=N;i++)if(s[i])for(int j=i*i;j<=N;j+=i)s[j]=0;int c=0;for(int i=2;i<=N;i++)if(s[i])c++;printf("%d\n",c);return 0;}`,
+int main(){int N;scanf("%d",&N);if(N<2){printf("0
+");return 0;}char*s=calloc(N+1,1);for(int i=2;i<=N;i++)s[i]=1;for(int i=2;(long long)i*i<=N;i++)if(s[i])for(int j=i*i;j<=N;j+=i)s[j]=0;int c=0;for(int i=2;i<=N;i++)if(s[i])c++;printf("%d
+",c);return 0;}`,
 m_gcd_arr:`#include <stdio.h>
 int gcd(int a,int b){while(b){int t=a%b;a=b;b=t;}return a;}
-int main(){int n;scanf("%d",&n);int g=0,x;for(int i=0;i<n;i++){scanf("%d",&x);g=gcd(g,x);}printf("%d\n",g);return 0;}`,
+int main(){int n;scanf("%d",&n);int g=0,x;for(int i=0;i<n;i++){scanf("%d",&x);g=gcd(g,x);}printf("%d
+",g);return 0;}`,
 m_mat_rot:`#include <stdio.h>
-int main(){int N;scanf("%d",&N);int a[50][50];for(int i=0;i<N;i++)for(int j=0;j<N;j++)scanf("%d",&a[i][j]);for(int j=0;j<N;j++){for(int i=N-1;i>=0;i--){if(i<N-1)printf(" ");printf("%d",a[i][j]);}printf("\n");}return 0;}`,
+int main(){int N;scanf("%d",&N);int a[50][50];for(int i=0;i<N;i++)for(int j=0;j<N;j++)scanf("%d",&a[i][j]);for(int j=0;j<N;j++){for(int i=N-1;i>=0;i--){if(i<N-1)printf(" ");printf("%d",a[i][j]);}printf("
+");}return 0;}`,
 m_paren:`#include <stdio.h>
 #include <string.h>
-int main(){char s[100005];scanf("%s",s);int n=strlen(s);char st[100005];int top=0,ok=1;for(int i=0;i<n;i++){char c=s[i];if(c=='('||c=='['||c=='{')st[top++]=c;else{if(!top){ok=0;break;}char t=st[--top];if((c==')'&&t!='(')||(c==']'&&t!='[')||(c=='}'&&t!='{')){ok=0;break;}}}printf("%s\n",(ok&&top==0)?"Yes":"No");return 0;}`,
+int main(){char s[100005];scanf("%s",s);int n=strlen(s);char st[100005];int top=0,ok=1;for(int i=0;i<n;i++){char c=s[i];if(c=='('||c=='['||c=='{')st[top++]=c;else{if(!top){ok=0;break;}char t=st[--top];if((c==')'&&t!='(')||(c==']'&&t!='[')||(c=='}'&&t!='{')){ok=0;break;}}}printf("%s
+",(ok&&top==0)?"Yes":"No");return 0;}`,
 m_postfix:`#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-int main(){long long st[1000];int top=0;char t[20];while(scanf("%s",t)==1){if(strlen(t)==1&&(t[0]=='+'||t[0]=='-'||t[0]=='*'||t[0]=='/')&&!(t[0]=='-'&&t[1])){long long b=st[--top],a=st[--top],r;if(t[0]=='+')r=a+b;else if(t[0]=='-')r=a-b;else if(t[0]=='*')r=a*b;else r=a/b;st[top++]=r;}else st[top++]=atoll(t);}printf("%lld\n",st[0]);return 0;}`,
+int main(){long long st[1000];int top=0;char t[20];while(scanf("%s",t)==1){if(strlen(t)==1&&(t[0]=='+'||t[0]=='-'||t[0]=='*'||t[0]=='/')&&!(t[0]=='-'&&t[1])){long long b=st[--top],a=st[--top],r;if(t[0]=='+')r=a+b;else if(t[0]=='-')r=a-b;else if(t[0]=='*')r=a*b;else r=a/b;st[top++]=r;}else st[top++]=atoll(t);}printf("%lld
+",st[0]);return 0;}`,
 m_reverse_num:`#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-int main(){long long x;scanf("%lld",&x);int sign=x<0?-1:1;char s[30];sprintf(s,"%lld",x<0?-x:x);int n=strlen(s);for(int i=0;i<n/2;i++){char c=s[i];s[i]=s[n-1-i];s[n-1-i]=c;}long long r=sign*atoll(s);if(r>2147483647LL||r<-2147483648LL)r=0;printf("%lld\n",r);return 0;}`,
+int main(){long long x;scanf("%lld",&x);int sign=x<0?-1:1;char s[30];sprintf(s,"%lld",x<0?-x:x);int n=strlen(s);for(int i=0;i<n/2;i++){char c=s[i];s[i]=s[n-1-i];s[n-1-i]=c;}long long r=sign*atoll(s);if(r>2147483647LL||r<-2147483648LL)r=0;printf("%lld
+",r);return 0;}`,
 m_prefix_sum_q:`#include <stdio.h>
-int main(){int n,q;scanf("%d %d",&n,&q);long long ps[100001];ps[0]=0;for(int i=1;i<=n;i++){int x;scanf("%d",&x);ps[i]=ps[i-1]+x;}while(q--){int l,r;scanf("%d %d",&l,&r);printf("%lld\n",ps[r]-ps[l-1]);}return 0;}`,
+int main(){int n,q;scanf("%d %d",&n,&q);long long ps[100001];ps[0]=0;for(int i=1;i<=n;i++){int x;scanf("%d",&x);ps[i]=ps[i-1]+x;}while(q--){int l,r;scanf("%d %d",&l,&r);printf("%lld
+",ps[r]-ps[l-1]);}return 0;}`,
 m_two_ptr:`#include <stdio.h>
-int main(){int n;scanf("%d",&n);int a[100000];for(int i=0;i<n;i++)scanf("%d",&a[i]);int i=0,j=n-1;long long best=0;while(i<j){int mn=a[i]<a[j]?a[i]:a[j];long long v=(long long)mn*(j-i);if(v>best)best=v;if(a[i]<a[j])i++;else j--;}printf("%lld\n",best);return 0;}`,
+int main(){int n;scanf("%d",&n);int a[100000];for(int i=0;i<n;i++)scanf("%d",&a[i]);int i=0,j=n-1;long long best=0;while(i<j){int mn=a[i]<a[j]?a[i]:a[j];long long v=(long long)mn*(j-i);if(v>best)best=v;if(a[i]<a[j])i++;else j--;}printf("%lld
+",best);return 0;}`,
 h_lis_logn:`#include <stdio.h>
-int main(){int n;scanf("%d",&n);int t[100000],len=0;for(int i=0;i<n;i++){int x;scanf("%d",&x);int lo=0,hi=len;while(lo<hi){int m=(lo+hi)/2;if(t[m]<x)lo=m+1;else hi=m;}t[lo]=x;if(lo==len)len++;}printf("%d\n",len);return 0;}`,
+int main(){int n;scanf("%d",&n);int t[100000],len=0;for(int i=0;i<n;i++){int x;scanf("%d",&x);int lo=0,hi=len;while(lo<hi){int m=(lo+hi)/2;if(t[m]<x)lo=m+1;else hi=m;}t[lo]=x;if(lo==len)len++;}printf("%d
+",len);return 0;}`,
 h_knap_unbound:`#include <stdio.h>
 #include <string.h>
-int main(){int n,W;scanf("%d %d",&n,&W);int dp[10001];memset(dp,0,sizeof(dp));for(int i=0;i<n;i++){int w,v;scanf("%d %d",&w,&v);for(int j=w;j<=W;j++)if(dp[j-w]+v>dp[j])dp[j]=dp[j-w]+v;}printf("%d\n",dp[W]);return 0;}`,
+int main(){int n,W;scanf("%d %d",&n,&W);int dp[10001];memset(dp,0,sizeof(dp));for(int i=0;i<n;i++){int w,v;scanf("%d %d",&w,&v);for(int j=w;j<=W;j++)if(dp[j-w]+v>dp[j])dp[j]=dp[j-w]+v;}printf("%d
+",dp[W]);return 0;}`,
 h_dijkstra:`#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10819,30 +11335,38 @@ typedef struct{long long d;int u;}PQ;
 PQ heap[200005];int hsz=0;
 void hpush(PQ x){heap[hsz++]=x;int i=hsz-1;while(i>0){int p=(i-1)/2;if(heap[p].d>heap[i].d){PQ t=heap[p];heap[p]=heap[i];heap[i]=t;i=p;}else break;}}
 PQ hpop(){PQ r=heap[0];heap[0]=heap[--hsz];int i=0;while(2*i+1<hsz){int c=2*i+1;if(c+1<hsz&&heap[c+1].d<heap[c].d)c++;if(heap[c].d<heap[i].d){PQ t=heap[c];heap[c]=heap[i];heap[i]=t;i=c;}else break;}return r;}
-int main(){scanf("%d %d",&n,&m);memset(head,-1,sizeof(head));for(int i=0;i<m;i++){int u,v,w;scanf("%d %d %d",&u,&v,&w);add(u,v,w);add(v,u,w);}for(int i=0;i<=n;i++)d[i]=INF;d[1]=0;hpush((PQ){0,1});while(hsz){PQ x=hpop();if(x.d>d[x.u])continue;for(int j=head[x.u];j!=-1;j=e[j].next)if(x.d+e[j].w<d[e[j].v]){d[e[j].v]=x.d+e[j].w;hpush((PQ){d[e[j].v],e[j].v});}}for(int i=1;i<=n;i++){if(i>1)printf(" ");printf("%lld",d[i]==INF?-1:d[i]);}printf("\n");return 0;}`,
+int main(){scanf("%d %d",&n,&m);memset(head,-1,sizeof(head));for(int i=0;i<m;i++){int u,v,w;scanf("%d %d %d",&u,&v,&w);add(u,v,w);add(v,u,w);}for(int i=0;i<=n;i++)d[i]=INF;d[1]=0;hpush((PQ){0,1});while(hsz){PQ x=hpop();if(x.d>d[x.u])continue;for(int j=head[x.u];j!=-1;j=e[j].next)if(x.d+e[j].w<d[e[j].v]){d[e[j].v]=x.d+e[j].w;hpush((PQ){d[e[j].v],e[j].v});}}for(int i=1;i<=n;i++){if(i>1)printf(" ");printf("%lld",d[i]==INF?-1:d[i]);}printf("
+");return 0;}`,
 h_dsu_island:`#include <stdio.h>
 int p[100005];
 int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
-int main(){int n,m;scanf("%d %d",&n,&m);for(int i=0;i<=n;i++)p[i]=i;for(int i=0;i<m;i++){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}int c=0;for(int i=1;i<=n;i++)if(find(i)==i)c++;printf("%d\n",c);return 0;}`,
+int main(){int n,m;scanf("%d %d",&n,&m);for(int i=0;i<=n;i++)p[i]=i;for(int i=0;i<m;i++){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}int c=0;for(int i=1;i<=n;i++)if(find(i)==i)c++;printf("%d
+",c);return 0;}`,
 h_matchain:`#include <stdio.h>
-int main(){int n;scanf("%d",&n);long long p[101];for(int i=0;i<=n;i++)scanf("%lld",&p[i]);long long dp[101][101]={0};for(int L=2;L<=n;L++)for(int i=1;i+L-1<=n;i++){int j=i+L-1;dp[i][j]=1LL<<62;for(int k=i;k<j;k++){long long c=dp[i][k]+dp[k+1][j]+p[i-1]*p[k]*p[j];if(c<dp[i][j])dp[i][j]=c;}}printf("%lld\n",dp[1][n]);return 0;}`,
+int main(){int n;scanf("%d",&n);long long p[101];for(int i=0;i<=n;i++)scanf("%lld",&p[i]);long long dp[101][101]={0};for(int L=2;L<=n;L++)for(int i=1;i+L-1<=n;i++){int j=i+L-1;dp[i][j]=1LL<<62;for(int k=i;k<j;k++){long long c=dp[i][k]+dp[k+1][j]+p[i-1]*p[k]*p[j];if(c<dp[i][j])dp[i][j]=c;}}printf("%lld
+",dp[1][n]);return 0;}`,
 h_fast_pow:`#include <stdio.h>
-int main(){long long a,b,m;scanf("%lld %lld %lld",&a,&b,&m);long long r=1%m;a%=m;while(b){if(b&1)r=r*a%m;a=a*a%m;b>>=1;}printf("%lld\n",r);return 0;}`,
+int main(){long long a,b,m;scanf("%lld %lld %lld",&a,&b,&m);long long r=1%m;a%=m;while(b){if(b&1)r=r*a%m;a=a*a%m;b>>=1;}printf("%lld
+",r);return 0;}`,
 h_inversion:`#include <stdio.h>
 #include <stdlib.h>
 long long tot;
 int tmp[100005];
 void msort(int*a,int l,int r){if(r-l<=1)return;int m=(l+r)/2;msort(a,l,m);msort(a,m,r);int i=l,j=m,k=0;while(i<m&&j<r){if(a[i]<=a[j])tmp[k++]=a[i++];else{tmp[k++]=a[j++];tot+=m-i;}}while(i<m)tmp[k++]=a[i++];while(j<r)tmp[k++]=a[j++];for(int x=0;x<k;x++)a[l+x]=tmp[x];}
-int main(){int n;scanf("%d",&n);int a[100005];for(int i=0;i<n;i++)scanf("%d",&a[i]);tot=0;msort(a,0,n);printf("%lld\n",tot);return 0;}`,
+int main(){int n;scanf("%d",&n);int a[100005];for(int i=0;i<n;i++)scanf("%d",&a[i]);tot=0;msort(a,0,n);printf("%lld
+",tot);return 0;}`,
 h_kadane2d:`#include <stdio.h>
-int main(){int n,m;scanf("%d %d",&n,&m);int g[50][50];for(int i=0;i<n;i++)for(int j=0;j<m;j++)scanf("%d",&g[i][j]);int best=g[0][0];for(int u=0;u<n;u++){int col[50]={0};for(int d=u;d<n;d++){for(int j=0;j<m;j++)col[j]+=g[d][j];int cur=col[0],mx=col[0];for(int j=1;j<m;j++){cur=(col[j]>cur+col[j])?col[j]:cur+col[j];if(cur>mx)mx=cur;}if(mx>best)best=mx;}}printf("%d\n",best);return 0;}`,
+int main(){int n,m;scanf("%d %d",&n,&m);int g[50][50];for(int i=0;i<n;i++)for(int j=0;j<m;j++)scanf("%d",&g[i][j]);int best=g[0][0];for(int u=0;u<n;u++){int col[50]={0};for(int d=u;d<n;d++){for(int j=0;j<m;j++)col[j]+=g[d][j];int cur=col[0],mx=col[0];for(int j=1;j<m;j++){cur=(col[j]>cur+col[j])?col[j]:cur+col[j];if(cur>mx)mx=cur;}if(mx>best)best=mx;}}printf("%d
+",best);return 0;}`,
 h_string_hash:`#include <stdio.h>
 #include <string.h>
-int main(){char S[100005],T[100005];scanf("%s",S);scanf("%s",T);int n=strlen(S),L=strlen(T),cnt=0;for(int i=0;i+L<=n;i++){int ok=1;for(int j=0;j<L;j++)if(S[i+j]!=T[j]){ok=0;break;}if(ok)cnt++;}printf("%d\n",cnt);return 0;}`,
+int main(){char S[100005],T[100005];scanf("%s",S);scanf("%s",T);int n=strlen(S),L=strlen(T),cnt=0;for(int i=0;i+L<=n;i++){int ok=1;for(int j=0;j<L;j++)if(S[i+j]!=T[j]){ok=0;break;}if(ok)cnt++;}printf("%d
+",cnt);return 0;}`,
 h_edit_dist2:`#include <stdio.h>
 #include <string.h>
 int min3(int a,int b,int c){int x=a<b?a:b;return x<c?x:c;}
-int main(){char A[1005],B[1005];scanf("%s %s",A,B);int m=strlen(A),n=strlen(B);int dp[1005][1005];for(int i=0;i<=m;i++)dp[i][0]=i;for(int j=0;j<=n;j++)dp[0][j]=j;for(int i=1;i<=m;i++)for(int j=1;j<=n;j++){if(A[i-1]==B[j-1])dp[i][j]=dp[i-1][j-1];else dp[i][j]=1+min3(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);}printf("%d\n",dp[m][n]);return 0;}`,
+int main(){char A[1005],B[1005];scanf("%s %s",A,B);int m=strlen(A),n=strlen(B);int dp[1005][1005];for(int i=0;i<=m;i++)dp[i][0]=i;for(int j=0;j<=n;j++)dp[0][j]=j;for(int i=1;i<=m;i++)for(int j=1;j<=n;j++){if(A[i-1]==B[j-1])dp[i][j]=dp[i-1][j-1];else dp[i][j]=1+min3(dp[i-1][j],dp[i][j-1],dp[i-1][j-1]);}printf("%d
+",dp[m][n]);return 0;}`,
 j_str_digits:`#include <stdio.h>
 #include <ctype.h>
 int main(){
@@ -10851,7 +11375,9 @@ int main(){
     int k = 0;
     for(int i = 0; s[i]; i++) if(isdigit(s[i])) r[k++] = s[i];
     r[k] = 0;
-    if(k == 0) printf("-1\n"); else printf("%s\n", r);
+    if(k == 0) printf("-1
+"); else printf("%s
+", r);
     return 0;
 }`,
 j_gem_pick:`#include <stdio.h>
@@ -10859,13 +11385,15 @@ int main(){
     int n; scanf("%d", &n);
     int v[100005];
     for(int i = 0; i < n; i++) scanf("%d", &v[i]);
-    if(n == 1){ printf("%d\n", v[0]); return 0; }
+    if(n == 1){ printf("%d
+", v[0]); return 0; }
     int a = v[0], b = v[0] > v[1] ? v[0] : v[1];
     for(int i = 2; i < n; i++){
         int t = b > a + v[i] ? b : a + v[i];
         a = b; b = t;
     }
-    printf("%d\n", b);
+    printf("%d
+", b);
     return 0;
 }`,
 j_canvas_cc:`#include <stdio.h>
@@ -10884,7 +11412,8 @@ int main(){
     for(int i = 0; i < n; i++)
         for(int j = 0; j < m; j++)
             if(g[i][j]=='B' && !seen[i][j]){ cnt++; dfs(i,j); }
-    printf("%d\n", cnt);
+    printf("%d
+", cnt);
     return 0;
 }`,
 j_bee_path:`#include <stdio.h>
@@ -10899,7 +11428,8 @@ int main(){
     char d[100005] = {0};
     if(fgets(d, sizeof(d), stdin)) {
         int n = strlen(d);
-        if(n && d[n-1]=='\n') d[--n] = 0;
+        if(n && d[n-1]=='
+') d[--n] = 0;
     }
     int x = 0, y = 0;
     long long pts[100005];
@@ -10915,7 +11445,8 @@ int main(){
     qsort(pts, m, sizeof(long long), cmp);
     int uniq = 1;
     for(int i = 1; i < m; i++) if(pts[i] != pts[i-1]) uniq++;
-    printf("%d\n", uniq);
+    printf("%d
+", uniq);
     return 0;
 }`,
 j_card_ends:`#include <stdio.h>
@@ -10931,7 +11462,8 @@ int main(){
         right -= a[n-k+i-1];
         if(left + right > best) best = left + right;
     }
-    printf("%lld\n", best);
+    printf("%lld
+", best);
     return 0;
 }`,
 j_special_pos:`#include <stdio.h>
@@ -10942,7 +11474,8 @@ int main(){
     int cnt = 0;
     for(int i=0;i<n;i++) for(int j=0;j<n;j++)
         if(A[i][j] == rs[i] - cs[j]) cnt++;
-    printf("%d\n", cnt);
+    printf("%d
+", cnt);
     return 0;
 }`,
 j_char_freq:`#include <stdio.h>
@@ -10956,7 +11489,8 @@ int main(){
     }
     int best = 0;
     for(int i = 1; i < 26; i++) if(cnt[i] > cnt[best]) best = i;
-    printf("%c %d\n", 'a' + best, cnt[best]);
+    printf("%c %d
+", 'a' + best, cnt[best]);
     return 0;
 }`,
 j_rle_decode:`#include <stdio.h>
@@ -10965,7 +11499,8 @@ int main(){
     char s[10005], res[100005];
     fgets(s, sizeof(s), stdin);
     int n = strlen(s);
-    if(n && s[n-1]=='\n') s[--n] = 0;
+    if(n && s[n-1]=='
+') s[--n] = 0;
     int k = 0, num = 0;
     for(int i = 0; s[i]; i++){
         char c = s[i];
@@ -10977,7 +11512,8 @@ int main(){
         }
     }
     res[k] = 0;
-    printf("%s\n", res);
+    printf("%s
+", res);
     return 0;
 }`,
 j_match_winner:`#include <stdio.h>
@@ -10988,7 +11524,8 @@ int main(){
         int a, b; scanf("%d %d", &a, &b);
         if(a > b) A++; else if(b > a) B++;
     }
-    printf("%s\n", A > B ? "A" : B > A ? "B" : "Tie");
+    printf("%s
+", A > B ? "A" : B > A ? "B" : "Tie");
     return 0;
 }`,
 j_flow_peak:`#include <stdio.h>
@@ -11000,7 +11537,8 @@ int main(){
         cur += p - q;
         if(cur > best) best = cur;
     }
-    printf("%lld\n", best);
+    printf("%lld
+", best);
     return 0;
 }`,
 j_dice_roll:`#include <stdio.h>
@@ -11009,7 +11547,8 @@ int main(){
     char d[100005] = {0};
     fgets(d, sizeof(d), stdin);
     int n2 = strlen(d);
-    if(n2 && d[n2-1]=='\n') d[--n2] = 0;
+    if(n2 && d[n2-1]=='
+') d[--n2] = 0;
     int top=1, bot=6, N=2, S=5, E=3, W=4;
     for(int i = 0; d[i]; i++){
         char c = d[i];
@@ -11019,7 +11558,8 @@ int main(){
         else if(c == 'E'){ top = w; E = t; bot = e; W = b; }
         else if(c == 'W'){ top = e; W = t; bot = w; E = b; }
     }
-    printf("%d\n", top);
+    printf("%d
+", top);
     return 0;
 }`,
 j_submatrix_sum:`#include <stdio.h>
@@ -11033,7 +11573,8 @@ int main(){
         }
     while(q--){
         int r1, c1, r2, c2; scanf("%d %d %d %d", &r1, &c1, &r2, &c2);
-        printf("%lld\n", ps[r2+1][c2+1] - ps[r1][c2+1] - ps[r2+1][c1] + ps[r1][c1]);
+        printf("%lld
+", ps[r2+1][c2+1] - ps[r1][c2+1] - ps[r2+1][c1] + ps[r1][c1]);
     }
     return 0;
 }`,
@@ -11043,14 +11584,16 @@ int main(){int N,Q;scanf("%d %d",&N,&Q);
 for(int i=1;i<=N;i++){char r[1005];scanf("%s",r);
  for(int j=1;j<=N;j++)ps[i][j]=ps[i-1][j]+ps[i][j-1]-ps[i-1][j-1]+(r[j-1]=='*');}
 while(Q--){int r1,c1,r2,c2;scanf("%d %d %d %d",&r1,&c1,&r2,&c2);
- printf("%d\n",ps[r2][c2]-ps[r1-1][c2]-ps[r2][c1-1]+ps[r1-1][c1-1]);}
+ printf("%d
+",ps[r2][c2]-ps[r1-1][c2]-ps[r2][c1-1]+ps[r1-1][c1-1]);}
 return 0;}`,
 p102:`#include<stdio.h>
 #include<stdlib.h>
 long long s,ans;
 int main(){int N;scanf("%d",&N);long long *c=calloc(N,sizeof(long long));c[0]=1;
 for(int i=0;i<N;i++){long long x;scanf("%lld",&x);s=((s+x)%N+N)%N;ans+=c[s];c[s]++;}
-printf("%lld\n",ans);free(c);return 0;}`,
+printf("%lld
+",ans);free(c);return 0;}`,
 p103:`#include<stdio.h>
 #include<stdlib.h>
 typedef struct{long long k,v;} E;
@@ -11061,19 +11604,22 @@ void inc(long long k){long long i=(unsigned long long)k%M;while(h[i].v&&h[i].k!=
 int main(){int N;long long X;scanf("%d %lld",&N,&X);inc(0);
 long long s=0,ans=0;
 for(int i=0;i<N;i++){long long x;scanf("%lld",&x);s+=x;ans+=get(s-X);inc(s);}
-printf("%lld\n",ans);return 0;}`,
+printf("%lld
+",ans);return 0;}`,
 p104:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N,M;scanf("%d %d",&N,&M);long long*d=calloc(N+2,sizeof(long long));
 while(M--){int l,r;long long v;scanf("%d %d %lld",&l,&r,&v);d[l]+=v;d[r+1]-=v;}
-long long c=0;for(int i=1;i<=N;i++){c+=d[i];printf("%lld%c",c,i==N?'\n':' ');}
+long long c=0;for(int i=1;i<=N;i++){c+=d[i];printf("%lld%c",c,i==N?'
+':' ');}
 free(d);return 0;}`,
 p105:`#include<stdio.h>
 int d[200005],ps[200005];
 int main(){int N,K,Q;scanf("%d %d %d",&N,&K,&Q);
 while(N--){int l,r;scanf("%d %d",&l,&r);d[l]++;d[r+1]--;}
 int c=0;for(int i=1;i<=200000;i++){c+=d[i];ps[i]=ps[i-1]+(c>=K?1:0);}
-while(Q--){int a,b;scanf("%d %d",&a,&b);printf("%d\n",ps[b]-ps[a-1]);}
+while(Q--){int a,b;scanf("%d %d",&a,&b);printf("%d
+",ps[b]-ps[a-1]);}
 return 0;}`,
 p106:`#include<stdio.h>
 #include<stdlib.h>
@@ -11082,7 +11628,8 @@ int lb(int*a,int n,int v){int l=0,r=n;while(l<r){int m=(l+r)/2;if(a[m]<v)l=m+1;e
 int ub(int*a,int n,int v){int l=0,r=n;while(l<r){int m=(l+r)/2;if(a[m]<=v)l=m+1;else r=m;}return l;}
 int main(){int N,Q;scanf("%d %d",&N,&Q);int*a=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&a[i]);qsort(a,N,sizeof(int),cmp);
-while(Q--){int l,r;scanf("%d %d",&l,&r);printf("%d\n",ub(a,N,r)-lb(a,N,l));}
+while(Q--){int l,r;scanf("%d %d",&l,&r);printf("%d
+",ub(a,N,r)-lb(a,N,l));}
 free(a);return 0;}`,
 p107:`#include<stdio.h>
 #include<stdlib.h>
@@ -11093,7 +11640,8 @@ long long lo=a[mid],hi=a[mid]+K;
 while(lo<hi){long long m=(lo+hi+1)/2,c=0;
  for(int i=mid;i<N;i++){if(a[i]<m)c+=m-a[i];if(c>K)break;}
  if(c<=K)lo=m;else hi=m-1;}
-printf("%lld\n",lo);free(a);return 0;}`,
+printf("%lld
+",lo);free(a);return 0;}`,
 p108:`#include<stdio.h>
 #include<stdlib.h>
 typedef struct{int k,v;} E;
@@ -11103,7 +11651,8 @@ int g(int k){int i=(unsigned)k%M;while(h[i].v&&h[i].k!=k)i=(i+1)%M;return h[i].v
 void p(int k,int v){int i=(unsigned)k%M;while(h[i].v&&h[i].k!=k)i=(i+1)%M;h[i].k=k;h[i].v=v+1;}
 int main(){int N;scanf("%d",&N);int l=0,ans=0;
 for(int r=0;r<N;r++){int x;scanf("%d",&x);int lp=g(x);if(lp>=l)l=lp+1;p(x,r);if(r-l+1>ans)ans=r-l+1;}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 p109:`#include<stdio.h>
 #include<stdlib.h>
 typedef struct{long long k;int v;} E;
@@ -11113,15 +11662,18 @@ int g(long long k){int i=(unsigned long long)k%M;while(h[i].v&&h[i].k!=k)i=(i+1)
 void p(long long k,int v){int i=(unsigned long long)k%M;while(h[i].v&&h[i].k!=k)i=(i+1)%M;h[i].k=k;h[i].v=v;}
 int main(){int N;long long X;scanf("%d %lld",&N,&X);
 for(int i=1;i<=N;i++){long long x;scanf("%lld",&x);int j=g(X-x);
- if(j){printf("%d %d\n",j,i);return 0;}p(x,i);}
-printf("IMPOSSIBLE\n");return 0;}`,
+ if(j){printf("%d %d
+",j,i);return 0;}p(x,i);}
+printf("IMPOSSIBLE
+");return 0;}`,
 p110:`#include<stdio.h>
 #include<stdlib.h>
 int cmp(const void*x,const void*y){long long a=*(long long*)x,b=*(long long*)y;return a<b?-1:a>b;}
 int main(){int N;scanf("%d",&N);long long*a=malloc(N*sizeof(long long));
 for(int i=0;i<N;i++)scanf("%lld",&a[i]);qsort(a,N,sizeof(long long),cmp);
 long long m=a[N/2],ans=0;for(int i=0;i<N;i++)ans+=llabs(a[i]-m);
-printf("%lld\n",ans);free(a);return 0;}`,
+printf("%lld
+",ans);free(a);return 0;}`,
 p111:`#include<stdio.h>
 #include<stdlib.h>
 typedef struct{int a,b;} P;
@@ -11129,7 +11681,8 @@ int cmp(const void*x,const void*y){return ((P*)x)->b-((P*)y)->b;}
 int main(){int N;scanf("%d",&N);P*v=malloc(N*sizeof(P));
 for(int i=0;i<N;i++)scanf("%d %d",&v[i].a,&v[i].b);qsort(v,N,sizeof(P),cmp);
 int end=-1,ans=0;for(int i=0;i<N;i++)if(v[i].a>=end){ans++;end=v[i].b;}
-printf("%d\n",ans);free(v);return 0;}`,
+printf("%d
+",ans);free(v);return 0;}`,
 p112:`#include<stdio.h>
 #include<stdlib.h>
 typedef struct{int t,d;} E;
@@ -11138,7 +11691,8 @@ int main(){int N;scanf("%d",&N);E*ev=malloc(2*N*sizeof(E));
 for(int i=0;i<N;i++){int a,b;scanf("%d %d",&a,&b);ev[2*i]=(E){a,1};ev[2*i+1]=(E){b,-1};}
 qsort(ev,2*N,sizeof(E),cmp);int cur=0,ans=0;
 for(int i=0;i<2*N;i++){cur+=ev[i].d;if(cur>ans)ans=cur;}
-printf("%d\n",ans);free(ev);return 0;}`,
+printf("%d
+",ans);free(ev);return 0;}`,
 p113:`#include<stdio.h>
 #include<stdlib.h>
 int cmp(const void*x,const void*y){return *(int*)x-*(int*)y;}
@@ -11147,7 +11701,9 @@ for(int i=0;i<N;i++)scanf("%d",&a[i]);qsort(a,N,sizeof(int),cmp);
 while(M--){int m;scanf("%d",&m);
  int lo=0,hi=N;while(lo<hi){int md=(lo+hi)/2;if(a[md]<=m)lo=md+1;else hi=md;}
  int p=lo-1;while(p>=0&&used[p])p--;
- if(p<0)printf("-1\n");else{printf("%d\n",a[p]);used[p]=1;}}
+ if(p<0)printf("-1
+");else{printf("%d
+",a[p]);used[p]=1;}}
 free(a);free(used);return 0;}`,
 p114:`#include<stdio.h>
 #include<stdlib.h>
@@ -11158,14 +11714,16 @@ qsort(a,N,sizeof(int),cmp);qsort(b,M,sizeof(int),cmp);
 int i=0,j=0,ans=0;while(i<N&&j<M){
  int d=a[i]-b[j];if(d<0)d=-d;
  if(d<=K){ans++;i++;j++;}else if(a[i]<b[j])i++;else j++;}
-printf("%d\n",ans);free(a);free(b);return 0;}`,
+printf("%d
+",ans);free(a);free(b);return 0;}`,
 p115:`#include<stdio.h>
 #include<stdlib.h>
 int cmp(const void*x,const void*y){return *(int*)x-*(int*)y;}
 int main(){int N;scanf("%d",&N);int*a=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&a[i]);qsort(a,N,sizeof(int),cmp);
 int c=N>0?1:0;for(int i=1;i<N;i++)if(a[i]!=a[i-1])c++;
-printf("%d\n",c);free(a);return 0;}`,
+printf("%d
+",c);free(a);return 0;}`,
 p116:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -11176,7 +11734,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 p117:`#include<stdio.h>
 #include<stdlib.h>
 int p[100005];
@@ -11184,7 +11743,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);for(int i=0;i<=N;i++)p[i]=i;
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 int*r=malloc(N*sizeof(int));int k=0;for(int i=1;i<=N;i++)if(find(i)==i)r[k++]=i;
-printf("%d\n",k-1);for(int i=1;i<k;i++)printf("%d %d\n",r[0],r[i]);
+printf("%d
+",k-1);for(int i=1;i<k;i++)printf("%d %d
+",r[0],r[i]);
 free(r);return 0;}`,
 p118:`#include<stdio.h>
 char g[1005][1005];
@@ -11198,13 +11759,15 @@ while(h<t){int r=qr[h],c=qc[h],d=qd[h];h++;
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';qr[t]=nr;qc[t]=nc;qd[t++]=d+1;}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 p119:`#include<stdio.h>
 int b[200005],cnt[200005];
 int main(){int N;scanf("%d",&N);
 for(int i=2;i<=N;i++)scanf("%d",&b[i]);
 for(int i=N;i>=2;i--)cnt[b[i]]+=cnt[i]+1;
-for(int i=1;i<=N;i++)printf("%d%c",cnt[i],i==N?'\n':' ');
+for(int i=1;i<=N;i++)printf("%d%c",cnt[i],i==N?'
+':' ');
 return 0;}`,
 p120:`#include<stdio.h>
 #include<stdlib.h>
@@ -11212,26 +11775,30 @@ p120:`#include<stdio.h>
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);long long*dp=calloc(X+1,sizeof(long long));dp[0]=1;
 for(int x=1;x<=X;x++){long long s=0;for(int i=0;i<N;i++)if(c[i]<=x)s+=dp[x-c[i]];dp[x]=s%MOD;}
-printf("%lld\n",dp[X]);free(c);free(dp);return 0;}`,
+printf("%lld
+",dp[X]);free(c);free(dp);return 0;}`,
 p121:`#include<stdio.h>
 #include<stdlib.h>
 #define MOD 1000000007
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);long long*dp=calloc(X+1,sizeof(long long));dp[0]=1;
 for(int i=0;i<N;i++)for(int x=c[i];x<=X;x++)dp[x]=(dp[x]+dp[x-c[i]])%MOD;
-printf("%lld\n",dp[X]);free(c);free(dp);return 0;}`,
+printf("%lld
+",dp[X]);free(c);free(dp);return 0;}`,
 p122:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 p123:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N;scanf("%d",&N);int*dp=calloc(N+1,sizeof(int));
 for(int x=1;x<=N;x++){int best=1<<29,y=x;while(y){int d=y%10;if(d&&dp[x-d]+1<best)best=dp[x-d]+1;y/=10;}dp[x]=best;}
-printf("%d\n",dp[N]);free(dp);return 0;}`,
+printf("%d
+",dp[N]);free(dp);return 0;}`,
 p124:`#include<stdio.h>
 #define MOD 1000000007
 char g[1005][1005];long long dp[1005][1005];
@@ -11240,41 +11807,53 @@ if(g[0][0]=='.')dp[0][0]=1;
 for(int i=0;i<N;i++)for(int j=0;j<N;j++){
  if(g[i][j]=='*'){dp[i][j]=0;continue;}if(i==0&&j==0)continue;
  long long v=0;if(i)v+=dp[i-1][j];if(j)v+=dp[i][j-1];dp[i][j]=v%MOD;}
-printf("%lld\n",dp[N-1][N-1]);return 0;}`,
+printf("%lld
+",dp[N-1][N-1]);return 0;}`,
 p125:`#include<stdio.h>
 #include<stdlib.h>
 int main(){long long N;scanf("%lld",&N);long long S=N*(N+1)/2;
-if(S%2){printf("NO\n");return 0;}
+if(S%2){printf("NO
+");return 0;}
 long long half=S/2,got=0;long long*A=malloc(N*sizeof(long long));long long*B=malloc(N*sizeof(long long));
 int ai=0,bi=0;
 for(long long v=N;v>=1;v--){if(got+v<=half){A[ai++]=v;got+=v;}else B[bi++]=v;}
-printf("YES\n%d",ai);for(int i=0;i<ai;i++)printf(" %lld",A[i]);
-printf("\n%d",bi);for(int i=0;i<bi;i++)printf(" %lld",B[i]);printf("\n");
+printf("YES
+%d",ai);for(int i=0;i<ai;i++)printf(" %lld",A[i]);
+printf("
+%d",bi);for(int i=0;i<bi;i++)printf(" %lld",B[i]);printf("
+");
 free(A);free(B);return 0;}`,
 p126:`#include<stdio.h>
 int main(){long long N;scanf("%lld",&N);long long MOD=1000000007,r=1,a=2;
 while(N){if(N&1)r=r*a%MOD;a=a*a%MOD;N>>=1;}
-printf("%lld\n",r);return 0;}`,
+printf("%lld
+",r);return 0;}`,
 p127:`#include<stdio.h>
 int main(){long long N;scanf("%lld",&N);long long ans=0;
-while(N){N/=5;ans+=N;}printf("%lld\n",ans);return 0;}`,
+while(N){N/=5;ans+=N;}printf("%lld
+",ans);return 0;}`,
 p128:`#include<stdio.h>
 int main(){int N;scanf("%d",&N);long long m,ans=0,x;scanf("%lld",&m);
 for(int i=1;i<N;i++){scanf("%lld",&x);if(x<m)ans+=m-x;else m=x;}
-printf("%lld\n",ans);return 0;}`,
+printf("%lld
+",ans);return 0;}`,
 p129:`#include<stdio.h>
 int main(){int N;scanf("%d",&N);
-if(N==1){printf("1\n");return 0;}
-if(N<4){printf("NO SOLUTION\n");return 0;}
+if(N==1){printf("1
+");return 0;}
+if(N<4){printf("NO SOLUTION
+");return 0;}
 int first=1;
 for(int i=2;i<=N;i+=2){if(!first)printf(" ");printf("%d",i);first=0;}
-for(int i=1;i<=N;i+=2)printf(" %d",i);printf("\n");return 0;}`,
+for(int i=1;i<=N;i+=2)printf(" %d",i);printf("
+");return 0;}`,
 p130:`#include<stdio.h>
 int main(){int T;scanf("%d",&T);
 while(T--){long long y,x;scanf("%lld %lld",&y,&x);long long k=y>x?y:x,base=(k-1)*(k-1),val;
  if(k%2==0){if(x==k)val=base+y;else val=k*k-(x-1);}
  else{if(y==k)val=base+x;else val=k*k-(y-1);}
- printf("%lld\n",val);}
+ printf("%lld
+",val);}
 return 0;}`,
 ia_range_sum:`#include <stdio.h>
 #include <stdlib.h>
@@ -11293,7 +11872,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -11321,7 +11901,8 @@ int main(void) {
         if (i > 1) printf(" ");
         printf("%lld", cur);
     }
-    printf("\n");
+    printf("
+");
 
     free(diff);
     return 0;
@@ -11364,7 +11945,8 @@ int main(void) {
         long long best = (1LL << 62);
         if (idx < n && ll_abs(s[idx] - x) < best) best = ll_abs(s[idx] - x);
         if (idx > 0 && ll_abs(s[idx - 1] - x) < best) best = ll_abs(s[idx - 1] - x);
-        printf("%lld\n", best);
+        printf("%lld
+", best);
     }
 
     free(s);
@@ -11412,7 +11994,8 @@ int main(void) {
         if (strcmp(op, "union") == 0) {
             unite(a, b);
         } else {
-            printf("%s\n", find(a) == find(b) ? "YES" : "NO");
+            printf("%s
+", find(a) == find(b) ? "YES" : "NO");
         }
     }
 
@@ -11440,7 +12023,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -11495,8 +12079,10 @@ int main(void) {
         }
     }
 
-    if (seen == n) printf("%d\n", ans);
-    else printf("IMPOSSIBLE\n");
+    if (seen == n) printf("%d
+", ans);
+    else printf("IMPOSSIBLE
+");
 
     free(head);
     free(indeg);
@@ -11523,7 +12109,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -11546,7 +12133,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -11569,7 +12157,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -11592,7 +12181,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -11615,7 +12205,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -11638,7 +12229,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -11664,7 +12256,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -11688,7 +12281,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -11712,7 +12306,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -11736,7 +12331,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -11760,7 +12356,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -11784,7 +12381,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -11800,7 +12398,8 @@ while(h<t){int r=qr[h],c=qc[h],d=qd[h];h++;
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';qr[t]=nr;qc[t]=nc;qd[t++]=d+1;}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src145_b967:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -11821,7 +12420,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -11837,28 +12437,32 @@ while(h<t){int r=qr[h],c=qc[h],d=qd[h];h++;
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';qr[t]=nr;qc[t]=nc;qd[t++]=d+1;}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src147_f314:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src148_e465:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src149_g278:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src150_h084:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -11879,7 +12483,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -11903,7 +12508,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -11924,7 +12530,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -11947,7 +12554,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -11970,7 +12578,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -11993,7 +12602,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12016,7 +12626,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12039,7 +12650,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12062,7 +12674,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12085,7 +12698,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12108,7 +12722,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12131,7 +12746,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12154,7 +12770,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12177,7 +12794,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12200,7 +12818,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12223,7 +12842,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12246,7 +12866,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12269,7 +12890,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12292,7 +12914,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12315,7 +12938,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12338,7 +12962,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12361,7 +12986,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12384,7 +13010,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12407,7 +13034,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12430,7 +13058,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12453,7 +13082,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12476,7 +13106,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12499,7 +13130,8 @@ int main(void) {
     while (q--) {
         int l, r;
         scanf("%d %d", &l, &r);
-        printf("%lld\n", ps[r] - ps[l - 1]);
+        printf("%lld
+", ps[r] - ps[l - 1]);
     }
 
     free(ps);
@@ -12515,7 +13147,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src179_201906P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12526,7 +13159,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src180_201910P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12537,7 +13171,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src181_202301P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12548,7 +13183,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src182_201902P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12559,7 +13195,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src183_202101P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12570,7 +13207,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src184_202010P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12581,7 +13219,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src185_202007P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12592,7 +13231,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src186_201610P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12603,7 +13243,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src187_201806P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12614,7 +13255,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src188_202109P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12625,7 +13267,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src189_202310P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12636,7 +13279,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src190_201802P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12647,7 +13291,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src191_202201P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12658,7 +13303,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src192_201703P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12669,7 +13315,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src193_202111P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12680,7 +13327,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src194_202210P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12691,7 +13339,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src195_202306P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12702,7 +13351,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src196_201603P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12713,7 +13363,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src197_202406P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12724,7 +13375,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src198_202001P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12735,7 +13387,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src199_202410P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12746,7 +13399,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src200_201710P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12757,7 +13411,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src201_202401P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12768,7 +13423,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src202_202501P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12779,7 +13435,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src203_202206P3:`#include<stdio.h>
 char g[1005][1005];int N,M;
 int qr[1000005],qc[1000005];
@@ -12790,7 +13447,8 @@ void bfs(int sr,int sc){int h=0,t=0;qr[t]=sr;qc[t++]=sc;g[sr][sc]='#';
    if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';qr[t]=nr;qc[t++]=nc;}}}}
 int main(){scanf("%d %d",&N,&M);for(int i=0;i<N;i++)scanf("%s",g[i]);
 int ans=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;bfs(i,j);}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src204_202010P4:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -12811,7 +13469,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -12835,7 +13494,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -12859,7 +13519,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -12883,7 +13544,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -12907,7 +13569,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -12931,7 +13594,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -12955,7 +13619,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -12979,7 +13644,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13003,7 +13669,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13027,7 +13694,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13051,7 +13719,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13075,7 +13744,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13099,7 +13769,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13123,7 +13794,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13147,7 +13819,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13171,7 +13844,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13195,7 +13869,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13219,7 +13894,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13243,7 +13919,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13267,7 +13944,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13291,7 +13969,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13315,7 +13994,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13339,7 +14019,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13363,7 +14044,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13387,7 +14069,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13411,7 +14094,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13427,7 +14111,8 @@ while(h<t){int r=qr[h],c=qc[h],d=qd[h];h++;
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';qr[t]=nr;qc[t]=nc;qd[t++]=d+1;}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src231_cses_1158:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -13448,7 +14133,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13494,7 +14180,8 @@ int main(void) {
         if (strcmp(op, "union") == 0) {
             unite(a, b);
         } else {
-            printf("%s\n", find(a) == find(b) ? "YES" : "NO");
+            printf("%s
+", find(a) == find(b) ? "YES" : "NO");
         }
     }
 
@@ -13522,7 +14209,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13546,7 +14234,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13570,7 +14259,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13594,7 +14284,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13649,8 +14340,10 @@ int main(void) {
         }
     }
 
-    if (seen == n) printf("%d\n", ans);
-    else printf("IMPOSSIBLE\n");
+    if (seen == n) printf("%d
+", ans);
+    else printf("IMPOSSIBLE
+");
 
     free(head);
     free(indeg);
@@ -13667,7 +14360,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);for(int i=0;i<=N;i++)p[i]=i;
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 int*r=malloc(N*sizeof(int));int k=0;for(int i=1;i<=N;i++)if(find(i)==i)r[k++]=i;
-printf("%d\n",k-1);for(int i=1;i<k;i++)printf("%d %d\n",r[0],r[i]);
+printf("%d
+",k-1);for(int i=1;i<k;i++)printf("%d %d
+",r[0],r[i]);
 free(r);return 0;}`,
 src239_cf_1385E:`#include <stdio.h>
 #include <stdlib.h>
@@ -13720,8 +14415,10 @@ int main(void) {
         }
     }
 
-    if (seen == n) printf("%d\n", ans);
-    else printf("IMPOSSIBLE\n");
+    if (seen == n) printf("%d
+", ans);
+    else printf("IMPOSSIBLE
+");
 
     free(head);
     free(indeg);
@@ -13751,7 +14448,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13775,7 +14473,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -13786,7 +14485,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);for(int i=0;i<=N;i++)p[i]=i;
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 int*r=malloc(N*sizeof(int));int k=0;for(int i=1;i<=N;i++)if(find(i)==i)r[k++]=i;
-printf("%d\n",k-1);for(int i=1;i<k;i++)printf("%d %d\n",r[0],r[i]);
+printf("%d
+",k-1);for(int i=1;i<k;i++)printf("%d %d
+",r[0],r[i]);
 free(r);return 0;}`,
 src243_usaco_861:`#include<stdio.h>
 char g[1005][1005];
@@ -13800,7 +14501,8 @@ while(h<t){int r=qr[h],c=qc[h],d=qd[h];h++;
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';qr[t]=nr;qc[t]=nc;qd[t++]=d+1;}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src244_cses_1195:`#include<stdio.h>
 char g[1005][1005];
 int qr[1000005],qc[1000005],qd[1000005];
@@ -13813,7 +14515,8 @@ while(h<t){int r=qr[h],c=qc[h],d=qd[h];h++;
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';qr[t]=nr;qc[t]=nc;qd[t++]=d+1;}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src245_cf_510C:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -13865,8 +14568,10 @@ int main(void) {
         }
     }
 
-    if (seen == n) printf("%d\n", ans);
-    else printf("IMPOSSIBLE\n");
+    if (seen == n) printf("%d
+", ans);
+    else printf("IMPOSSIBLE
+");
 
     free(head);
     free(indeg);
@@ -13882,7 +14587,8 @@ int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src247_cses_1681:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -13934,8 +14640,10 @@ int main(void) {
         }
     }
 
-    if (seen == n) printf("%d\n", ans);
-    else printf("IMPOSSIBLE\n");
+    if (seen == n) printf("%d
+", ans);
+    else printf("IMPOSSIBLE
+");
 
     free(head);
     free(indeg);
@@ -13951,14 +14659,16 @@ int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src249_cf_1082E:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src250_cses_1145:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -13979,7 +14689,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -14034,8 +14745,10 @@ int main(void) {
         }
     }
 
-    if (seen == n) printf("%d\n", ans);
-    else printf("IMPOSSIBLE\n");
+    if (seen == n) printf("%d
+", ans);
+    else printf("IMPOSSIBLE
+");
 
     free(head);
     free(indeg);
@@ -14057,14 +14770,16 @@ while(h<t){int r=qr[h],c=qc[h],d=qd[h];h++;
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';qr[t]=nr;qc[t]=nc;qd[t++]=d+1;}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src253_usaco_1114:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src254_cses_1745:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -14085,7 +14800,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -14131,7 +14847,8 @@ int main(void) {
         if (strcmp(op, "union") == 0) {
             unite(a, b);
         } else {
-            printf("%s\n", find(a) == find(b) ? "YES" : "NO");
+            printf("%s
+", find(a) == find(b) ? "YES" : "NO");
         }
     }
 
@@ -14181,7 +14898,8 @@ int main(void) {
         if (strcmp(op, "union") == 0) {
             unite(a, b);
         } else {
-            printf("%s\n", find(a) == find(b) ? "YES" : "NO");
+            printf("%s
+", find(a) == find(b) ? "YES" : "NO");
         }
     }
 
@@ -14195,7 +14913,8 @@ int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src258_kattis_quantumsuperposition:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -14247,8 +14966,10 @@ int main(void) {
         }
     }
 
-    if (seen == n) printf("%d\n", ans);
-    else printf("IMPOSSIBLE\n");
+    if (seen == n) printf("%d
+", ans);
+    else printf("IMPOSSIBLE
+");
 
     free(head);
     free(indeg);
@@ -14300,7 +15021,8 @@ int main(void) {
         if (strcmp(op, "union") == 0) {
             unite(a, b);
         } else {
-            printf("%s\n", find(a) == find(b) ? "YES" : "NO");
+            printf("%s
+", find(a) == find(b) ? "YES" : "NO");
         }
     }
 
@@ -14315,7 +15037,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);for(int i=0;i<=N;i++)p[i]=i;
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 int*r=malloc(N*sizeof(int));int k=0;for(int i=1;i<=N;i++)if(find(i)==i)r[k++]=i;
-printf("%d\n",k-1);for(int i=1;i<k;i++)printf("%d %d\n",r[0],r[i]);
+printf("%d
+",k-1);for(int i=1;i<k;i++)printf("%d %d
+",r[0],r[i]);
 free(r);return 0;}`,
 src261_cses_1678:`#include <stdio.h>
 #include <stdlib.h>
@@ -14337,7 +15061,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -14353,13 +15078,15 @@ while(h<t){int r=qr[h],c=qc[h],d=qd[h];h++;
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';qr[t]=nr;qc[t]=nc;qd[t++]=d+1;}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src263_ys_StaticRMQ:`#include<stdio.h>
 int b[200005],cnt[200005];
 int main(){int N;scanf("%d",&N);
 for(int i=2;i<=N;i++)scanf("%d",&b[i]);
 for(int i=N;i>=2;i--)cnt[b[i]]+=cnt[i]+1;
-for(int i=1;i<=N;i++)printf("%d%c",cnt[i],i==N?'\n':' ');
+for(int i=1;i<=N;i++)printf("%d%c",cnt[i],i==N?'
+':' ');
 return 0;}`,
 src264_ac_subsetSumQueries:`#include <stdio.h>
 #include <stdlib.h>
@@ -14381,7 +15108,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -14436,8 +15164,10 @@ int main(void) {
         }
     }
 
-    if (seen == n) printf("%d\n", ans);
-    else printf("IMPOSSIBLE\n");
+    if (seen == n) printf("%d
+", ans);
+    else printf("IMPOSSIBLE
+");
 
     free(head);
     free(indeg);
@@ -14452,7 +15182,8 @@ int b[200005],cnt[200005];
 int main(){int N;scanf("%d",&N);
 for(int i=2;i<=N;i++)scanf("%d",&b[i]);
 for(int i=N;i>=2;i--)cnt[b[i]]+=cnt[i]+1;
-for(int i=1;i<=N;i++)printf("%d%c",cnt[i],i==N?'\n':' ');
+for(int i=1;i<=N;i++)printf("%d%c",cnt[i],i==N?'
+':' ');
 return 0;}`,
 src267_usaco_531:`#include<stdio.h>
 #include<stdlib.h>
@@ -14461,7 +15192,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);for(int i=0;i<=N;i++)p[i]=i;
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 int*r=malloc(N*sizeof(int));int k=0;for(int i=1;i<=N;i++)if(find(i)==i)r[k++]=i;
-printf("%d\n",k-1);for(int i=1;i<k;i++)printf("%d %d\n",r[0],r[i]);
+printf("%d
+",k-1);for(int i=1;i<k;i++)printf("%d %d
+",r[0],r[i]);
 free(r);return 0;}`,
 src268_cf_687C:`#include <stdio.h>
 #include <stdlib.h>
@@ -14483,7 +15216,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -14493,7 +15227,8 @@ int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src270_usaco_1017:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -14545,8 +15280,10 @@ int main(void) {
         }
     }
 
-    if (seen == n) printf("%d\n", ans);
-    else printf("IMPOSSIBLE\n");
+    if (seen == n) printf("%d
+", ans);
+    else printf("IMPOSSIBLE
+");
 
     free(head);
     free(indeg);
@@ -14562,7 +15299,8 @@ int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src272_usaco_245:`#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14605,7 +15343,8 @@ int main(void) {
         if (strcmp(op, "union") == 0) {
             unite(a, b);
         } else {
-            printf("%s\n", find(a) == find(b) ? "YES" : "NO");
+            printf("%s
+", find(a) == find(b) ? "YES" : "NO");
         }
     }
 
@@ -14633,7 +15372,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -14679,7 +15419,8 @@ int main(void) {
         if (strcmp(op, "union") == 0) {
             unite(a, b);
         } else {
-            printf("%s\n", find(a) == find(b) ? "YES" : "NO");
+            printf("%s
+", find(a) == find(b) ? "YES" : "NO");
         }
     }
 
@@ -14699,7 +15440,8 @@ while(h<t){int r=qr[h],c=qc[h],d=qd[h];h++;
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';qr[t]=nr;qc[t]=nc;qd[t++]=d+1;}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src276_usaco_992:`#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14742,7 +15484,8 @@ int main(void) {
         if (strcmp(op, "union") == 0) {
             unite(a, b);
         } else {
-            printf("%s\n", find(a) == find(b) ? "YES" : "NO");
+            printf("%s
+", find(a) == find(b) ? "YES" : "NO");
         }
     }
 
@@ -14756,21 +15499,24 @@ int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src278_usaco_622:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src279_usaco_972:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src280_cf_1472G:`#include<stdio.h>
 char g[1005][1005];
 int qr[1000005],qc[1000005],qd[1000005];
@@ -14783,7 +15529,8 @@ while(h<t){int r=qr[h],c=qc[h],d=qd[h];h++;
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';qr[t]=nr;qc[t]=nc;qd[t++]=d+1;}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src281_baltic_10_pcb:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -14804,7 +15551,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -14814,7 +15562,8 @@ int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src283_joi_15_inheritance:`#include<stdio.h>
 #include<stdlib.h>
 int cmp(const void*x,const void*y){return *(int*)x-*(int*)y;}
@@ -14822,7 +15571,8 @@ int lb(int*a,int n,int v){int l=0,r=n;while(l<r){int m=(l+r)/2;if(a[m]<v)l=m+1;e
 int ub(int*a,int n,int v){int l=0,r=n;while(l<r){int m=(l+r)/2;if(a[m]<=v)l=m+1;else r=m;}return l;}
 int main(){int N,Q;scanf("%d %d",&N,&Q);int*a=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&a[i]);qsort(a,N,sizeof(int),cmp);
-while(Q--){int l,r;scanf("%d %d",&l,&r);printf("%d\n",ub(a,N,r)-lb(a,N,l));}
+while(Q--){int l,r;scanf("%d %d",&l,&r);printf("%d
+",ub(a,N,r)-lb(a,N,l));}
 free(a);return 0;}`,
 src284_usaco_647:`#include<stdio.h>
 #include<stdlib.h>
@@ -14830,14 +15580,16 @@ int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src285_cc_INOI1602:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src286_ac_choosetwo:`#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14880,7 +15632,8 @@ int main(void) {
         if (strcmp(op, "union") == 0) {
             unite(a, b);
         } else {
-            printf("%s\n", find(a) == find(b) ? "YES" : "NO");
+            printf("%s
+", find(a) == find(b) ? "YES" : "NO");
         }
     }
 
@@ -14894,7 +15647,8 @@ int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src288_usaco_921:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -14915,7 +15669,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -14925,7 +15680,8 @@ int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src290_ac_exactlyKSteps:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -14946,7 +15702,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -14962,7 +15719,8 @@ while(h<t){int r=qr[h],c=qc[h],d=qd[h];h++;
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';qr[t]=nr;qc[t]=nc;qd[t++]=d+1;}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src292_cf_1513D:`#include<stdio.h>
 #include<stdlib.h>
 int p[100005];
@@ -14970,7 +15728,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);for(int i=0;i<=N;i++)p[i]=i;
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 int*r=malloc(N*sizeof(int));int k=0;for(int i=1;i<=N;i++)if(find(i)==i)r[k++]=i;
-printf("%d\n",k-1);for(int i=1;i<k;i++)printf("%d %d\n",r[0],r[i]);
+printf("%d
+",k-1);for(int i=1;i<k;i++)printf("%d %d
+",r[0],r[i]);
 free(r);return 0;}`,
 src293_usaco_946:`#include<stdio.h>
 #include<stdlib.h>
@@ -14979,7 +15739,9 @@ int find(int x){while(p[x]!=x){p[x]=p[p[x]];x=p[x];}return x;}
 int main(){int N,M;scanf("%d %d",&N,&M);for(int i=0;i<=N;i++)p[i]=i;
 while(M--){int u,v;scanf("%d %d",&u,&v);int ru=find(u),rv=find(v);if(ru!=rv)p[ru]=rv;}
 int*r=malloc(N*sizeof(int));int k=0;for(int i=1;i<=N;i++)if(find(i)==i)r[k++]=i;
-printf("%d\n",k-1);for(int i=1;i<k;i++)printf("%d %d\n",r[0],r[i]);
+printf("%d
+",k-1);for(int i=1;i<k;i++)printf("%d %d
+",r[0],r[i]);
 free(r);return 0;}`,
 src294_cses_1202:`#include<stdio.h>
 char g[1005][1005];
@@ -14993,7 +15755,8 @@ while(h<t){int r=qr[h],c=qc[h],d=qd[h];h++;
  if(r==tr&&c==tc){ans=d;break;}
  for(int k=0;k<4;k++){int nr=r+dr[k],nc=c+dc[k];
   if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';qr[t]=nr;qc[t]=nc;qd[t++]=d+1;}}}
-printf("%d\n",ans);return 0;}`,
+printf("%d
+",ans);return 0;}`,
 src295_noi_18_knapsack:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -15014,7 +15777,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -15024,21 +15788,24 @@ int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src297_cf_10D:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src298_cfgym_102951C:`#include<stdio.h>
 #include<stdlib.h>
 int main(){int N,X;scanf("%d %d",&N,&X);int*c=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&c[i]);int INF=1<<29;int*dp=malloc((X+1)*sizeof(int));
 dp[0]=0;for(int i=1;i<=X;i++)dp[i]=INF;
 for(int x=1;x<=X;x++)for(int i=0;i<N;i++)if(c[i]<=x&&dp[x-c[i]]+1<dp[x])dp[x]=dp[x-c[i]]+1;
-printf("%d\n",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
+printf("%d
+",dp[X]>=INF?-1:dp[X]);free(c);free(dp);return 0;}`,
 src299_usaco_970:`#include <stdio.h>
 #include <stdlib.h>
 
@@ -15059,7 +15826,8 @@ int main(void) {
         }
     }
 
-    printf("%lld\n", dp[W]);
+    printf("%lld
+", dp[W]);
     free(dp);
     return 0;
 }`,
@@ -15070,7 +15838,8 @@ int lb(int*a,int n,int v){int l=0,r=n;while(l<r){int m=(l+r)/2;if(a[m]<v)l=m+1;e
 int ub(int*a,int n,int v){int l=0,r=n;while(l<r){int m=(l+r)/2;if(a[m]<=v)l=m+1;else r=m;}return l;}
 int main(){int N,Q;scanf("%d %d",&N,&Q);int*a=malloc(N*sizeof(int));
 for(int i=0;i<N;i++)scanf("%d",&a[i]);qsort(a,N,sizeof(int),cmp);
-while(Q--){int l,r;scanf("%d %d",&l,&r);printf("%d\n",ub(a,N,r)-lb(a,N,l));}
+while(Q--){int l,r;scanf("%d %d",&l,&r);printf("%d
+",ub(a,N,r)-lb(a,N,l));}
 free(a);return 0;}`
 },
 java:{
@@ -15644,7 +16413,8 @@ public class Main {
         while(q-->0){
             st=new StringTokenizer(br.readLine());
             int l=Integer.parseInt(st.nextToken()),r=Integer.parseInt(st.nextToken());
-            sb.append(pref[r]-pref[l-1]).append('\n');
+            sb.append(pref[r]-pref[l-1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -15684,7 +16454,8 @@ public class Main {
         StringBuilder sb=new StringBuilder();
         for(int j=0;j<m;j++){
             for(int i=0;i<n;i++){if(i>0)sb.append(' ');sb.append(a[i][j]);}
-            sb.append('\n');
+            sb.append('
+');
         }
         System.out.print(sb);
     }
@@ -15763,13 +16534,15 @@ public class Main {public static void main(String[] a){Scanner s=new Scanner(Sys
 m_palindrome:`import java.util.*;
 public class Main {public static void main(String[] a){Scanner s=new Scanner(System.in);String line=s.nextLine();StringBuilder b=new StringBuilder();for(char c:line.toCharArray())if(Character.isLetterOrDigit(c))b.append(Character.toLowerCase(c));String t=b.toString();System.out.println(t.equals(b.reverse().toString())?"Yes":"No");}}`,
 m_bsearch:`import java.util.*;
-public class Main {public static void main(String[] a){Scanner s=new Scanner(System.in);int n=s.nextInt(),q=s.nextInt();int[]x=new int[n];for(int i=0;i<n;i++)x[i]=s.nextInt();StringBuilder sb=new StringBuilder();while(q-->0){int v=s.nextInt(),lo=0,hi=n-1,r=-1;while(lo<=hi){int m=(lo+hi)/2;if(x[m]==v){r=m+1;break;}if(x[m]<v)lo=m+1;else hi=m-1;}sb.append(r).append('\n');}System.out.print(sb);}}`,
+public class Main {public static void main(String[] a){Scanner s=new Scanner(System.in);int n=s.nextInt(),q=s.nextInt();int[]x=new int[n];for(int i=0;i<n;i++)x[i]=s.nextInt();StringBuilder sb=new StringBuilder();while(q-->0){int v=s.nextInt(),lo=0,hi=n-1,r=-1;while(lo<=hi){int m=(lo+hi)/2;if(x[m]==v){r=m+1;break;}if(x[m]<v)lo=m+1;else hi=m-1;}sb.append(r).append('
+');}System.out.print(sb);}}`,
 m_prime_cnt:`import java.util.*;
 public class Main {public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();if(N<2){System.out.println(0);return;}boolean[]sv=new boolean[N+1];Arrays.fill(sv,true);sv[0]=sv[1]=false;for(int i=2;(long)i*i<=N;i++)if(sv[i])for(int j=i*i;j<=N;j+=i)sv[j]=false;int c=0;for(int i=2;i<=N;i++)if(sv[i])c++;System.out.println(c);}}`,
 m_gcd_arr:`import java.util.*;
 public class Main {static int gcd(int a,int b){while(b!=0){int t=a%b;a=b;b=t;}return a;}public static void main(String[] a){Scanner s=new Scanner(System.in);int n=s.nextInt(),g=0;for(int i=0;i<n;i++)g=gcd(g,s.nextInt());System.out.println(g);}}`,
 m_mat_rot:`import java.util.*;
-public class Main {public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();int[][]g=new int[N][N];for(int i=0;i<N;i++)for(int j=0;j<N;j++)g[i][j]=s.nextInt();StringBuilder sb=new StringBuilder();for(int j=0;j<N;j++){for(int i=N-1;i>=0;i--){if(i<N-1)sb.append(' ');sb.append(g[i][j]);}sb.append('\n');}System.out.print(sb);}}`,
+public class Main {public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();int[][]g=new int[N][N];for(int i=0;i<N;i++)for(int j=0;j<N;j++)g[i][j]=s.nextInt();StringBuilder sb=new StringBuilder();for(int j=0;j<N;j++){for(int i=N-1;i>=0;i--){if(i<N-1)sb.append(' ');sb.append(g[i][j]);}sb.append('
+');}System.out.print(sb);}}`,
 m_paren:`import java.util.*;
 public class Main {public static void main(String[] a){Scanner sc=new Scanner(System.in);String s=sc.next();Deque<Character> st=new ArrayDeque<>();boolean ok=true;for(char c:s.toCharArray()){if(c=='('||c=='['||c=='{')st.push(c);else{if(st.isEmpty()){ok=false;break;}char t=st.pop();if((c==')'&&t!='(')||(c==']'&&t!='[')||(c=='}'&&t!='{')){ok=false;break;}}}System.out.println((ok&&st.isEmpty())?"Yes":"No");}}`,
 m_postfix:`import java.util.*;
@@ -15778,7 +16551,8 @@ m_reverse_num:`import java.util.*;
 public class Main {public static void main(String[] a){Scanner sc=new Scanner(System.in);long x=sc.nextLong();int sign=x<0?-1:1;String s=new StringBuilder(String.valueOf(Math.abs(x))).reverse().toString();long r=sign*Long.parseLong(s);if(r>2147483647L||r<-2147483648L)r=0;System.out.println(r);}}`,
 m_prefix_sum_q:`import java.util.*;
 import java.io.*;
-public class Main {public static void main(String[] a)throws Exception{Scanner sc=new Scanner(System.in);int n=sc.nextInt(),q=sc.nextInt();long[]ps=new long[n+1];for(int i=1;i<=n;i++)ps[i]=ps[i-1]+sc.nextInt();StringBuilder sb=new StringBuilder();while(q-->0){int l=sc.nextInt(),r=sc.nextInt();sb.append(ps[r]-ps[l-1]).append('\n');}System.out.print(sb);}}`,
+public class Main {public static void main(String[] a)throws Exception{Scanner sc=new Scanner(System.in);int n=sc.nextInt(),q=sc.nextInt();long[]ps=new long[n+1];for(int i=1;i<=n;i++)ps[i]=ps[i-1]+sc.nextInt();StringBuilder sb=new StringBuilder();while(q-->0){int l=sc.nextInt(),r=sc.nextInt();sb.append(ps[r]-ps[l-1]).append('
+');}System.out.print(sb);}}`,
 m_two_ptr:`import java.util.*;
 public class Main {public static void main(String[] a){Scanner s=new Scanner(System.in);int n=s.nextInt();int[]x=new int[n];for(int i=0;i<n;i++)x[i]=s.nextInt();int i=0,j=n-1;long best=0;while(i<j){long v=(long)Math.min(x[i],x[j])*(j-i);if(v>best)best=v;if(x[i]<x[j])i++;else j--;}System.out.println(best);}}`,
 h_lis_logn:`import java.util.*;
@@ -15994,23 +16768,28 @@ public class Main {
             in.nextToken(); int c1 = (int)in.nval;
             in.nextToken(); int r2 = (int)in.nval;
             in.nextToken(); int c2 = (int)in.nval;
-            sb.append(ps[r2+1][c2+1] - ps[r1][c2+1] - ps[r2+1][c1] + ps[r1][c1]).append('\n');
+            sb.append(ps[r2+1][c2+1] - ps[r1][c2+1] - ps[r2+1][c1] + ps[r1][c1]).append('
+');
         }
         System.out.print(sb);
     }
 }`,
 p101:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),Q=s.nextInt();int[][] p=new int[N+1][N+1];for(int i=1;i<=N;i++){String r=s.next();for(int j=1;j<=N;j++)p[i][j]=p[i-1][j]+p[i][j-1]-p[i-1][j-1]+(r.charAt(j-1)=='*'?1:0);}StringBuilder b=new StringBuilder();while(Q-->0){int r1=s.nextInt(),c1=s.nextInt(),r2=s.nextInt(),c2=s.nextInt();b.append(p[r2][c2]-p[r1-1][c2]-p[r2][c1-1]+p[r1-1][c1-1]).append('\n');}System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),Q=s.nextInt();int[][] p=new int[N+1][N+1];for(int i=1;i<=N;i++){String r=s.next();for(int j=1;j<=N;j++)p[i][j]=p[i-1][j]+p[i][j-1]-p[i-1][j-1]+(r.charAt(j-1)=='*'?1:0);}StringBuilder b=new StringBuilder();while(Q-->0){int r1=s.nextInt(),c1=s.nextInt(),r2=s.nextInt(),c2=s.nextInt();b.append(p[r2][c2]-p[r1-1][c2]-p[r2][c1-1]+p[r1-1][c1-1]).append('
+');}System.out.print(b);}}`,
 p102:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();long[] c=new long[N];c[0]=1;long sum=0,ans=0;for(int i=0;i<N;i++){long x=s.nextLong();sum=((sum+x)%N+N)%N;ans+=c[(int)sum];c[(int)sum]++;}System.out.println(ans);}}`,
 p103:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();long X=s.nextLong();HashMap<Long,Long> c=new HashMap<>();c.put(0L,1L);long sum=0,ans=0;for(int i=0;i<N;i++){sum+=s.nextLong();ans+=c.getOrDefault(sum-X,0L);c.merge(sum,1L,Long::sum);}System.out.println(ans);}}`,
 p104:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();long[] d=new long[N+2];while(M-->0){int l=s.nextInt(),r=s.nextInt();long v=s.nextLong();d[l]+=v;d[r+1]-=v;}long c=0;StringBuilder b=new StringBuilder();for(int i=1;i<=N;i++){c+=d[i];b.append(c);b.append(i==N?'\n':' ');}System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();long[] d=new long[N+2];while(M-->0){int l=s.nextInt(),r=s.nextInt();long v=s.nextLong();d[l]+=v;d[r+1]-=v;}long c=0;StringBuilder b=new StringBuilder();for(int i=1;i<=N;i++){c+=d[i];b.append(c);b.append(i==N?'
+':' ');}System.out.print(b);}}`,
 p105:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int MAX=200001;int N=s.nextInt(),K=s.nextInt(),Q=s.nextInt();int[] d=new int[MAX+2];int[] ps=new int[MAX+2];while(N-->0){int l=s.nextInt(),r=s.nextInt();d[l]++;d[r+1]--;}int c=0;for(int i=1;i<=MAX-1;i++){c+=d[i];ps[i]=ps[i-1]+(c>=K?1:0);}StringBuilder b=new StringBuilder();while(Q-->0){int a=s.nextInt(),x=s.nextInt();b.append(ps[x]-ps[a-1]).append('\n');}System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int MAX=200001;int N=s.nextInt(),K=s.nextInt(),Q=s.nextInt();int[] d=new int[MAX+2];int[] ps=new int[MAX+2];while(N-->0){int l=s.nextInt(),r=s.nextInt();d[l]++;d[r+1]--;}int c=0;for(int i=1;i<=MAX-1;i++){c+=d[i];ps[i]=ps[i-1]+(c>=K?1:0);}StringBuilder b=new StringBuilder();while(Q-->0){int a=s.nextInt(),x=s.nextInt();b.append(ps[x]-ps[a-1]).append('
+');}System.out.print(b);}}`,
 p106:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),Q=s.nextInt();int[] a=new int[N];for(int i=0;i<N;i++)a[i]=s.nextInt();Arrays.sort(a);StringBuilder b=new StringBuilder();while(Q-->0){int l=s.nextInt(),r=s.nextInt();int lo=0,hi=N;while(lo<hi){int m=(lo+hi)>>>1;if(a[m]<l)lo=m+1;else hi=m;}int L=lo;lo=0;hi=N;while(lo<hi){int m=(lo+hi)>>>1;if(a[m]<=r)lo=m+1;else hi=m;}b.append(lo-L).append('\n');}System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),Q=s.nextInt();int[] a=new int[N];for(int i=0;i<N;i++)a[i]=s.nextInt();Arrays.sort(a);StringBuilder b=new StringBuilder();while(Q-->0){int l=s.nextInt(),r=s.nextInt();int lo=0,hi=N;while(lo<hi){int m=(lo+hi)>>>1;if(a[m]<l)lo=m+1;else hi=m;}int L=lo;lo=0;hi=N;while(lo<hi){int m=(lo+hi)>>>1;if(a[m]<=r)lo=m+1;else hi=m;}b.append(lo-L).append('
+');}System.out.print(b);}}`,
 p107:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();long K=s.nextLong();long[] a=new long[N];for(int i=0;i<N;i++)a[i]=s.nextLong();Arrays.sort(a);int mid=N/2;long lo=a[mid],hi=a[mid]+K;while(lo<hi){long m=(lo+hi+1)/2,c=0;for(int i=mid;i<N;i++){if(a[i]<m)c+=m-a[i];if(c>K)break;}if(c<=K)lo=m;else hi=m-1;}System.out.println(lo);}}`,
 p108:`import java.util.*;
@@ -16024,7 +16803,8 @@ public class Main{public static void main(String[] a){Scanner s=new Scanner(Syst
 p112:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();int[][] ev=new int[2*N][2];for(int i=0;i<N;i++){int a=s.nextInt(),b=s.nextInt();ev[2*i]=new int[]{a,1};ev[2*i+1]=new int[]{b,-1};}Arrays.sort(ev,(x,y)->x[0]!=y[0]?x[0]-y[0]:x[1]-y[1]);int cur=0,ans=0;for(int[] p:ev){cur+=p[1];if(cur>ans)ans=cur;}System.out.println(ans);}}`,
 p113:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();TreeMap<Integer,Integer> tm=new TreeMap<>();for(int i=0;i<N;i++){int x=s.nextInt();tm.merge(x,1,Integer::sum);}StringBuilder b=new StringBuilder();while(M-->0){int m=s.nextInt();Integer k=tm.floorKey(m);if(k==null)b.append(-1);else{b.append(k);int c=tm.get(k);if(c==1)tm.remove(k);else tm.put(k,c-1);}b.append('\n');}System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();TreeMap<Integer,Integer> tm=new TreeMap<>();for(int i=0;i<N;i++){int x=s.nextInt();tm.merge(x,1,Integer::sum);}StringBuilder b=new StringBuilder();while(M-->0){int m=s.nextInt();Integer k=tm.floorKey(m);if(k==null)b.append(-1);else{b.append(k);int c=tm.get(k);if(c==1)tm.remove(k);else tm.put(k,c-1);}b.append('
+');}System.out.print(b);}}`,
 p114:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt(),K=s.nextInt();int[] a=new int[N];int[] b=new int[M];for(int i=0;i<N;i++)a[i]=s.nextInt();for(int i=0;i<M;i++)b[i]=s.nextInt();Arrays.sort(a);Arrays.sort(b);int i=0,j=0,ans=0;while(i<N&&j<M){if(Math.abs(a[i]-b[j])<=K){ans++;i++;j++;}else if(a[i]<b[j])i++;else j++;}System.out.println(ans);}}`,
 p115:`import java.util.*;
@@ -16032,11 +16812,14 @@ public class Main{public static void main(String[] a){Scanner s=new Scanner(Syst
 p116:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();char[][] g=new char[N][];for(int i=0;i<N;i++)g[i]=s.next().toCharArray();int ans=0;int[] dr={-1,1,0,0},dc={0,0,-1,1};ArrayDeque<int[]> q=new ArrayDeque<>();for(int i=0;i<N;i++)for(int j=0;j<M;j++)if(g[i][j]=='.'){ans++;g[i][j]='#';q.add(new int[]{i,j});while(!q.isEmpty()){int[] p=q.poll();for(int k=0;k<4;k++){int nr=p[0]+dr[k],nc=p[1]+dc[k];if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]=='.'){g[nr][nc]='#';q.add(new int[]{nr,nc});}}}}System.out.println(ans);}}`,
 p117:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('\n');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('\n');System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('
+');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('
+');System.out.print(b);}}`,
 p118:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();char[][] g=new char[N][];for(int i=0;i<N;i++)g[i]=s.next().toCharArray();int sr=0,sc=0,tr=0,tc=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++){if(g[i][j]=='A'){sr=i;sc=j;}if(g[i][j]=='B'){tr=i;tc=j;}}ArrayDeque<int[]> q=new ArrayDeque<>();q.add(new int[]{sr,sc,0});g[sr][sc]='#';int ans=-1;int[] dr={-1,1,0,0},dc={0,0,-1,1};while(!q.isEmpty()){int[] p=q.poll();if(p[0]==tr&&p[1]==tc){ans=p[2];break;}for(int k=0;k<4;k++){int nr=p[0]+dr[k],nc=p[1]+dc[k];if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.add(new int[]{nr,nc,p[2]+1});}}}System.out.println(ans);}}`,
 p119:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();int[] b=new int[N+1];int[] cnt=new int[N+1];for(int i=2;i<=N;i++)b[i]=s.nextInt();for(int i=N;i>=2;i--)cnt[b[i]]+=cnt[i]+1;StringBuilder bb=new StringBuilder();for(int i=1;i<=N;i++){bb.append(cnt[i]);bb.append(i==N?'\n':' ');}System.out.print(bb);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();int[] b=new int[N+1];int[] cnt=new int[N+1];for(int i=2;i<=N;i++)b[i]=s.nextInt();for(int i=N;i>=2;i--)cnt[b[i]]+=cnt[i]+1;StringBuilder bb=new StringBuilder();for(int i=1;i<=N;i++){bb.append(cnt[i]);bb.append(i==N?'
+':' ');}System.out.print(bb);}}`,
 p120:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);final int MOD=1000000007;int N=s.nextInt(),X=s.nextInt();int[] c=new int[N];for(int i=0;i<N;i++)c[i]=s.nextInt();long[] dp=new long[X+1];dp[0]=1;for(int x=1;x<=X;x++){long sum=0;for(int v:c)if(v<=x)sum+=dp[x-v];dp[x]=sum%MOD;}System.out.println(dp[X]);}}`,
 p121:`import java.util.*;
@@ -16048,7 +16831,10 @@ public class Main{public static void main(String[] a){Scanner s=new Scanner(Syst
 p124:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);final int MOD=1000000007;int N=s.nextInt();char[][] g=new char[N][];for(int i=0;i<N;i++)g[i]=s.next().toCharArray();long[][] dp=new long[N][N];if(g[0][0]=='.')dp[0][0]=1;for(int i=0;i<N;i++)for(int j=0;j<N;j++){if(g[i][j]=='*'){dp[i][j]=0;continue;}if(i==0&&j==0)continue;long v=0;if(i>0)v+=dp[i-1][j];if(j>0)v+=dp[i][j-1];dp[i][j]=v%MOD;}System.out.println(dp[N-1][N-1]);}}`,
 p125:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);long N=s.nextLong();long S=N*(N+1)/2;if(S%2!=0){System.out.println("NO");return;}long half=S/2,got=0;ArrayList<Long> A=new ArrayList<>(),B=new ArrayList<>();for(long v=N;v>=1;v--){if(got+v<=half){A.add(v);got+=v;}else B.add(v);}StringBuilder b=new StringBuilder();b.append("YES\n").append(A.size());for(long x:A)b.append(' ').append(x);b.append('\n').append(B.size());for(long x:B)b.append(' ').append(x);b.append('\n');System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);long N=s.nextLong();long S=N*(N+1)/2;if(S%2!=0){System.out.println("NO");return;}long half=S/2,got=0;ArrayList<Long> A=new ArrayList<>(),B=new ArrayList<>();for(long v=N;v>=1;v--){if(got+v<=half){A.add(v);got+=v;}else B.add(v);}StringBuilder b=new StringBuilder();b.append("YES
+").append(A.size());for(long x:A)b.append(' ').append(x);b.append('
+').append(B.size());for(long x:B)b.append(' ').append(x);b.append('
+');System.out.print(b);}}`,
 p126:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);long N=s.nextLong();long MOD=1000000007L,r=1,a=2;while(N>0){if((N&1)!=0)r=r*a%MOD;a=a*a%MOD;N>>=1;}System.out.println(r);}}`,
 p127:`import java.util.*;
@@ -16056,9 +16842,11 @@ public class Main{public static void main(String[] a){Scanner s=new Scanner(Syst
 p128:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();long m=s.nextLong(),ans=0;for(int i=1;i<N;i++){long x=s.nextLong();if(x<m)ans+=m-x;else m=x;}System.out.println(ans);}}`,
 p129:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();if(N==1){System.out.println(1);return;}if(N<4){System.out.println("NO SOLUTION");return;}StringBuilder b=new StringBuilder();boolean f=true;for(int i=2;i<=N;i+=2){if(!f)b.append(' ');b.append(i);f=false;}for(int i=1;i<=N;i+=2)b.append(' ').append(i);b.append('\n');System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();if(N==1){System.out.println(1);return;}if(N<4){System.out.println("NO SOLUTION");return;}StringBuilder b=new StringBuilder();boolean f=true;for(int i=2;i<=N;i+=2){if(!f)b.append(' ');b.append(i);f=false;}for(int i=1;i<=N;i+=2)b.append(' ').append(i);b.append('
+');System.out.print(b);}}`,
 p130:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int T=s.nextInt();StringBuilder b=new StringBuilder();while(T-->0){long y=s.nextLong(),x=s.nextLong();long k=Math.max(y,x),base=(k-1)*(k-1),val;if(k%2==0){if(x==k)val=base+y;else val=k*k-(x-1);}else{if(y==k)val=base+x;else val=k*k-(y-1);}b.append(val).append('\n');}System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int T=s.nextInt();StringBuilder b=new StringBuilder();while(T-->0){long y=s.nextLong(),x=s.nextLong();long k=Math.max(y,x),base=(k-1)*(k-1),val;if(k%2==0){if(x==k)val=base+y;else val=k*k-(x-1);}else{if(y==k)val=base+x;else val=k*k-(y-1);}b.append(val).append('
+');}System.out.print(b);}}`,
 ia_range_sum:`import java.io.*;
 
 public class Main {
@@ -16105,7 +16893,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -16224,7 +17013,8 @@ public class Main {
             long best = Long.MAX_VALUE / 4;
             if (idx < n) best = Math.min(best, Math.abs(s[idx] - x));
             if (idx > 0) best = Math.min(best, Math.abs(s[idx - 1] - x));
-            sb.append(best).append('\n');
+            sb.append(best).append('
+');
         }
         System.out.print(sb);
     }
@@ -16302,7 +17092,8 @@ public class Main {
             if (op.equals("union")) {
                 unite(a, b);
             } else {
-                sb.append(find(a) == find(b) ? "YES" : "NO").append('\n');
+                sb.append(find(a) == find(b) ? "YES" : "NO").append('
+');
             }
         }
         System.out.print(sb);
@@ -16474,7 +17265,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -16525,7 +17317,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -16576,7 +17369,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -16627,7 +17421,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -16678,7 +17473,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -16729,7 +17525,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17231,7 +18028,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17282,7 +18080,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17333,7 +18132,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17384,7 +18184,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17435,7 +18236,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17486,7 +18288,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17537,7 +18340,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17588,7 +18392,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17639,7 +18444,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17690,7 +18496,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17741,7 +18548,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17792,7 +18600,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17843,7 +18652,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17894,7 +18704,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17945,7 +18756,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -17996,7 +18808,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -18047,7 +18860,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -18098,7 +18912,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -18149,7 +18964,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -18200,7 +19016,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -18251,7 +19068,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -18302,7 +19120,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -18353,7 +19172,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -18404,7 +19224,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -18455,7 +19276,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -18506,7 +19328,8 @@ public class Main {
         while (q-- > 0) {
             int l = fs.nextInt();
             int r = fs.nextInt();
-            sb.append(ps[r] - ps[l - 1]).append('\n');
+            sb.append(ps[r] - ps[l - 1]).append('
+');
         }
         System.out.print(sb);
     }
@@ -19961,7 +20784,8 @@ public class Main {
             if (op.equals("union")) {
                 unite(a, b);
             } else {
-                sb.append(find(a) == find(b) ? "YES" : "NO").append('\n');
+                sb.append(find(a) == find(b) ? "YES" : "NO").append('
+');
             }
         }
         System.out.print(sb);
@@ -20235,7 +21059,9 @@ public class Main {
     }
 }`,
 src238_cf_472D:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('\n');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('\n');System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('
+');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('
+');System.out.print(b);}}`,
 src239_cf_1385E:`import java.io.*;
 import java.util.*;
 
@@ -20406,7 +21232,9 @@ public class Main {
     }
 }`,
 src242_usaco_623:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('\n');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('\n');System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('
+');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('
+');System.out.print(b);}}`,
 src243_usaco_861:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();char[][] g=new char[N][];for(int i=0;i<N;i++)g[i]=s.next().toCharArray();int sr=0,sc=0,tr=0,tc=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++){if(g[i][j]=='A'){sr=i;sc=j;}if(g[i][j]=='B'){tr=i;tc=j;}}ArrayDeque<int[]> q=new ArrayDeque<>();q.add(new int[]{sr,sc,0});g[sr][sc]='#';int ans=-1;int[] dr={-1,1,0,0},dc={0,0,-1,1};while(!q.isEmpty()){int[] p=q.poll();if(p[0]==tr&&p[1]==tc){ans=p[2];break;}for(int k=0;k<4;k++){int nr=p[0]+dr[k],nc=p[1]+dc[k];if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.add(new int[]{nr,nc,p[2]+1});}}}System.out.println(ans);}}`,
 src244_cses_1195:`import java.util.*;
@@ -20805,7 +21633,8 @@ public class Main {
             if (op.equals("union")) {
                 unite(a, b);
             } else {
-                sb.append(find(a) == find(b) ? "YES" : "NO").append('\n');
+                sb.append(find(a) == find(b) ? "YES" : "NO").append('
+');
             }
         }
         System.out.print(sb);
@@ -20884,7 +21713,8 @@ public class Main {
             if (op.equals("union")) {
                 unite(a, b);
             } else {
-                sb.append(find(a) == find(b) ? "YES" : "NO").append('\n');
+                sb.append(find(a) == find(b) ? "YES" : "NO").append('
+');
             }
         }
         System.out.print(sb);
@@ -21036,14 +21866,17 @@ public class Main {
             if (op.equals("union")) {
                 unite(a, b);
             } else {
-                sb.append(find(a) == find(b) ? "YES" : "NO").append('\n');
+                sb.append(find(a) == find(b) ? "YES" : "NO").append('
+');
             }
         }
         System.out.print(sb);
     }
 }`,
 src260_cses_1675:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('\n');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('\n');System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('
+');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('
+');System.out.print(b);}}`,
 src261_cses_1678:`import java.io.*;
 
 public class Main {
@@ -21096,7 +21929,8 @@ public class Main {
 src262_cses_1671:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();char[][] g=new char[N][];for(int i=0;i<N;i++)g[i]=s.next().toCharArray();int sr=0,sc=0,tr=0,tc=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++){if(g[i][j]=='A'){sr=i;sc=j;}if(g[i][j]=='B'){tr=i;tc=j;}}ArrayDeque<int[]> q=new ArrayDeque<>();q.add(new int[]{sr,sc,0});g[sr][sc]='#';int ans=-1;int[] dr={-1,1,0,0},dc={0,0,-1,1};while(!q.isEmpty()){int[] p=q.poll();if(p[0]==tr&&p[1]==tc){ans=p[2];break;}for(int k=0;k<4;k++){int nr=p[0]+dr[k],nc=p[1]+dc[k];if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.add(new int[]{nr,nc,p[2]+1});}}}System.out.println(ans);}}`,
 src263_ys_StaticRMQ:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();int[] b=new int[N+1];int[] cnt=new int[N+1];for(int i=2;i<=N;i++)b[i]=s.nextInt();for(int i=N;i>=2;i--)cnt[b[i]]+=cnt[i]+1;StringBuilder bb=new StringBuilder();for(int i=1;i<=N;i++){bb.append(cnt[i]);bb.append(i==N?'\n':' ');}System.out.print(bb);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();int[] b=new int[N+1];int[] cnt=new int[N+1];for(int i=2;i<=N;i++)b[i]=s.nextInt();for(int i=N;i>=2;i--)cnt[b[i]]+=cnt[i]+1;StringBuilder bb=new StringBuilder();for(int i=1;i<=N;i++){bb.append(cnt[i]);bb.append(i==N?'
+':' ');}System.out.print(bb);}}`,
 src264_ac_subsetSumQueries:`import java.io.*;
 
 public class Main {
@@ -21218,9 +22052,12 @@ public class Main {
     }
 }`,
 src266_cses_1137:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();int[] b=new int[N+1];int[] cnt=new int[N+1];for(int i=2;i<=N;i++)b[i]=s.nextInt();for(int i=N;i>=2;i--)cnt[b[i]]+=cnt[i]+1;StringBuilder bb=new StringBuilder();for(int i=1;i<=N;i++){bb.append(cnt[i]);bb.append(i==N?'\n':' ');}System.out.print(bb);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt();int[] b=new int[N+1];int[] cnt=new int[N+1];for(int i=2;i<=N;i++)b[i]=s.nextInt();for(int i=N;i>=2;i--)cnt[b[i]]+=cnt[i]+1;StringBuilder bb=new StringBuilder();for(int i=1;i<=N;i++){bb.append(cnt[i]);bb.append(i==N?'
+':' ');}System.out.print(bb);}}`,
 src267_usaco_531:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('\n');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('\n');System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('
+');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('
+');System.out.print(b);}}`,
 src268_cf_687C:`import java.io.*;
 
 public class Main {
@@ -21418,7 +22255,8 @@ public class Main {
             if (op.equals("union")) {
                 unite(a, b);
             } else {
-                sb.append(find(a) == find(b) ? "YES" : "NO").append('\n');
+                sb.append(find(a) == find(b) ? "YES" : "NO").append('
+');
             }
         }
         System.out.print(sb);
@@ -21546,7 +22384,8 @@ public class Main {
             if (op.equals("union")) {
                 unite(a, b);
             } else {
-                sb.append(find(a) == find(b) ? "YES" : "NO").append('\n');
+                sb.append(find(a) == find(b) ? "YES" : "NO").append('
+');
             }
         }
         System.out.print(sb);
@@ -21627,7 +22466,8 @@ public class Main {
             if (op.equals("union")) {
                 unite(a, b);
             } else {
-                sb.append(find(a) == find(b) ? "YES" : "NO").append('\n');
+                sb.append(find(a) == find(b) ? "YES" : "NO").append('
+');
             }
         }
         System.out.print(sb);
@@ -21693,7 +22533,8 @@ public class Main {
 src282_sapo_14_genghis:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),X=s.nextInt();int[] c=new int[N];for(int i=0;i<N;i++)c[i]=s.nextInt();int INF=1<<29;int[] dp=new int[X+1];Arrays.fill(dp,INF);dp[0]=0;for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;System.out.println(dp[X]>=INF?-1:dp[X]);}}`,
 src283_joi_15_inheritance:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),Q=s.nextInt();int[] a=new int[N];for(int i=0;i<N;i++)a[i]=s.nextInt();Arrays.sort(a);StringBuilder b=new StringBuilder();while(Q-->0){int l=s.nextInt(),r=s.nextInt();int lo=0,hi=N;while(lo<hi){int m=(lo+hi)>>>1;if(a[m]<l)lo=m+1;else hi=m;}int L=lo;lo=0;hi=N;while(lo<hi){int m=(lo+hi)>>>1;if(a[m]<=r)lo=m+1;else hi=m;}b.append(lo-L).append('\n');}System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),Q=s.nextInt();int[] a=new int[N];for(int i=0;i<N;i++)a[i]=s.nextInt();Arrays.sort(a);StringBuilder b=new StringBuilder();while(Q-->0){int l=s.nextInt(),r=s.nextInt();int lo=0,hi=N;while(lo<hi){int m=(lo+hi)>>>1;if(a[m]<l)lo=m+1;else hi=m;}int L=lo;lo=0;hi=N;while(lo<hi){int m=(lo+hi)>>>1;if(a[m]<=r)lo=m+1;else hi=m;}b.append(lo-L).append('
+');}System.out.print(b);}}`,
 src284_usaco_647:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),X=s.nextInt();int[] c=new int[N];for(int i=0;i<N;i++)c[i]=s.nextInt();int INF=1<<29;int[] dp=new int[X+1];Arrays.fill(dp,INF);dp[0]=0;for(int x=1;x<=X;x++)for(int v:c)if(v<=x&&dp[x-v]+1<dp[x])dp[x]=dp[x-v]+1;System.out.println(dp[X]>=INF?-1:dp[X]);}}`,
 src285_cc_INOI1602:`import java.util.*;
@@ -21771,7 +22612,8 @@ public class Main {
             if (op.equals("union")) {
                 unite(a, b);
             } else {
-                sb.append(find(a) == find(b) ? "YES" : "NO").append('\n');
+                sb.append(find(a) == find(b) ? "YES" : "NO").append('
+');
             }
         }
         System.out.print(sb);
@@ -21882,9 +22724,13 @@ public class Main {
 src291_cses_1196:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();char[][] g=new char[N][];for(int i=0;i<N;i++)g[i]=s.next().toCharArray();int sr=0,sc=0,tr=0,tc=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++){if(g[i][j]=='A'){sr=i;sc=j;}if(g[i][j]=='B'){tr=i;tc=j;}}ArrayDeque<int[]> q=new ArrayDeque<>();q.add(new int[]{sr,sc,0});g[sr][sc]='#';int ans=-1;int[] dr={-1,1,0,0},dc={0,0,-1,1};while(!q.isEmpty()){int[] p=q.poll();if(p[0]==tr&&p[1]==tc){ans=p[2];break;}for(int k=0;k<4;k++){int nr=p[0]+dr[k],nc=p[1]+dc[k];if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.add(new int[]{nr,nc,p[2]+1});}}}System.out.println(ans);}}`,
 src292_cf_1513D:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('\n');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('\n');System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('
+');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('
+');System.out.print(b);}}`,
 src293_usaco_946:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('\n');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('\n');System.out.print(b);}}`,
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();int[] p=new int[N+1];for(int i=0;i<=N;i++)p[i]=i;while(M-->0){int u=s.nextInt(),v=s.nextInt();int ru=u;while(p[ru]!=ru){p[ru]=p[p[ru]];ru=p[ru];}int rv=v;while(p[rv]!=rv){p[rv]=p[p[rv]];rv=p[rv];}if(ru!=rv)p[ru]=rv;}ArrayList<Integer> r=new ArrayList<>();for(int i=1;i<=N;i++){int x=i;while(p[x]!=x)x=p[x];if(x==i)r.add(i);}StringBuilder b=new StringBuilder();b.append(r.size()-1).append('
+');for(int i=1;i<r.size();i++)b.append(r.get(0)).append(' ').append(r.get(i)).append('
+');System.out.print(b);}}`,
 src294_cses_1202:`import java.util.*;
 public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),M=s.nextInt();char[][] g=new char[N][];for(int i=0;i<N;i++)g[i]=s.next().toCharArray();int sr=0,sc=0,tr=0,tc=0;for(int i=0;i<N;i++)for(int j=0;j<M;j++){if(g[i][j]=='A'){sr=i;sc=j;}if(g[i][j]=='B'){tr=i;tc=j;}}ArrayDeque<int[]> q=new ArrayDeque<>();q.add(new int[]{sr,sc,0});g[sr][sc]='#';int ans=-1;int[] dr={-1,1,0,0},dc={0,0,-1,1};while(!q.isEmpty()){int[] p=q.poll();if(p[0]==tr&&p[1]==tc){ans=p[2];break;}for(int k=0;k<4;k++){int nr=p[0]+dr[k],nc=p[1]+dc[k];if(nr>=0&&nr<N&&nc>=0&&nc<M&&g[nr][nc]!='#'){g[nr][nc]='#';q.add(new int[]{nr,nc,p[2]+1});}}}System.out.println(ans);}}`,
 src295_noi_18_knapsack:`import java.io.*;
@@ -21992,6 +22838,7 @@ public class Main {
     }
 }`,
 src300_usaco_838:`import java.util.*;
-public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),Q=s.nextInt();int[] a=new int[N];for(int i=0;i<N;i++)a[i]=s.nextInt();Arrays.sort(a);StringBuilder b=new StringBuilder();while(Q-->0){int l=s.nextInt(),r=s.nextInt();int lo=0,hi=N;while(lo<hi){int m=(lo+hi)>>>1;if(a[m]<l)lo=m+1;else hi=m;}int L=lo;lo=0;hi=N;while(lo<hi){int m=(lo+hi)>>>1;if(a[m]<=r)lo=m+1;else hi=m;}b.append(lo-L).append('\n');}System.out.print(b);}}`
+public class Main{public static void main(String[] a){Scanner s=new Scanner(System.in);int N=s.nextInt(),Q=s.nextInt();int[] a=new int[N];for(int i=0;i<N;i++)a[i]=s.nextInt();Arrays.sort(a);StringBuilder b=new StringBuilder();while(Q-->0){int l=s.nextInt(),r=s.nextInt();int lo=0,hi=N;while(lo<hi){int m=(lo+hi)>>>1;if(a[m]<l)lo=m+1;else hi=m;}int L=lo;lo=0;hi=N;while(lo<hi){int m=(lo+hi)>>>1;if(a[m]<=r)lo=m+1;else hi=m;}b.append(lo-L).append('
+');}System.out.print(b);}}`
 }
 };

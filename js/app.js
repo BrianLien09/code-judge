@@ -119,12 +119,7 @@ const DIFFICULTY = {
   hard:    { stars:'⭐⭐⭐⭐', label:'高級',   color:'#f85149', bg:'rgba(248,81,73,.15)',   border:'rgba(248,81,73,.3)' }
 };
 
-const LEVEL_SECTIONS = [
-  { diff:'easy',    icon:'📗', desc:'語法 → 基礎實作 → 直接模擬' },
-  { diff:'medium',  icon:'📙', desc:'序列資料 → 排序/前綴 → 狀態整理' },
-  { diff:'midhigh', icon:'📘', desc:'資料結構 → 圖/樹 → 狀態管理' },
-  { diff:'hard',    icon:'📕', desc:'演算法設計 → 複雜度最佳化' }
-];
+// LEVEL_SECTIONS removed, replaced by dynamic CATEGORIES
 
 function difficultyInfo(diff) {
   return DIFFICULTY[diff] || DIFFICULTY.easy;
@@ -140,29 +135,60 @@ function difficultyBadge(diff) {
   return `<span class="badge" style="color:${d.color};background:${d.bg};border-color:${d.border};">${d.stars} ${d.label}</span>`;
 }
 
+const FOLDER_COLORS = ['#3fb950', '#d29922', '#bc8cff', '#f85149', '#58a6ff', '#e34c26'];
+function hexToRgba(hex, alpha) {
+  if (!hex.startsWith('#')) return hex;
+  let r = parseInt(hex.slice(1, 3), 16), g = parseInt(hex.slice(3, 5), 16), b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
 function renderProblemList() {
   const list = document.getElementById('problem-list');
   const indexedProblems = PROBLEMS.map((p, i) => ({ p, i }));
-  list.innerHTML = LEVEL_SECTIONS.map((section, sectionIdx) => {
-    const d = difficultyInfo(section.diff);
-    const items = indexedProblems.filter(({ p }) => (p.diff || 'easy') === section.diff);
-    
-    // 根據 openGroups 狀態決定是否展開
-    const isCollapsed = openGroups.has(section.diff) ? '' : ' collapsed-group';
-    const isHidden = openGroups.has(section.diff) ? '' : ' group-hidden';
+  
+  const roots = (typeof CATEGORIES !== 'undefined' ? CATEGORIES : []).filter(c => !c.parentId).sort((a,b) => a.order - b.order);
+
+  list.innerHTML = roots.map((root, idx) => {
+    const color = FOLDER_COLORS[idx % FOLDER_COLORS.length];
+    const bg = hexToRgba(color, 0.15);
+    const border = hexToRgba(color, 0.3);
+
+    const isCollapsed = openGroups.has(root.id) ? '' : ' collapsed-group';
+    const isHidden = openGroups.has(root.id) ? '' : ' group-hidden';
+
+    const getCategoryId = (p) => {
+      if (p.categoryId) return p.categoryId;
+      return 'cat_' + (p.diff || 'easy');
+    };
+
+    const children = (typeof CATEGORIES !== 'undefined' ? CATEGORIES : []).filter(c => c.parentId === root.id).sort((a,b) => a.order - b.order);
+    const rootItems = indexedProblems.filter(({ p }) => getCategoryId(p) === root.id);
+    let totalItemsCount = rootItems.length;
+
+    let childrenHtml = children.map(child => {
+      const childItems = indexedProblems.filter(({ p }) => getCategoryId(p) === child.id);
+      totalItemsCount += childItems.length;
+      
+      return `<div class="sub-category">
+        <div class="sub-category-title">└ ${escH(child.name)} <span style="font-weight:normal;color:var(--text-muted);font-size:10px;">(${childItems.length} 題)</span></div>
+        ${childItems.map(({ p, i }) => renderProblemItem(p, i, {color})).join('')}
+      </div>`;
+    }).join('');
+
+    const itemsHtml = rootItems.map(({ p, i }) => renderProblemItem(p, i, {color})).join('');
 
     return `<div class="problem-group">
-      <div class="level-header${isCollapsed}" style="--level-color:${d.color};--level-bg:${d.bg};--level-border:${d.border};" onclick="toggleGroup('${section.diff}')">
+      <div class="level-header${isCollapsed}" style="--level-color:${color};--level-bg:${bg};--level-border:${border};" onclick="toggleGroup('${root.id}')">
         <div class="level-title-row">
-          <span>${escH(section.icon)}</span>
-          <span>${escH(d.label)}練習</span>
+          <span>📁</span>
+          <span>${escH(root.name)}</span>
           <span class="folder-chevron">▼</span>
-          <span class="count">${items.length} 題</span>
+          <span class="count">${totalItemsCount} 題</span>
         </div>
-        <div class="level-desc">${escH(section.desc)}</div>
       </div>
       <div class="group-items${isHidden}">
-        ${items.map(({ p, i }) => renderProblemItem(p, i, d)).join('')}
+        ${itemsHtml}
+        ${childrenHtml}
       </div>
     </div>`;
   }).join('');

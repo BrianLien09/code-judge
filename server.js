@@ -42,18 +42,33 @@ app.get('/api/data', (req, res) => {
   try {
     const problemsPath  = path.join(ROOT, 'data', 'problems.js');
     const solutionsPath = path.join(ROOT, 'data', 'solutions.js');
+    const categoriesPath = path.join(ROOT, 'data', 'categories.js');
 
-    // 用 Function 建構子安全執行（避免污染全域 scope）
     const problemsCode  = fs.readFileSync(problemsPath,  'utf8');
     const solutionsCode = fs.readFileSync(solutionsPath, 'utf8');
+    
+    // 如果 categories.js 尚未建立，回傳預設空陣列
+    let categoriesCode = '';
+    if (fs.existsSync(categoriesPath)) {
+      categoriesCode = fs.readFileSync(categoriesPath, 'utf8');
+    }
 
-    let PROBLEMS, SOLUTIONS;
+    let PROBLEMS, SOLUTIONS, CATEGORIES = [];
 
-    // 執行 JS 取出變數（等同於 eval，但不汙染全域）
     Function('PROBLEMS_CB', problemsCode  + '; PROBLEMS_CB(PROBLEMS);')((p) => { PROBLEMS = p; });
     Function('SOLUTIONS_CB', solutionsCode + '; SOLUTIONS_CB(SOLUTIONS);')((s) => { SOLUTIONS = s; });
+    if (categoriesCode) {
+      Function('CATEGORIES_CB', categoriesCode + '; CATEGORIES_CB(CATEGORIES);')((c) => { CATEGORIES = c; });
+    } else {
+      CATEGORIES = [
+        { id: 'cat_easy', name: '初級練習', parentId: null, order: 1 },
+        { id: 'cat_medium', name: '中級練習', parentId: null, order: 2 },
+        { id: 'cat_midhigh', name: '中高級練習', parentId: null, order: 3 },
+        { id: 'cat_hard', name: '高級練習', parentId: null, order: 4 }
+      ];
+    }
 
-    res.json({ problems: PROBLEMS, solutions: SOLUTIONS });
+    res.json({ problems: PROBLEMS, solutions: SOLUTIONS, categories: CATEGORIES });
   } catch (err) {
     console.error('[GET /api/data]', err.message);
     res.status(500).json({ error: err.message });
@@ -108,6 +123,31 @@ app.post('/api/save/solutions', (req, res) => {
   }
 });
 
+/**
+ * POST /api/save/categories
+ * 接收分類陣列，序列化成 categories.js 後寫入磁碟。
+ * Body: { categories: Array<CategoryObject> }
+ */
+app.post('/api/save/categories', (req, res) => {
+  try {
+    const { categories } = req.body;
+    if (!Array.isArray(categories)) {
+      return res.status(400).json({ error: 'categories 必須是陣列' });
+    }
+
+    const js = `// ── 分類資料 ──────────────────────────────────────────────────────────────────\n` +
+               `const CATEGORIES = ${JSON.stringify(categories, null, 2)};\n`;
+    const dest = path.join(ROOT, 'data', 'categories.js');
+    fs.writeFileSync(dest, js, 'utf8');
+
+    console.log(`[SAVE] categories.js 已更新（${categories.length} 個分類）`);
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('[POST /api/save/categories]', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // ── JS 序列化工具 ─────────────────────────────────────────────────────────────
 
 /**
@@ -132,6 +172,7 @@ function generateProblemsJS(problems) {
       `topic:${JSON.stringify(p.topic || '')}`,
       `date:${JSON.stringify(p.date || '')}`,
       `diff:${JSON.stringify(p.diff || 'easy')}`,
+      `categoryId:${JSON.stringify(p.categoryId || '')}`
     ];
     if (p.source) parts.push(`source:${JSON.stringify(p.source)}`);
     if (p.url)    parts.push(`url:${JSON.stringify(p.url)}`);

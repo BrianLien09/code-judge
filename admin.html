@@ -472,6 +472,28 @@ textarea.mono {
   </div>
 </div>
 
+<!-- ── 分類管理對話框 ──────────────────────────────────────────────────── -->
+<div class="dialog-overlay" id="category-dialog">
+  <div class="dialog" style="max-width: 500px;">
+    <h3>⚙️ 管理分類</h3>
+    <p style="font-size: 12px; margin-bottom: 10px;">您可以建立最多兩層（主分類 > 子分類）的結構</p>
+    <div id="category-list" style="max-height: 250px; overflow-y: auto; margin-bottom: 15px; border: 1px solid var(--border); border-radius: 6px; padding: 10px; background: var(--bg);">
+      <!-- categories rendered here -->
+    </div>
+    <div style="display:flex; gap: 8px; margin-bottom: 20px; align-items: center;">
+      <input type="text" id="new-cat-name" placeholder="新分類名稱" style="flex:1;">
+      <select id="new-cat-parent" style="flex:1;">
+        <option value="">(無父層級 - 作為主分類)</option>
+      </select>
+      <button class="btn btn-save" onclick="addCategory()">＋ 新增</button>
+    </div>
+    <div class="dialog-btns">
+      <button class="btn btn-outline" onclick="closeCategoryDialog()">關閉</button>
+      <button class="btn btn-save" onclick="saveCategoriesToDisk()">💾 儲存分類</button>
+    </div>
+  </div>
+</div>
+
 <!-- ── 主版面 ──────────────────────────────────────────────────────────── -->
 <div class="layout">
 
@@ -479,14 +501,13 @@ textarea.mono {
   <aside class="sidebar">
     <div class="sidebar-top">
       <input type="text" class="search-box" id="search-input" placeholder="🔍  搜尋題目標題或 ID..." oninput="filterList()">
-      <div class="filter-row">
-        <button class="filter-btn active" data-diff="all"     onclick="setFilter(this,'all')">全部</button>
-        <button class="filter-btn"        data-diff="easy"    onclick="setFilter(this,'easy')">初級</button>
-        <button class="filter-btn"        data-diff="medium"  onclick="setFilter(this,'medium')">中級</button>
-        <button class="filter-btn"        data-diff="midhigh" onclick="setFilter(this,'midhigh')">中高級</button>
-        <button class="filter-btn"        data-diff="hard"    onclick="setFilter(this,'hard')">高級</button>
+      <div class="filter-row" id="sidebar-filters">
+        <button class="filter-btn active" data-cat="all" onclick="setFilter(this,'all')">全部</button>
       </div>
-      <button class="add-btn" id="add-btn" onclick="newProblem()">＋ 新增題目</button>
+      <div style="display:flex; gap: 8px; margin-top: 4px;">
+        <button class="add-btn" id="add-btn" onclick="newProblem()" style="flex: 1;">＋ 新增題目</button>
+        <button class="add-btn" onclick="openCategoryDialog()" style="flex: 0 0 80px; border-color: var(--blue); color: var(--blue); background: rgba(88,166,255,.05);">⚙️ 分類</button>
+      </div>
     </div>
     <div class="problem-list" id="problem-list">
       <div class="list-count">載入中...</div>
@@ -553,14 +574,23 @@ textarea.mono {
           </div>
         </div>
 
-        <!-- 難度選擇 -->
-        <div class="form-group">
-          <label>難度</label>
-          <div class="diff-select" id="diff-select">
-            <div class="diff-opt" data-diff="easy"    onclick="selectDiff('easy')">📗 初級</div>
-            <div class="diff-opt" data-diff="medium"  onclick="selectDiff('medium')">📙 中級</div>
-            <div class="diff-opt" data-diff="midhigh" onclick="selectDiff('midhigh')">📘 中高級</div>
-            <div class="diff-opt" data-diff="hard"    onclick="selectDiff('hard')">📕 高級</div>
+        <div class="form-grid">
+          <!-- 難度選擇 -->
+          <div class="form-group">
+            <label>難度 (保留舊屬性)</label>
+            <div class="diff-select" id="diff-select">
+              <div class="diff-opt" data-diff="easy"    onclick="selectDiff('easy')">📗 初級</div>
+              <div class="diff-opt" data-diff="medium"  onclick="selectDiff('medium')">📙 中級</div>
+              <div class="diff-opt" data-diff="midhigh" onclick="selectDiff('midhigh')">📘 中高級</div>
+              <div class="diff-opt" data-diff="hard"    onclick="selectDiff('hard')">📕 高級</div>
+            </div>
+          </div>
+          <!-- 分類選擇 -->
+          <div class="form-group">
+            <label>所屬分類</label>
+            <select id="f-category">
+              <option value="">(無)</option>
+            </select>
           </div>
         </div>
 
@@ -627,12 +657,14 @@ textarea.mono {
 let PROBLEMS = [];
 /** 目前所有解答 */
 let SOLUTIONS = { py:{}, cpp:{}, c:{}, java:{} };
+/** 目前所有分類 */
+let CATEGORIES = [];
 /** 目前選中的題目索引 */
 let currentIdx  = null;
 /** 目前解答語言 */
 let currentSolLang = 'py';
-/** 篩選條件 */
-let filterDiff = 'all';
+/** 篩選條件 (categoryId) */
+let filterCategory = 'all';
 /** CodeMirror 解答編輯器實例 */
 let solEditor = null;
 /** 是否有未儲存變更（用於提示） */
@@ -673,6 +705,9 @@ async function loadData() {
     const data = await res.json();
     PROBLEMS  = data.problems  || [];
     SOLUTIONS = data.solutions || { py:{}, cpp:{}, c:{}, java:{} };
+    CATEGORIES = data.categories || [];
+    renderSidebarFilters();
+    updateCategoryDropdown();
     renderList();
     toast('已載入 ' + PROBLEMS.length + ' 道題目', 'success');
   } catch (e) {
@@ -693,7 +728,8 @@ function renderList() {
   const filtered = PROBLEMS
     .map((p, i) => ({ p, i }))
     .filter(({ p }) => {
-      if (filterDiff !== 'all' && (p.diff || 'easy') !== filterDiff) return false;
+      const pCat = p.categoryId || ('cat_' + (p.diff || 'easy'));
+      if (filterCategory !== 'all' && pCat !== filterCategory) return false;
       if (query && !p.title.toLowerCase().includes(query) && !p.id.toLowerCase().includes(query)) return false;
       return true;
     });
@@ -719,10 +755,10 @@ function renderList() {
 
 function filterList() { renderList(); }
 
-function setFilter(btn, diff) {
+function setFilter(btn, catId) {
   document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  filterDiff = diff;
+  filterCategory = catId;
   renderList();
 }
 
@@ -757,8 +793,9 @@ function loadProblemToEditor(p) {
   document.getElementById('f-output-desc').value = p.output_desc || '';
   document.getElementById('f-hint').value        = p.hint        || '';
 
-  // 難度
+  // 難度與分類
   selectDiff(p.diff || 'easy');
+  document.getElementById('f-category').value = p.categoryId || '';
 
   // 工具列標題
   document.getElementById('toolbar-title').textContent = p.title || '未命名題目';
@@ -941,6 +978,7 @@ function collectProblemFromForm() {
     source:     document.getElementById('f-source').value.trim() || undefined,
     url:        document.getElementById('f-url').value.trim()    || undefined,
     diff:       getSelectedDiff(),
+    categoryId: document.getElementById('f-category').value,
     desc:       document.getElementById('f-desc').value,
     input_desc: document.getElementById('f-input-desc').value,
     output_desc:document.getElementById('f-output-desc').value,
@@ -1060,6 +1098,140 @@ function toast(msg, type = 'info') {
   el.textContent = msg;
   document.getElementById('toast-container').appendChild(el);
   setTimeout(() => el.remove(), 3500);
+}
+
+// ── 分類管理 ──────────────────────────────────────────────────────────────────
+
+function openCategoryDialog() {
+  renderCategoryDialog();
+  document.getElementById('category-dialog').classList.add('open');
+}
+
+function closeCategoryDialog() {
+  document.getElementById('category-dialog').classList.remove('open');
+}
+
+function renderCategoryDialog() {
+  const list = document.getElementById('category-list');
+  const parentSelect = document.getElementById('new-cat-parent');
+  
+  // 建立分類樹狀結構
+  const roots = CATEGORIES.filter(c => !c.parentId).sort((a,b) => a.order - b.order);
+  
+  let html = '';
+  let parentOptions = '<option value="">(無父層級 - 作為主分類)</option>';
+
+  roots.forEach(r => {
+    html += `<div style="display:flex; justify-content:space-between; align-items:center; padding: 6px 8px; border-bottom: 1px solid var(--border);">
+      <div><strong style="color:var(--accent)">${escH(r.name)}</strong> <span style="font-size:10px;color:var(--text-muted);">(ID: ${r.id})</span></div>
+      <button class="btn-sm danger" onclick="deleteCategory('${r.id}')">刪除</button>
+    </div>`;
+    parentOptions += `<option value="${r.id}">${escH(r.name)}</option>`;
+
+    const children = CATEGORIES.filter(c => c.parentId === r.id).sort((a,b) => a.order - b.order);
+    children.forEach(c => {
+      html += `<div style="display:flex; justify-content:space-between; align-items:center; padding: 6px 8px 6px 30px; border-bottom: 1px solid rgba(48,54,61,.3);">
+        <div>└ ${escH(c.name)} <span style="font-size:10px;color:var(--text-muted);">(ID: ${c.id})</span></div>
+        <button class="btn-sm danger" onclick="deleteCategory('${c.id}')">刪除</button>
+      </div>`;
+    });
+  });
+
+  list.innerHTML = html || '<div style="color:var(--text-muted);font-size:12px;text-align:center;">尚無分類</div>';
+  parentSelect.innerHTML = parentOptions;
+}
+
+function addCategory() {
+  const nameInput = document.getElementById('new-cat-name');
+  const parentSelect = document.getElementById('new-cat-parent');
+  const name = nameInput.value.trim();
+  const parentId = parentSelect.value || null;
+
+  if (!name) {
+    toast('請輸入分類名稱', 'error');
+    return;
+  }
+
+  const newId = 'cat_' + Date.now().toString(36);
+  const order = CATEGORIES.filter(c => c.parentId === parentId).length + 1;
+
+  CATEGORIES.push({ id: newId, name, parentId, order });
+  nameInput.value = '';
+  renderCategoryDialog();
+  updateCategoryDropdown();
+  renderSidebarFilters();
+  
+  // 自動儲存
+  saveCategoriesToDisk();
+}
+
+function deleteCategory(id) {
+  if (!confirm('確定要刪除此分類嗎？這不會刪除底下的題目，但題目的分類將被清除。')) return;
+  
+  // 刪除此分類及其子分類
+  const toDelete = new Set([id]);
+  CATEGORIES.forEach(c => { if (c.parentId === id) toDelete.add(c.id); });
+
+  CATEGORIES = CATEGORIES.filter(c => !toDelete.has(c.id));
+  
+  // 清除題目的 categoryId
+  PROBLEMS.forEach(p => {
+    if (toDelete.has(p.categoryId)) p.categoryId = '';
+  });
+
+  renderCategoryDialog();
+  updateCategoryDropdown();
+  renderSidebarFilters();
+  
+  // 自動儲存
+  saveCategoriesToDisk();
+}
+
+async function saveCategoriesToDisk() {
+  try {
+    const res = await fetch('/api/save/categories', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ categories: CATEGORIES })
+    });
+    if (!res.ok) throw new Error('API Error');
+    toast('分類已儲存', 'success');
+  } catch (e) {
+    toast('儲存分類失敗', 'error');
+  }
+}
+
+function updateCategoryDropdown() {
+  const select = document.getElementById('f-category');
+  const currentVal = select.value;
+  
+  const roots = CATEGORIES.filter(c => !c.parentId).sort((a,b) => a.order - b.order);
+  let html = '<option value="">(無)</option>';
+  
+  roots.forEach(r => {
+    html += `<option value="${r.id}" style="font-weight:bold;">${escH(r.name)}</option>`;
+    const children = CATEGORIES.filter(c => c.parentId === r.id).sort((a,b) => a.order - b.order);
+    children.forEach(c => {
+      html += `<option value="${c.id}">&nbsp;&nbsp;&nbsp;└ ${escH(c.name)}</option>`;
+    });
+  });
+  
+  select.innerHTML = html;
+  select.value = currentVal;
+}
+
+function renderSidebarFilters() {
+  const container = document.getElementById('sidebar-filters');
+  const roots = CATEGORIES.filter(c => !c.parentId).sort((a,b) => a.order - b.order);
+  
+  let html = `<button class="filter-btn ${filterCategory === 'all' ? 'active' : ''}" data-cat="all" onclick="setFilter(this,'all')">全部</button>`;
+  
+  roots.forEach(r => {
+    const active = filterCategory === r.id ? 'active' : '';
+    html += `<button class="filter-btn ${active}" data-cat="${r.id}" onclick="setFilter(this,'${r.id}')">${escH(r.name)}</button>`;
+  });
+  
+  container.innerHTML = html;
 }
 
 // ── 工具函數 ─────────────────────────────────────────────────────────────────
