@@ -1,6 +1,6 @@
-# APCS Judge (Serverless Edition)
+# Code Judge (Serverless Edition)
 
-> 基於 Firebase Firestore 重構的 APCS 線上解題與管理系統，完美支援 GitHub Pages 部署。
+> 基於 Firebase Firestore 重構的線上解題與管理系統，完美支援 GitHub Pages 部署。
 > **特別感謝原作者 [Yu-0312](https://github.com/Yu-0312) 開發的 [apcs-judge](https://github.com/Yu-0312/apcs-judge) 專案！本專案的核心介面、編譯架構與豐富的題庫皆來自於原作者的無私開源。**
 
 ---

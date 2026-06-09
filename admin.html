@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>APCS Judge — 教師後台管理</title>
+<title>Code Judge — 教師後台管理</title>
 
 <!-- CodeMirror（解答編輯器用） -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
@@ -507,12 +507,12 @@ textarea.mono {
 <!-- ── Header ─────────────────────────────────────────────────────────────── -->
 <header>
   <div>
-    <div class="logo">📋 APCS Judge — 教師後台</div>
+    <div class="logo">📋 Code Judge — 教師後台</div>
     <div class="sub">題目與解答管理系統</div>
   </div>
   <div class="header-right">
     <span id="save-status" style="font-size:12px;color:var(--text-muted);"></span>
-    <a href="/index.html" class="back-link">← 返回主系統</a>
+    <a href="./index.html" class="back-link">← 返回主系統</a>
   </div>
 </header>
 
@@ -560,7 +560,7 @@ textarea.mono {
   <aside class="sidebar">
     <div class="sidebar-top">
       <div style="font-size:18px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;justify-content:space-between;">
-        <span>📝 APCS 題庫後台</span>
+        <span>📝 Code Judge 題庫後台</span>
         <button class="btn-sm danger" onclick="logout()" title="登出">登出</button>
       </div>
       <input type="text" class="search-box" id="search-input" placeholder="🔍  搜尋題目標題或 ID..." oninput="filterList()">
@@ -850,7 +850,13 @@ function renderList() {
     .map((p, i) => ({ p, i }))
     .filter(({ p }) => {
       const pCat = p.categoryId || ('cat_' + (p.diff || 'easy'));
-      if (filterCategory !== 'all' && pCat !== filterCategory) return false;
+      if (filterCategory !== 'all') {
+        const allowedCats = new Set([filterCategory]);
+        CATEGORIES.forEach(c => {
+          if (c.parentId === filterCategory) allowedCats.add(c.id);
+        });
+        if (!allowedCats.has(pCat)) return false;
+      }
       if (query && !p.title.toLowerCase().includes(query) && !p.id.toLowerCase().includes(query)) return false;
       return true;
     });

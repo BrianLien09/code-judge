@@ -1,5 +1,5 @@
 /**
- * APCS Judge — 教師後台本地伺服器
+ * Code Judge — 教師後台本地伺服器
  *
  * 為何需要這個伺服器：
  *   瀏覽器安全限制不允許 JS 直接寫入本地磁碟，
@@ -212,7 +212,7 @@ function generateSolutionsJS(solutions) {
 // ── 啟動 ──────────────────────────────────────────────────────────────────────
 
 app.listen(PORT, () => {
-  console.log(`\n✅  APCS Judge 教師後台已啟動`);
+  console.log(`\n✅  Code Judge 教師後台已啟動`);
   console.log(`   主系統：http://localhost:${PORT}/index.html`);
   console.log(`   後台管理：http://localhost:${PORT}/admin.html\n`);
 });

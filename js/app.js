@@ -65,7 +65,7 @@ function switchLang(lang) {
   });
 
   // Update header logo color, label, note
-  document.getElementById('logo').textContent = `APCS 多級 ${cfg.name} 評分系統`;
+  document.getElementById('logo').textContent = `Code Judge`;
   document.getElementById('lang-label').textContent = cfg.label;
   document.getElementById('lang-note').textContent = cfg.note;
 
