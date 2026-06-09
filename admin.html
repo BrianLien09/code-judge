@@ -567,9 +567,10 @@ textarea.mono {
       <div class="filter-row" id="sidebar-filters">
         <button class="filter-btn active" data-cat="all" onclick="setFilter(this,'all')">全部</button>
       </div>
-      <div style="display:flex; gap: 8px; margin-top: 4px;">
-        <button class="add-btn" id="add-btn" onclick="newProblem()" style="flex: 1;">＋ 新增題目</button>
-        <button class="add-btn" onclick="openCategoryDialog()" style="flex: 0 0 80px; border-color: var(--blue); color: var(--blue); background: rgba(88,166,255,.05);">⚙️ 分類</button>
+      <div style="display:flex; gap: 6px; margin-top: 4px;">
+        <button class="add-btn" id="add-btn" onclick="newProblem()" style="flex: 1; padding: 6px; font-size: 0.9em;">＋ 新增</button>
+        <button class="add-btn" onclick="loadData(true)" style="flex: 1; padding: 6px; border-color: var(--orange); color: var(--orange); background: rgba(255,165,0,.05); font-size: 0.9em;" title="從資料庫強制刷新">🔄 刷新</button>
+        <button class="add-btn" onclick="openCategoryDialog()" style="flex: 1; padding: 6px; border-color: var(--blue); color: var(--blue); background: rgba(88,166,255,.05); font-size: 0.9em;">⚙️ 分類</button>
       </div>
     </div>
     <div class="problem-list" id="problem-list">
@@ -824,15 +825,15 @@ async function logout() {
 /**
  * 從 Firebase 載入題目與分類資料。
  */
-async function loadData() {
+async function loadData(force = false) {
   try {
-    const data = await window.dbService.getMeta(true);
+    const data = await window.dbService.getMeta(force);
     PROBLEMS  = data.problemsList || [];
     CATEGORIES = data.categories || [];
     renderSidebarFilters();
     updateCategoryDropdown();
     renderList();
-    toast('已從 Firebase 載入 ' + PROBLEMS.length + ' 道題目', 'success');
+    toast(force ? '已強制從資料庫刷新' : '已載入題目列表', 'success');
   } catch (e) {
     toast('載入失敗，請確認 Firebase 設定', 'error');
   }
@@ -903,10 +904,16 @@ async function selectProblem(idx) {
 
   currentIdx = idx;
   dirty = false;
+  
+  loadProblemToEditor(p);
+}
+
+function loadProblemToEditor(p) {
   showEditor();
   switchTab('info');
   document.querySelectorAll('#problem-list .list-item').forEach(el => el.classList.remove('active'));
-  document.getElementById('list-item-' + idx).classList.add('active');
+  const listItem = document.getElementById('list-item-' + currentIdx);
+  if (listItem) listItem.classList.add('active');
 
   // 基本欄位
   document.getElementById('f-id').value    = p.id;
@@ -1033,7 +1040,7 @@ function switchSolLang(lang) {
 }
 
 function loadSolEditor(pid, lang) {
-  const code = (SOLUTIONS[lang] || {})[pid] || '';
+  const code = currentSolutions[lang] || '';
   solEditor.setValue(code);
   solEditor.setOption('mode', LANG_CONFIG[lang]?.mode || 'text/plain');
   // 清除 change flag（避免剛載入就顯示 dirty）
@@ -1060,6 +1067,8 @@ function switchTab(tab) {
 // ── 新增題目 ─────────────────────────────────────────────────────────────────
 
 function newProblem() {
+  if (dirty && !confirm('有未儲存的變更，確定要新增題目嗎？')) return;
+
   // 產生不重複的 custom ID
   const existing = new Set(PROBLEMS.map(p => p.id));
   let n = PROBLEMS.length + 1;
@@ -1074,6 +1083,7 @@ function newProblem() {
 
   PROBLEMS.push(newP);
   currentIdx = PROBLEMS.length - 1;
+  currentSolutions = {};
   dirty = false;
 
   renderList();
@@ -1103,14 +1113,14 @@ function collectProblemFromForm() {
     title,
     topic:      document.getElementById('f-topic').value.trim(),
     date:       document.getElementById('f-date').value.trim(),
-    source:     document.getElementById('f-source').value.trim() || undefined,
-    url:        document.getElementById('f-url').value.trim()    || undefined,
+    source:     document.getElementById('f-source').value.trim(),
+    url:        document.getElementById('f-url').value.trim(),
     diff:       getSelectedDiff(),
     categoryId: document.getElementById('f-category').value,
     desc:       document.getElementById('f-desc').value,
     input_desc: document.getElementById('f-input-desc').value,
     output_desc:document.getElementById('f-output-desc').value,
-    hint:       document.getElementById('f-hint').value || undefined,
+    hint:       document.getElementById('f-hint').value,
     samples:    collectSamples(),
   };
 }

@@ -44,11 +44,14 @@ window.addEventListener('DOMContentLoaded', async () => {
   window.switchLang = switchLang;
   window.runCode = runCode;
   window.toggleGroup = toggleGroup;
+  window.toggleSidebar = toggleSidebar;
   window.selectProblem = selectProblem;
   window.loadSample = loadSample;
   window.clearEditor = clearEditor;
   window.showHint = showHint;
   window.hideHint = hideHint;
+  window.zoomDesc = zoomDesc;
+  window.zoomCode = zoomCode;
 });
 
 // ── Language switching ────────────────────────────────────────────────────────
