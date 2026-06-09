@@ -1,3 +1,5 @@
+import { dbService } from './db.js';
+
 // ── Language config ───────────────────────────────────────────────────────────
 const LANGS = {
   py:   { name:'Python', icon:'🐍', color:'#3fb950', mode:'python',        note:'Pyodide 瀏覽器執行',          label:'Python' },
@@ -7,6 +9,8 @@ const LANGS = {
 };
 
 // ── State ─────────────────────────────────────────────────────────────────────
+let CATEGORIES = [];
+let PROBLEMS = [];
 let currentLang = null;
 let currentProblem = null;
 let editor = null;
@@ -16,7 +20,7 @@ let scores = {}; // { 'py_b964': {passed,total}, 'cpp_b964': ... }
 let openGroups = new Set(); // store section.diff for open groups
 
 // ── Init ──────────────────────────────────────────────────────────────────────
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   editor = CodeMirror.fromTextArea(document.getElementById('code-editor'), {
     mode: 'python', theme: 'dracula', lineNumbers: true,
     indentUnit: 4, tabSize: 4, indentWithTabs: false,
@@ -25,8 +29,26 @@ window.addEventListener('DOMContentLoaded', () => {
     autoCloseBrackets: true,
     matchBrackets: true
   });
+  
+  // 載入 Firebase 資料
+  const meta = await dbService.getMeta(true);
+  CATEGORIES = meta.categories || [];
+  PROBLEMS = meta.problemsList || [];
+  
   updateProblemTotals();
   switchLang('py');
+  
+  // 將切換分頁等 UI 事件綁定拉進來或直接在 HTML 裡面處理
+  // 由於改為 module，html 裡的 onclick 會找不到 global function。
+  // 我們需要將函式綁定到 window 上。
+  window.switchLang = switchLang;
+  window.runCode = runCode;
+  window.toggleGroup = toggleGroup;
+  window.selectProblem = selectProblem;
+  window.loadSample = loadSample;
+  window.clearEditor = clearEditor;
+  window.showHint = showHint;
+  window.hideHint = hideHint;
 });
 
 // ── Language switching ────────────────────────────────────────────────────────
@@ -226,14 +248,27 @@ function renderProblemItem(p, i, d) {
 }
 
 // ── Select problem ────────────────────────────────────────────────────────────
-function selectProblem(idx) {
-  currentProblem = PROBLEMS[idx];
+async function selectProblem(idx) {
+  const pMeta = PROBLEMS[idx];
+  // 非同步載入題目詳情
+  const details = await dbService.getProblemDetails(pMeta.id);
+  currentProblem = { ...pMeta, ...(details || {}) };
+  
   renderProblemList();
   renderProblemContent();
   document.getElementById('results-body').innerHTML = '<div class="no-results">撰寫程式後點擊「執行並評分」</div>';
   document.getElementById('results-summary').textContent = '';
+  
   if (currentLang !== 'py' || pyodide)
     document.getElementById('run-btn').disabled = false;
+    
+  // 嘗試載入先前的作答記錄
+  const savedCode = localStorage.getItem('code_' + currentLang + '_' + currentProblem.id);
+  if (savedCode) {
+    editor.setValue(savedCode);
+  } else {
+    editor.setValue('');
+  }
 }
 
 function renderProblemContent() {
@@ -412,9 +447,10 @@ function renderResults(results, passed, total) {
 
 function clearEditor() { editor.setValue(''); editor.focus(); }
 
-function loadSample() {
+async function loadSample() {
   if (!currentProblem || !currentLang) { alert('請先選擇語言和題目'); return; }
-  const sol = SOLUTIONS[currentLang][currentProblem.id];
+  const solData = await dbService.getSolutions(currentProblem.id);
+  const sol = solData?.[currentLang] || '';
   if (!sol) { alert('此題目目前沒有參考解答'); return; }
   if (editor.getValue().trim() && !confirm('確定要載入參考解答？（會同時顯示解題思路）')) return;
   editor.setValue(sol);

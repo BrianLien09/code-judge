@@ -441,6 +441,65 @@ textarea.mono {
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+/* ── Login Overlay ── */
+#login-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(15, 17, 23, 0.95);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 10000;
+  backdrop-filter: blur(10px);
+}
+.login-box {
+  background: var(--sidebar-bg);
+  padding: 40px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  text-align: center;
+}
+.login-box h2 {
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.login-box p {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 6px;
+  font-size: 16px;
+}
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background: var(--green);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.login-box button:hover {
+  background: #2ea043;
+}
+.login-error {
+  color: var(--red);
+  font-size: 13px;
+  margin-top: 12px;
+  display: none;
+}
 </style>
 </head>
 <body>
@@ -495,11 +554,15 @@ textarea.mono {
 </div>
 
 <!-- ── 主版面 ──────────────────────────────────────────────────────────── -->
-<div class="layout">
-
-  <!-- 左側 Sidebar：題目列表 -->
+<div class="layout" style="display: none;" id="main-layout">
+  
+  <!-- 側邊欄 -->
   <aside class="sidebar">
     <div class="sidebar-top">
+      <div style="font-size:18px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;justify-content:space-between;">
+        <span>📝 APCS 題庫後台</span>
+        <button class="btn-sm danger" onclick="logout()" title="登出">登出</button>
+      </div>
       <input type="text" class="search-box" id="search-input" placeholder="🔍  搜尋題目標題或 ID..." oninput="filterList()">
       <div class="filter-row" id="sidebar-filters">
         <button class="filter-btn active" data-cat="all" onclick="setFilter(this,'all')">全部</button>
@@ -650,13 +713,33 @@ textarea.mono {
 
 </div><!-- /layout -->
 
+<!-- Login Overlay -->
+<div id="login-overlay">
+  <div class="login-box">
+    <h2>管理員登入</h2>
+    <p>請輸入您的 Firebase 帳號密碼</p>
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <input type="email" id="login-email" placeholder="Email" required autocomplete="username">
+      <input type="password" id="login-pwd" placeholder="Password" required autocomplete="current-password">
+      <button type="submit" id="login-btn">登入</button>
+      <div class="login-error" id="login-error">帳號或密碼錯誤</div>
+    </form>
+  </div>
+</div>
+
+<script type="module">
+  import { dbService } from './js/db.js';
+  window.dbService = dbService;
+  window.dispatchEvent(new Event('dbReady'));
+</script>
+
 <script>
 // ── 狀態 ────────────────────────────────────────────────────────────────────
 
-/** 目前所有題目（從 API 載入的可變副本） */
+/** 目前所有題目（僅存 Meta） */
 let PROBLEMS = [];
-/** 目前所有解答 */
-let SOLUTIONS = { py:{}, cpp:{}, c:{}, java:{} };
+/** 目前選中題目的解答集合 { py, cpp, c, java } */
+let currentSolutions = { py:'', cpp:'', c:'', java:'' };
 /** 目前所有分類 */
 let CATEGORIES = [];
 /** 目前選中的題目索引 */
@@ -680,40 +763,78 @@ const LANG_CONFIG = {
 
 // ── 初始化 ───────────────────────────────────────────────────────────────────
 
-window.addEventListener('DOMContentLoaded', async () => {
-  // 初始化 CodeMirror 解答編輯器
-  solEditor = CodeMirror.fromTextArea(document.getElementById('sol-editor-area'), {
-    mode: 'python', theme: 'dracula', lineNumbers: true,
-    indentUnit: 4, tabSize: 4, indentWithTabs: false,
-    styleActiveLine: true,
-    autoCloseBrackets: true,
-    matchBrackets: true,
-  });
-  solEditor.on('change', () => { dirty = true; });
+window.addEventListener('dbReady', () => {
+  // 監聽登入狀態
+  window.dbService.onAuthStateChanged(async (user) => {
+    if (user) {
+      // 已登入
+      document.getElementById('login-overlay').style.display = 'none';
+      document.getElementById('main-layout').style.display = 'grid';
+      
+      if (!solEditor) {
+        // 初始化 CodeMirror 解答編輯器
+        solEditor = CodeMirror.fromTextArea(document.getElementById('sol-editor-area'), {
+          mode: 'python', theme: 'dracula', lineNumbers: true,
+          indentUnit: 4, tabSize: 4, indentWithTabs: false,
+          styleActiveLine: true,
+          autoCloseBrackets: true,
+          matchBrackets: true,
+        });
+        solEditor.on('change', () => { dirty = true; });
+      }
 
-  await loadData();
+      await loadData();
+    } else {
+      // 未登入
+      document.getElementById('login-overlay').style.display = 'flex';
+      document.getElementById('main-layout').style.display = 'none';
+    }
+  });
 });
 
+async function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('login-email').value.trim();
+  const pwd = document.getElementById('login-pwd').value;
+  const btn = document.getElementById('login-btn');
+  const err = document.getElementById('login-error');
+  
+  btn.disabled = true;
+  btn.textContent = '登入中...';
+  err.style.display = 'none';
+  
+  try {
+    await window.dbService.login(email, pwd);
+    // 登入成功後，onAuthStateChanged 會自動接管，隱藏遮罩
+  } catch (error) {
+    err.textContent = '登入失敗：' + error.message;
+    err.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '登入';
+  }
+}
+
+async function logout() {
+  if (confirm('確定要登出嗎？')) {
+    await window.dbService.logout();
+  }
+}
+
 /**
- * 從 server.js 的 API 載入題目與解答資料。
- * 若 server 未啟動會提示使用者。
+ * 從 Firebase 載入題目與分類資料。
  */
 async function loadData() {
   try {
-    const res  = await fetch('/api/data');
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    PROBLEMS  = data.problems  || [];
-    SOLUTIONS = data.solutions || { py:{}, cpp:{}, c:{}, java:{} };
+    const data = await window.dbService.getMeta(true);
+    PROBLEMS  = data.problemsList || [];
     CATEGORIES = data.categories || [];
     renderSidebarFilters();
     updateCategoryDropdown();
     renderList();
-    toast('已載入 ' + PROBLEMS.length + ' 道題目', 'success');
+    toast('已從 Firebase 載入 ' + PROBLEMS.length + ' 道題目', 'success');
   } catch (e) {
-    toast('無法連線到本地伺服器，請確認 node server.js 正在執行', 'error');
-    document.getElementById('problem-list').innerHTML =
-      '<div class="list-count" style="color:var(--red)">⚠️ 無法載入資料<br><small>請執行 node server.js</small></div>';
+    toast('載入失敗，請確認 Firebase 設定', 'error');
   }
 }
 
@@ -722,7 +843,7 @@ async function loadData() {
 const DIFF_LABEL = { easy:'初級', medium:'中級', midhigh:'中高級', hard:'高級' };
 
 function renderList() {
-  const query = document.getElementById('search-input').value.toLowerCase();
+  const query = document.getElementById('search-input')?.value.toLowerCase() || '';
   const list  = document.getElementById('problem-list');
 
   const filtered = PROBLEMS
@@ -764,30 +885,32 @@ function setFilter(btn, catId) {
 
 // ── 選題 ─────────────────────────────────────────────────────────────────────
 
-function selectProblem(idx) {
-  // 若有未儲存，提示（不阻擋，僅提醒）
-  if (dirty) {
-    toast('提示：目前有未儲存的變更', 'info');
-  }
+async function selectProblem(idx) {
+  if (dirty && !confirm('有未儲存的變更，確定要切換嗎？')) return;
+
+  const pMeta = PROBLEMS[idx];
+  const pDetails = await window.dbService.getProblemDetails(pMeta.id);
+  const p = { ...pMeta, ...(pDetails||{}) };
+  
+  const sols = await window.dbService.getSolutions(pMeta.id);
+  currentSolutions = sols || { py:'', cpp:'', c:'', java:'' };
 
   currentIdx = idx;
   dirty = false;
-  renderList();
-  loadProblemToEditor(PROBLEMS[idx]);
   showEditor();
-}
+  switchTab('info');
+  document.querySelectorAll('#problem-list .list-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('list-item-' + idx).classList.add('active');
 
-/**
- * 將題目物件的資料填入表單各欄位與解答編輯器。
- */
-function loadProblemToEditor(p) {
   // 基本欄位
-  document.getElementById('f-id').value          = p.id          || '';
-  document.getElementById('f-title').value       = p.title       || '';
-  document.getElementById('f-topic').value       = p.topic       || '';
-  document.getElementById('f-date').value        = p.date        || '';
-  document.getElementById('f-source').value      = p.source      || '';
-  document.getElementById('f-url').value         = p.url         || '';
+  document.getElementById('f-id').value    = p.id;
+  document.getElementById('f-title').value = p.title;
+  document.getElementById('f-topic').value = p.topic || '';
+  document.getElementById('f-date').value  = p.date  || '';
+  document.getElementById('f-source').value= p.source|| '';
+  document.getElementById('f-url').value   = p.url   || '';
+
+  // 說明與提示
   document.getElementById('f-desc').value        = p.desc        || '';
   document.getElementById('f-input-desc').value  = p.input_desc  || '';
   document.getElementById('f-output-desc').value = p.output_desc || '';
@@ -799,13 +922,23 @@ function loadProblemToEditor(p) {
 
   // 工具列標題
   document.getElementById('toolbar-title').textContent = p.title || '未命名題目';
-  document.getElementById('toolbar-id').textContent    = p.id    || '';
+  document.getElementById('toolbar-id').textContent    = p.id;
 
   // 範例測資
-  renderSamples(p.samples || []);
+  const container = document.getElementById('samples-container');
+  container.innerHTML = '';
+  if (p.samples && p.samples.length > 0) {
+    p.samples.forEach(s => {
+      const idx = container.querySelectorAll('.sample-block').length;
+      container.insertAdjacentHTML('beforeend', buildSampleBlock(idx, s.input, s.output));
+    });
+  } else {
+    addSample();
+  }
 
-  // 解答編輯器（更新當前語言內容）
-  loadSolEditor(p.id, currentSolLang);
+  // 解答
+  switchSolLang('py');
+  dirty = false;
 }
 
 // ── 難度選擇 ─────────────────────────────────────────────────────────────────
@@ -856,7 +989,6 @@ function addSample() {
 }
 
 function removeSample(idx) {
-  // 移除後重新渲染所有測資（維持索引連貫）
   const samples = collectSamples();
   samples.splice(idx, 1);
   renderSamples(samples);
@@ -874,26 +1006,16 @@ function collectSamples() {
 
 // ── 解答編輯器 ───────────────────────────────────────────────────────────────
 
-/**
- * 先將當前語言的內容存回記憶體，
- * 再載入目標語言的解答到 CodeMirror。
- */
 function switchSolLang(lang) {
   // 儲存當前語言的編輯內容到記憶體
-  if (currentIdx !== null) {
-    const pid = PROBLEMS[currentIdx].id;
-    SOLUTIONS[currentSolLang] = SOLUTIONS[currentSolLang] || {};
-    SOLUTIONS[currentSolLang][pid] = solEditor.getValue();
-  }
-
+  currentSolutions[currentSolLang] = solEditor.getValue();
+  
   // 切換 tab 樣式
   document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
   const activeTab = document.getElementById(`sol-tab-${lang}`);
   if (activeTab) activeTab.classList.add('active');
 
   currentSolLang = lang;
-
-  // 載入新語言的內容
   if (currentIdx !== null) {
     loadSolEditor(PROBLEMS[currentIdx].id, lang);
   }
@@ -997,46 +1119,39 @@ function collectProblemFromForm() {
 async function saveCurrent() {
   if (currentIdx === null) return;
 
-  // 收集題目
+  // 收集題目詳情
   const p = collectProblemFromForm();
   if (!p) return;
 
   // 把解答編輯器內容存回記憶體
-  SOLUTIONS[currentSolLang] = SOLUTIONS[currentSolLang] || {};
-  SOLUTIONS[currentSolLang][p.id] = solEditor.getValue();
+  currentSolutions[currentSolLang] = solEditor.getValue();
 
-  // 若 ID 被改了，要把舊 ID 的解答搬移到新 ID
-  const oldId = PROBLEMS[currentIdx].id;
-  if (oldId !== p.id) {
-    for (const lang of ['py', 'cpp', 'c', 'java']) {
-      if (SOLUTIONS[lang]?.[oldId] !== undefined) {
-        SOLUTIONS[lang][p.id]  = SOLUTIONS[lang][oldId];
-        delete SOLUTIONS[lang][oldId];
-      }
-    }
+  // 更新記憶體中的 meta 題目
+  const meta = { id: p.id, title: p.title, categoryId: p.categoryId, topic: p.topic, date: p.date, diff: p.diff };
+  if (currentIdx !== null) {
+    PROBLEMS[currentIdx] = meta;
+  } else {
+    PROBLEMS.push(meta);
+    currentIdx = PROBLEMS.length - 1;
   }
-
-  // 更新記憶體中的題目
-  PROBLEMS[currentIdx] = p;
 
   // 更新工具列
   document.getElementById('toolbar-title').textContent = p.title;
   document.getElementById('toolbar-id').textContent    = p.id;
 
-  // 呼叫 API 寫入兩個檔案
   const statusEl = document.getElementById('save-status');
   statusEl.textContent = '儲存中...';
 
   try {
-    const [r1, r2] = await Promise.all([
-      fetch('/api/save/problems',  { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ problems: PROBLEMS  }) }),
-      fetch('/api/save/solutions', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ solutions: SOLUTIONS }) }),
-    ]);
-    if (!r1.ok || !r2.ok) throw new Error('伺服器回應錯誤');
+    // Save to Firebase
+    await window.dbService.saveMeta(CATEGORIES, PROBLEMS);
+    await window.dbService.saveProblemDetails(p.id, p);
+    await window.dbService.saveSolutions(p.id, currentSolutions);
+
     dirty = false;
     renderList();
     statusEl.textContent = `已儲存 ${new Date().toLocaleTimeString()}`;
-    toast('儲存成功！problems.js 與 solutions.js 已更新', 'success');
+    toast('儲存成功！資料已同步至 Firebase', 'success');
   } catch (e) {
     statusEl.textContent = '儲存失敗';
     toast('儲存失敗：' + e.message, 'error');
@@ -1061,21 +1176,25 @@ function closeDeleteDialog() {
   pendingDeleteIdx = null;
 }
 
-function confirmDelete() {
+async function confirmDelete() {
   if (pendingDeleteIdx === null) return;
   const pid = PROBLEMS[pendingDeleteIdx].id;
 
   // 從記憶體移除
   PROBLEMS.splice(pendingDeleteIdx, 1);
-  for (const lang of ['py', 'cpp', 'c', 'java']) {
-    delete SOLUTIONS[lang]?.[pid];
-  }
 
-  closeDeleteDialog();
-  currentIdx = null;
-  renderList();
-  hideEditor();
-  toast(`「${pid}」已從列表移除，儲存後永久生效`, 'info');
+  try {
+    await window.dbService.deleteProblem(pid);
+    await window.dbService.saveMeta(CATEGORIES, PROBLEMS);
+    
+    closeDeleteDialog();
+    currentIdx = null;
+    renderList();
+    hideEditor();
+    toast(`「${pid}」已刪除並同步至 Firebase`, 'info');
+  } catch(e) {
+    toast('刪除失敗：' + e.message, 'error');
+  }
 }
 
 // ── UI 切換 ──────────────────────────────────────────────────────────────────

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>資料轉移至 Firebase</title>
+  <style>
+    body { font-family: sans-serif; padding: 50px; background: #0d1117; color: #c9d1d9; }
+    button { padding: 10px 20px; font-size: 16px; background: #238636; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #2ea043; }
+    #log { margin-top: 20px; font-family: monospace; white-space: pre-wrap; background: #161b22; padding: 15px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h1>🚀 轉移本地資料至 Firebase</h1>
+  <p>點擊下方按鈕，系統將從伺服器 (`/api/data`) 讀取所有本地資料，並轉換上傳至 Firebase。</p>
+  <p>請確保您已經在 `js/firebase-config.js` 中填寫了正確的 Firebase 設定。</p>
+  <button id="btn" onclick="startMigration()">開始轉移資料</button>
+  <div id="log">等待操作...</div>
+
+  <script type="module">
+    import { dbService } from './js/db.js';
+
+    window.startMigration = async function() {
+      const logEl = document.getElementById('log');
+      const btn = document.getElementById('btn');
+      
+      if (!confirm("確定要將本地資料全部上傳到 Firebase 嗎？")) return;
+      
+      btn.disabled = true;
+      logEl.innerHTML = "⏳ 載入本地資料中...\n";
+      
+      try {
+        const res = await fetch('/api/data');
+        const data = await res.json();
+        const PROBLEMS = data.problems || [];
+        const SOLUTIONS = data.solutions || { py:{}, cpp:{}, c:{}, java:{} };
+        const CATEGORIES = data.categories || [];
+
+        logEl.innerHTML += `✅ 讀取完成：${PROBLEMS.length} 題, ${CATEGORIES.length} 個分類\n\n`;
+        
+        // 1. Save Meta
+        logEl.innerHTML += `⏳ 上傳總表 (Meta)...\n`;
+        const metaProblems = PROBLEMS.map(p => ({
+          id: p.id,
+          title: p.title,
+          categoryId: p.categoryId,
+          topic: p.topic,
+          date: p.date,
+          diff: p.diff
+        }));
+        await dbService.saveMeta(CATEGORIES, metaProblems);
+        logEl.innerHTML += `✅ 總表上傳成功\n\n`;
+
+        // 2. Save Details & Solutions
+        logEl.innerHTML += `⏳ 上傳題目詳細資料與解答...\n`;
+        let count = 0;
+        for (const p of PROBLEMS) {
+          const details = {
+            desc: p.desc || '',
+            input_desc: p.input_desc || '',
+            output_desc: p.output_desc || '',
+            samples: p.samples || [],
+            hint: p.hint || '',
+            source: p.source || '',
+            url: p.url || ''
+          };
+          await dbService.saveProblemDetails(p.id, details);
+          
+          const sols = {};
+          for (const lang of ['py', 'cpp', 'c', 'java']) {
+            if (SOLUTIONS[lang] && SOLUTIONS[lang][p.id]) {
+              sols[lang] = SOLUTIONS[lang][p.id];
+            }
+          }
+          await dbService.saveSolutions(p.id, sols);
+          count++;
+          if (count % 5 === 0) logEl.innerHTML += `   ...已處理 ${count} 題\n`;
+        }
+
+        logEl.innerHTML += `\n🎉 轉換全部完成！總共轉移了 ${count} 題。\n您現在可以返回主系統了！`;
+        
+      } catch (err) {
+        logEl.innerHTML += `\n❌ 錯誤：${err.message}\n請檢查 Console 了解詳情。`;
+        console.error(err);
+      } finally {
+        btn.disabled = false;
+      }
+    };
+  </script>
+</body>
+</html>

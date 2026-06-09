@@ -29,5 +29,11 @@ const CATEGORIES = [
     "name": "資料結構",
     "parentId": null,
     "order": 5
+  },
+  {
+    "id": "cat_mq6r4o31",
+    "name": "graph",
+    "parentId": "cat_mq6r25gf",
+    "order": 1
   }
 ];
