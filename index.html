@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APCS 多級 多語言評分系統</title>
+
+<!-- 外部樣式庫 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+
+<!-- 本站樣式 -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- 外部程式庫 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+
+<!-- 括號與引號自動補全、匹配 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+<!-- ── 頂部 Header ─────────────────────────────────────────────────────────── -->
+<header>
+  <div>
+    <div class="logo" id="logo">APCS 多語言評分系統</div>
+    <div class="sub"><span id="problem-total">0</span> 題 · 初/中/中高/高級 · Python / C++ / C / Java</div>
+  </div>
+  <div class="hright">
+    <a href="tutorial.html" style="color:var(--text-muted);text-decoration:none;padding:5px 10px;border:1px solid var(--border);border-radius:5px;">📚 基礎教學</a>
+    <span><span class="status-dot" id="status-dot"></span><span id="status-text">載入中...</span></span>
+  </div>
+</header>
+
+<!-- ── 語言切換 Tabs ──────────────────────────────────────────────────────── -->
+<div class="lang-tabs">
+  <div class="lang-tab" id="tab-py"   onclick="switchLang('py')"  >🐍 Python</div>
+  <div class="lang-tab" id="tab-cpp"  onclick="switchLang('cpp')" >⚡ C++</div>
+  <div class="lang-tab" id="tab-c"    onclick="switchLang('c')"   >🔧 C</div>
+  <div class="lang-tab" id="tab-java" onclick="switchLang('java')">☕ Java</div>
+  <div class="lang-note" id="lang-note"></div>
+</div>
+
+<!-- ── 主要版面 ───────────────────────────────────────────────────────────── -->
+<div class="layout">
+
+  <!-- 左側：題目列表 Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-label">題目列表（<span id="problem-list-total">0</span> 題）</span>
+      <span id="solved-count" class="sidebar-label" style="color:var(--green);font-size:11px;">0 / 0</span>
+      <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()" title="收合側欄">◀</button>
+    </div>
+    <div class="problem-list" id="problem-list"></div>
+  </aside>
+
+  <!-- 右側：主面板 -->
+  <div class="main" id="main">
+
+    <!-- 題目說明面板 -->
+    <div class="problem-panel" id="problem-panel">
+      <div class="panel-hdr">
+        <span>題目說明</span>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <span id="prob-badge"></span>
+          <div class="zoom-ctrls">
+            <button class="btn-zoom" onclick="zoomDesc(1)" title="放大字體">A+</button>
+            <button class="btn-zoom" onclick="zoomDesc(-1)" title="縮小字體">A-</button>
+          </div>
+        </div>
+      </div>
+      <div class="problem-content" id="problem-content">
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--text-muted);gap:10px;">
+          <div style="font-size:44px">👈</div><div>選擇語言，再從左側點選題目</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 拖曳分隔線 -->
+    <div class="drag-handle" id="drag-handle"></div>
+
+    <!-- 程式碼編輯器面板 -->
+    <div class="editor-panel" id="editor-panel">
+      <div class="editor-toolbar">
+        <button class="btn btn-run" id="run-btn" onclick="runCode()" disabled>▶ 執行並評分</button>
+        <button class="btn btn-sec" onclick="clearEditor()">清空</button>
+        <button class="btn btn-sample" onclick="loadSample()">載入解答</button>
+        <button class="btn btn-sec" onclick="showHint()" title="顯示解題思路">💡 思路</button>
+        <div class="zoom-ctrls" style="margin-left:10px;border-left:1px solid var(--border);padding-left:10px;">
+          <button class="btn-zoom" onclick="zoomCode(1)" title="放大字體">A+</button>
+          <button class="btn-zoom" onclick="zoomCode(-1)" title="縮小字體">A-</button>
+        </div>
+        <span style="flex:1"></span>
+        <span id="lang-label" style="font-size:11px;color:var(--text-muted);">-</span>
+      </div>
+      <div class="editor-wrap"><textarea id="code-editor"></textarea></div>
+      
+      <!-- 上下拖曳分隔線 -->
+      <div class="drag-handle-h" id="drag-handle-h"></div>
+      
+      <div class="results-panel" id="results-panel">
+        <div class="results-hdr"><span>📊 評測結果</span><span id="results-summary" style="margin-left:auto;"></span></div>
+        <div id="results-body"><div class="no-results">選擇題目後撰寫程式，點擊「執行並評分」</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── 解題思路 Overlay ───────────────────────────────────────────────────── -->
+<div id="hint-overlay" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:100;align-items:center;justify-content:center;padding:20px;" onclick="if(event.target===this)hideHint()">
+  <div style="background:var(--panel-bg);border:1px solid var(--border);border-radius:10px;max-width:680px;width:100%;max-height:80vh;overflow:auto;box-shadow:0 8px 40px rgba(0,0,0,.5);">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);">
+      <div style="font-size:15px;font-weight:600;color:var(--lang-color);">💡 解題思路</div>
+      <button onclick="hideHint()" style="background:none;border:none;color:var(--text-muted);font-size:20px;cursor:pointer;line-height:1;">×</button>
+    </div>
+    <div id="hint-content" style="padding:20px;font-size:13px;line-height:1.8;color:#cdd9e5;"></div>
+    <div style="padding:10px 20px 14px;border-top:1px solid var(--border);font-size:11px;color:var(--text-muted);">💭 提示：好的解題者會從題目敘述中的<strong style="color:var(--text)">關鍵字</strong>與<strong style="color:var(--text)">範例</strong>反推適合的演算法。</div>
+  </div>
+</div>
+
+<style>
+#hint-content code {background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px;font-family:monospace;font-size:12px;color:var(--lang-color);}
+#hint-content strong {color:var(--text);}
+#hint-content p {margin-bottom:8px;}
+</style>
+
+<!-- ── 資料層：題目與解答 ────────────────────────────────────────────────── -->
+<script src="data/problems.js"></script>
+<script src="data/solutions.js"></script>
+
+<!-- ── 應用程式邏輯 ───────────────────────────────────────────────────────── -->
+<script src="js/app.js"></script>
+
+</body>
+</html>

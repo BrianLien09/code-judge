@@ -1,0 +1,549 @@
+// ── Language config ───────────────────────────────────────────────────────────
+const LANGS = {
+  py:   { name:'Python', icon:'🐍', color:'#3fb950', mode:'python',        note:'Pyodide 瀏覽器執行',          label:'Python' },
+  cpp:  { name:'C++',    icon:'⚡', color:'#79c0ff', mode:'text/x-c++src', note:'線上 g++ (Judge0)',           label:'C++' },
+  c:    { name:'C',      icon:'🔧', color:'#ffa657', mode:'text/x-csrc',   note:'線上 gcc (Judge0)',           label:'C' },
+  java: { name:'Java',   icon:'☕', color:'#d2a8ff', mode:'text/x-java',   note:'Judge0 CE（需網路，約3秒）',  label:'Java' }
+};
+
+// ── State ─────────────────────────────────────────────────────────────────────
+let currentLang = null;
+let currentProblem = null;
+let editor = null;
+let pyodide = null;
+let pyodideLoading = false;
+let scores = {}; // { 'py_b964': {passed,total}, 'cpp_b964': ... }
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  editor = CodeMirror.fromTextArea(document.getElementById('code-editor'), {
+    mode: 'python', theme: 'dracula', lineNumbers: true,
+    indentUnit: 4, tabSize: 4, indentWithTabs: false,
+    extraKeys: { 'Tab': cm => cm.execCommand('indentMore'), 'Ctrl-Enter': runCode, 'Cmd-Enter': runCode },
+    styleActiveLine: true,
+    autoCloseBrackets: true,
+    matchBrackets: true
+  });
+  updateProblemTotals();
+  switchLang('py');
+});
+
+// ── Language switching ────────────────────────────────────────────────────────
+function switchLang(lang) {
+  currentLang = lang;
+  const cfg = LANGS[lang];
+
+  // Update CSS variable for accent color
+  document.documentElement.style.setProperty('--lang-color', cfg.color);
+
+  // Update tabs
+  Object.keys(LANGS).forEach(k => {
+    document.getElementById('tab-'+k).className = 'lang-tab' + (k===lang ? ' active-'+k : '');
+  });
+
+  // Update header logo color, label, note
+  document.getElementById('logo').textContent = `APCS 多級 ${cfg.name} 評分系統`;
+  document.getElementById('lang-label').textContent = cfg.label;
+  document.getElementById('lang-note').textContent = cfg.note;
+
+  // Update editor mode
+  editor.setOption('mode', cfg.mode);
+
+  // Update run button color (via CSS var, already done above)
+  // Update status
+  updateStatus(lang);
+
+  // Re-render problem list with new scores
+  renderProblemList();
+
+  // If a problem is open, reload its state
+  if (currentProblem) {
+    renderProblemContent();
+    const key = lang + '_' + currentProblem.id;
+    document.getElementById('results-body').innerHTML = '<div class="no-results">已切換語言，重新撰寫或載入解答後點擊執行</div>';
+    document.getElementById('results-summary').textContent = '';
+  }
+
+  // Trigger Pyodide load when Python selected
+  if (lang === 'py' && !pyodide && !pyodideLoading) {
+    loadPyodide();
+  }
+}
+
+function updateStatus(lang) {
+  const dot = document.getElementById('status-dot');
+  const txt = document.getElementById('status-text');
+  if (lang === 'py') {
+    if (pyodide) { dot.className = 'status-dot ready'; txt.textContent = 'Python 就緒'; }
+    else { dot.className = 'status-dot'; txt.textContent = '載入 Python 中...'; }
+  } else if (lang === 'java') {
+    dot.className = 'status-dot ready';
+    txt.textContent = 'Java 就緒（需網路）';
+  } else {
+    dot.className = 'status-dot ready';
+    txt.textContent = LANGS[lang].name + ' 就緒';
+  }
+  // Enable/disable run button
+  const canRun = lang !== 'py' || !!pyodide;
+  document.getElementById('run-btn').disabled = !canRun || !currentProblem;
+}
+
+// ── Pyodide ───────────────────────────────────────────────────────────────────
+async function loadPyodide() {
+  pyodideLoading = true;
+  updateStatus('py');
+  try {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js';
+    document.head.appendChild(script);
+    await new Promise((res, rej) => { script.onload = res; script.onerror = rej; });
+    pyodide = await window.loadPyodide({ indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.26.4/full/' });
+    pyodideLoading = false;
+    if (currentLang === 'py') {
+      updateStatus('py');
+      if (currentProblem) document.getElementById('run-btn').disabled = false;
+    }
+  } catch(e) {
+    pyodideLoading = false;
+    document.getElementById('status-dot').className = 'status-dot'; // keep yellow
+    document.getElementById('status-text').textContent = 'Python 載入失敗';
+  }
+}
+
+// ── Problem list ──────────────────────────────────────────────────────────────
+const DIFFICULTY = {
+  easy:    { stars:'⭐',       label:'初級',   color:'#3fb950', bg:'rgba(63,185,80,.15)',   border:'rgba(63,185,80,.3)' },
+  medium:  { stars:'⭐⭐',     label:'中級',   color:'#d29922', bg:'rgba(210,153,34,.15)',  border:'rgba(210,153,34,.3)' },
+  midhigh: { stars:'⭐⭐⭐',   label:'中高級', color:'#bc8cff', bg:'rgba(188,140,255,.14)', border:'rgba(188,140,255,.32)' },
+  hard:    { stars:'⭐⭐⭐⭐', label:'高級',   color:'#f85149', bg:'rgba(248,81,73,.15)',   border:'rgba(248,81,73,.3)' }
+};
+
+const LEVEL_SECTIONS = [
+  { diff:'easy',    icon:'📗', desc:'語法 → 基礎實作 → 直接模擬' },
+  { diff:'medium',  icon:'📙', desc:'序列資料 → 排序/前綴 → 狀態整理' },
+  { diff:'midhigh', icon:'📘', desc:'資料結構 → 圖/樹 → 狀態管理' },
+  { diff:'hard',    icon:'📕', desc:'演算法設計 → 複雜度最佳化' }
+];
+
+function difficultyInfo(diff) {
+  return DIFFICULTY[diff] || DIFFICULTY.easy;
+}
+
+function difficultyStars(diff) {
+  const d = difficultyInfo(diff);
+  return `<span style="font-size:9px;color:${d.color};">${d.stars}</span>`;
+}
+
+function difficultyBadge(diff) {
+  const d = difficultyInfo(diff);
+  return `<span class="badge" style="color:${d.color};background:${d.bg};border-color:${d.border};">${d.stars} ${d.label}</span>`;
+}
+
+function renderProblemList() {
+  const list = document.getElementById('problem-list');
+  const indexedProblems = PROBLEMS.map((p, i) => ({ p, i }));
+  list.innerHTML = LEVEL_SECTIONS.map((section, sectionIdx) => {
+    const d = difficultyInfo(section.diff);
+    const items = indexedProblems.filter(({ p }) => (p.diff || 'easy') === section.diff);
+    
+    // 預設第一組展開，其他收合
+    const isCollapsed = sectionIdx === 0 ? '' : ' collapsed-group';
+    const isHidden = sectionIdx === 0 ? '' : ' group-hidden';
+
+    return `<div class="problem-group">
+      <div class="level-header${isCollapsed}" style="--level-color:${d.color};--level-bg:${d.bg};--level-border:${d.border};" onclick="toggleGroup(this)">
+        <div class="level-title-row">
+          <span>${escH(section.icon)}</span>
+          <span>${escH(d.label)}練習</span>
+          <span class="folder-chevron">▼</span>
+          <span class="count">${items.length} 題</span>
+        </div>
+        <div class="level-desc">${escH(section.desc)}</div>
+      </div>
+      <div class="group-items${isHidden}">
+        ${items.map(({ p, i }) => renderProblemItem(p, i, d)).join('')}
+      </div>
+    </div>`;
+  }).join('');
+
+  // Solved count for current language
+  const solved = PROBLEMS.filter(p => {
+    const s = scores[currentLang + '_' + p.id];
+    return s && s.passed === s.total;
+  }).length;
+  document.getElementById('solved-count').textContent = `${solved} / ${PROBLEMS.length}`;
+}
+
+function updateProblemTotals() {
+  document.getElementById('problem-total').textContent = PROBLEMS.length;
+  document.getElementById('problem-list-total').textContent = PROBLEMS.length;
+}
+
+function renderProblemItem(p, i, d) {
+    const key = currentLang + '_' + p.id;
+    const s = scores[key];
+    let sh = '';
+    if (s) {
+      if (s.passed === s.total) sh = '<span class="pstatus pass">AC</span>';
+      else if (s.passed > 0) sh = `<span class="pstatus partial">${s.passed}/${s.total}</span>`;
+      else sh = '<span class="pstatus fail">WA</span>';
+    }
+    const active = currentProblem?.id === p.id ? ' active' : '';
+    return `<div class="problem-item${active}" style="--level-color:${d.color};" onclick="selectProblem(${i})">
+      <div class="pmeta">第 ${String(i+1).padStart(2,'0')} 題 · ${escH(p.topic || p.date)}</div>
+      <div class="problem-row">
+        <span class="ptitle">${escH(p.title)}</span>
+        <span class="pmarks">${difficultyStars(p.diff)}${sh}</span>
+      </div>
+    </div>`;
+}
+
+// ── Select problem ────────────────────────────────────────────────────────────
+function selectProblem(idx) {
+  currentProblem = PROBLEMS[idx];
+  renderProblemList();
+  renderProblemContent();
+  document.getElementById('results-body').innerHTML = '<div class="no-results">撰寫程式後點擊「執行並評分」</div>';
+  document.getElementById('results-summary').textContent = '';
+  if (currentLang !== 'py' || pyodide)
+    document.getElementById('run-btn').disabled = false;
+}
+
+function renderProblemContent() {
+  const p = currentProblem;
+  const cfg = LANGS[currentLang];
+  document.getElementById('prob-badge').textContent = p.source ? `🌏 ${p.source}` : `ZeroJudge: ${p.id}`;
+  const originalUrl = safeUrl(p.url);
+  const samples = p.samples.map((s, i) => `
+    <div class="sample-block">
+      <div class="sample-block-hdr">範例 ${i+1}</div>
+      <div class="sample-inner">
+        <div class="sample-col"><div class="sample-col-label">輸入</div><pre>${escH(s.input)}</pre></div>
+        <div class="sample-col"><div class="sample-col-label">輸出</div><pre>${escH(s.output)}</pre></div>
+      </div>
+    </div>`).join('');
+  document.getElementById('problem-content').innerHTML = `
+    <div class="problem-title-h">${escH(p.title)}</div>
+    <div class="problem-meta">
+      <span class="badge">${escH(p.date)}</span>
+      ${p.source ? `<span class="badge" style="color:#79c0ff;background:rgba(121,192,255,.12);border-color:rgba(121,192,255,.35);">🌏 ${escH(p.source)}</span>` : `<span class="badge">${escH(p.id)}</span>`}
+      ${originalUrl ? `<a class="badge" href="${escAttr(originalUrl)}" target="_blank" rel="noopener" style="color:#3fb950;background:rgba(63,185,80,.10);border-color:rgba(63,185,80,.35);text-decoration:none;">🔗 原題</a>` : ''}
+      <span class="badge lang">${escH(cfg.icon)} ${escH(cfg.name)}</span>
+      ${p.topic ? `<span class="badge topic">${escH(p.topic)}</span>` : ''}
+      ${difficultyBadge(p.diff)}
+    </div>
+    <div class="section-label">題目說明</div><div class="desc-text">${safeMarkdown(p.desc)}</div>
+    <div class="section-label">輸入說明</div><div class="desc-text">${safeMarkdown(p.input_desc)}</div>
+    <div class="section-label">輸出說明</div><div class="desc-text">${safeMarkdown(p.output_desc)}</div>
+    <div class="section-label">範例測資</div>${samples}`;
+}
+
+// ── Run ───────────────────────────────────────────────────────────────────────
+let errorMarks = [];
+
+function clearErrorMarks() {
+  errorMarks.forEach(m => m.clear());
+  errorMarks = [];
+}
+
+async function runCode() {
+  if (!currentProblem || !currentLang) return;
+  const code = editor.getValue().trim();
+  if (!code) { alert('請先撰寫程式碼！'); return; }
+
+  clearErrorMarks();
+
+  const btn = document.getElementById('run-btn');
+  btn.disabled = true;
+  btn.textContent = currentLang === 'java' ? '⏳ 執行中（約3秒）...' : '⏳ 執行中...';
+
+  const results = [];
+  for (let i = 0; i < currentProblem.samples.length; i++) {
+    const s = currentProblem.samples[i];
+    const r = await runSingle(code, s.input, s.output);
+    results.push({ ...r, idx: i + 1 });
+  }
+
+  btn.disabled = false;
+  btn.textContent = '▶ 執行並評分';
+
+  const passed = results.filter(r => r.pass).length;
+  const total = results.length;
+  scores[currentLang + '_' + currentProblem.id] = { passed, total };
+  renderProblemList();
+  renderResults(results, passed, total);
+
+  // 如果有發生錯誤，找第一個有 parse 出行號的錯誤標上紅底線
+  const firstErr = results.find(r => r.errorLine !== undefined && r.errorLine >= 0);
+  if (firstErr) {
+    const L = firstErr.errorLine;
+    const mark = editor.markText({line: L, ch: 0}, {line: L, ch: 1000}, {className: 'syntax-error', title: '執行/編譯錯誤'});
+    errorMarks.push(mark);
+  }
+}
+
+async function runSingle(code, stdin, expectedRaw) {
+  const expected = expectedRaw.replace(/\r\n/g, '\n').trimEnd();
+  try {
+    let output = '', error = null, errorLine = undefined;
+    if (currentLang === 'py') {
+      const lines = stdin.split('\n');
+      pyodide.globals.set('_stdin_lines', lines);
+      pyodide.globals.set('_stdin_text', stdin.endsWith('\n') ? stdin : stdin + '\n');
+      output = await pyodide.runPythonAsync(`
+import sys, io, builtins
+_lines = _stdin_lines; _idx = [0]
+def _inp(p=''):
+    if _idx[0] < len(_lines): v=_lines[_idx[0]]; _idx[0]+=1; return v
+    raise EOFError()
+builtins.input = _inp
+sys.stdin = io.StringIO(_stdin_text)
+_old = sys.stdout; sys.stdout = io.StringIO()
+try:
+${code.split('\n').map(l => '    ' + l).join('\n')}
+    _out = sys.stdout.getvalue()
+except Exception as e:
+    import traceback
+    _out = 'ERROR:\\n' + traceback.format_exc()
+finally:
+    sys.stdout = _old
+_out`);
+      if (String(output).startsWith('ERROR:')) {
+        error = String(output);
+        output = '';
+        const m = error.match(/line (\d+)/g);
+        if (m && m.length > 0) {
+          // 取出最後一個 line X（通常是最內層的使用者程式碼）
+          const lastLineMatch = m[m.length - 1].match(/\d+/);
+          if (lastLineMatch) {
+             errorLine = parseInt(lastLineMatch[0]) - 10; // Python script wrapper 佔 9 行，加上 0-indexed = 10
+          }
+        }
+      }
+    } else {
+      // C / C++ / Java 走 Judge0 CE（Piston 公開 API 自 2026/02/15 起白名單）
+      const JUDGE0_LANG = { cpp: 54, c: 50, java: 62 };
+      const res = await fetch('https://ce.judge0.com/submissions?base64_encoded=false&wait=true', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          language_id: JUDGE0_LANG[currentLang],
+          source_code: code,
+          stdin: stdin || ''
+        })
+      });
+      const data = await res.json();
+      const stdout = data.stdout || '';
+      const stderr = data.stderr || data.compile_output || '';
+      if (stderr && !stdout) {
+         error = stderr;
+         const m = error.match(/[:\s](\d+):/); // 匹配 :15: 或 15:
+         if (m) errorLine = parseInt(m[1]) - 1;
+         return { pass: false, got: '', expected, error: error.split('\n').slice(0, 4).join('\n'), errorLine };
+      }
+      output = stdout;
+    }
+    const got = String(output).replace(/\r\n/g, '\n').trimEnd();
+    return { pass: got === expected, got, expected, error, errorLine };
+  } catch(e) {
+    return { pass: false, got: '', expected, error: String(e.message || e).split('\n').slice(0, 3).join('\n') };
+  }
+}
+
+function renderResults(results, passed, total) {
+  const pct = Math.round(passed / total * 100);
+  const sc = passed === total ? 'full' : passed > 0 ? 'partial' : 'zero';
+  document.getElementById('results-summary').innerHTML =
+    `<span style="color:var(--${passed===total?'green':passed>0?'yellow':'red'})">${passed}/${total} 通過</span>`;
+
+  const rows = results.map(r => `
+    <div class="test-case">
+      <div class="test-col"><div class="test-label">
+        <div class="icon ${r.pass?'icon-pass':'icon-fail'}">${r.pass?'✓':'✗'}</div>
+        <span style="color:var(--${r.pass?'green':'red'})">測資 ${r.idx} · ${r.pass?'AC':'WA'}</span>
+      </div></div>
+      <div class="test-col">
+        <div style="font-size:9px;color:var(--text-muted);margin-bottom:4px">預期輸出</div>
+        <pre>${escH(r.expected)}</pre>
+      </div>
+      <div class="test-col">
+        <div style="font-size:9px;color:var(--text-muted);margin-bottom:4px">你的輸出</div>
+        <pre class="${r.pass?'pre-right':'pre-wrong'}">${escH(r.error || r.got || '(無輸出)')}</pre>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('results-body').innerHTML = `
+    <div class="score-summary">
+      <span class="score-num ${sc}">${pct}%</span>
+      <div>
+        <div style="font-size:13px;font-weight:600">${passed===total?'🎉 全部通過！':passed>0?'⚠️ 部分通過':'❌ 未通過'}</div>
+        <div style="font-size:11px;color:var(--text-muted)">通過 ${passed} / ${total} 筆測資</div>
+      </div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    ${rows}`;
+}
+
+function clearEditor() { editor.setValue(''); editor.focus(); }
+
+function loadSample() {
+  if (!currentProblem || !currentLang) { alert('請先選擇語言和題目'); return; }
+  const sol = SOLUTIONS[currentLang][currentProblem.id];
+  if (!sol) { alert('此題目目前沒有參考解答'); return; }
+  if (editor.getValue().trim() && !confirm('確定要載入參考解答？（會同時顯示解題思路）')) return;
+  editor.setValue(sol);
+  editor.focus();
+  // Show hint panel if hint exists
+  if (currentProblem.hint) showHint();
+}
+
+function showHint() {
+  if (!currentProblem || !currentProblem.hint) return;
+  const html = safeMarkdown(currentProblem.hint);
+  document.getElementById('hint-content').innerHTML = html;
+  document.getElementById('hint-overlay').style.display = 'flex';
+}
+
+function hideHint() {
+  document.getElementById('hint-overlay').style.display = 'none';
+}
+
+function escH(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function escAttr(s) {
+  return escH(s).replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function safeUrl(url) {
+  if (!url) return '';
+  try {
+    const u = new URL(String(url), window.location.href);
+    return ['http:', 'https:'].includes(u.protocol) ? u.href : '';
+  } catch (_) {
+    return '';
+  }
+}
+
+function safeMarkdown(text) {
+  const escaped = escH(text).replace(/~/g, '&#126;');
+  return marked.parse(escaped).replace(/&amp;(lt|gt|amp|#126);/g, '&$1;');
+}
+
+// ── UI 互動邏輯（側欄、資料夾、拖曳） ──────────────────────────────────────────
+
+// 資料夾收合
+function toggleGroup(headerEl) {
+  headerEl.classList.toggle('collapsed-group');
+  const itemsContainer = headerEl.nextElementSibling;
+  if (itemsContainer) {
+    itemsContainer.classList.toggle('group-hidden');
+  }
+}
+
+// 側欄收合
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  sidebar.classList.toggle('collapsed');
+}
+
+// 拖曳分隔線調整寬度
+function initDrag() {
+  const handleV = document.getElementById('drag-handle');
+  const leftPanel = document.getElementById('problem-panel');
+  const mainContainer = document.getElementById('main');
+  let isDraggingV = false;
+
+  if (handleV && leftPanel && mainContainer) {
+    handleV.addEventListener('mousedown', (e) => {
+      isDraggingV = true;
+      handleV.classList.add('dragging');
+      document.body.classList.add('resizing');
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDraggingV) return;
+      const containerRect = mainContainer.getBoundingClientRect();
+      let newWidth = e.clientX - containerRect.left;
+      const minWidth = 200;
+      const maxWidth = containerRect.width - 280;
+      if (newWidth < minWidth) newWidth = minWidth;
+      if (newWidth > maxWidth) newWidth = maxWidth;
+      leftPanel.style.flex = `0 0 ${newWidth}px`;
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (isDraggingV) {
+        isDraggingV = false;
+        handleV.classList.remove('dragging');
+        document.body.classList.remove('resizing');
+        if (typeof editor !== 'undefined' && editor) {
+          setTimeout(() => editor.refresh(), 50);
+        }
+      }
+    });
+  }
+
+  // 上下拖曳 (評測結果面板高度)
+  const handleH = document.getElementById('drag-handle-h');
+  const resultsPanel = document.getElementById('results-panel');
+  const editorPanel = document.getElementById('editor-panel');
+  let isDraggingH = false;
+
+  if (handleH && resultsPanel && editorPanel) {
+    handleH.addEventListener('mousedown', (e) => {
+      isDraggingH = true;
+      handleH.classList.add('dragging');
+      document.body.classList.add('resizing-h');
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDraggingH) return;
+      const containerRect = editorPanel.getBoundingClientRect();
+      // 高度 = 容器底部 - 滑鼠Y座標
+      let newHeight = containerRect.bottom - e.clientY;
+      const minHeight = 50; // 最小高度
+      const maxHeight = containerRect.height - 100; // 預留至少 100px 給編輯器
+      
+      if (newHeight < minHeight) newHeight = minHeight;
+      if (newHeight > maxHeight) newHeight = maxHeight;
+      
+      resultsPanel.style.height = `${newHeight}px`;
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (isDraggingH) {
+        isDraggingH = false;
+        handleH.classList.remove('dragging');
+        document.body.classList.remove('resizing-h');
+        if (typeof editor !== 'undefined' && editor) {
+          setTimeout(() => editor.refresh(), 50);
+        }
+      }
+    });
+  }
+}
+
+// ── 字體縮放 ────────────────────────────────────────────────────────────────
+let currentDescSize = 13;
+let currentCodeSize = 13;
+
+function zoomDesc(dir) {
+  currentDescSize += dir * 2;
+  if (currentDescSize < 10) currentDescSize = 10;
+  if (currentDescSize > 30) currentDescSize = 30;
+  document.documentElement.style.setProperty('--desc-size', `${currentDescSize}px`);
+}
+
+function zoomCode(dir) {
+  currentCodeSize += dir * 2;
+  if (currentCodeSize < 10) currentCodeSize = 10;
+  if (currentCodeSize > 30) currentCodeSize = 30;
+  document.documentElement.style.setProperty('--code-size', `${currentCodeSize}px`);
+  if (typeof editor !== 'undefined' && editor) {
+    setTimeout(() => editor.refresh(), 50);
+  }
+}
+
+// 初始化拖曳
+window.addEventListener('DOMContentLoaded', initDrag);

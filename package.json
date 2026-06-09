@@ -1,0 +1,29 @@
+{
+  "name": "apcs-judge",
+  "version": "1.0.0",
+  "description": "> 一個專案、四種語言、300 道題目、71 章互動式基礎教學（含 🔥 高級題專章）、即時瀏覽器評分、附解題思路\r > One project, four languages, 300 problems, 71 interactive tutorial chapters (incl. 🔥 advanced-topic chapters), in-browser instant grading, with solution hints",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yu-0312/apcs-judge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Yu-0312/apcs-judge/issues"
+  },
+  "homepage": "https://github.com/Yu-0312/apcs-judge#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

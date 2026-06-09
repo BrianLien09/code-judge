@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APCS Judge — 教師後台管理</title>
+
+<!-- CodeMirror（解答編輯器用） -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+
+<!-- 括號與引號自動補全、匹配 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+
+<style>
+/* ── Design tokens（與主系統共用色盤） ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #0f1117;
+  --sidebar-bg: #161b22;
+  --panel-bg: #1c2128;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-muted: #8b949e;
+  --green: #3fb950;
+  --red: #f85149;
+  --yellow: #d29922;
+  --blue: #79c0ff;
+  --purple: #bc8cff;
+  --accent: #58a6ff;
+  --header-h: 56px;
+}
+
+html, body {
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+
+/* ── Header ── */
+header {
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  background: var(--sidebar-bg);
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+.logo { font-size: 17px; font-weight: 700; color: var(--accent); }
+.sub  { font-size: 12px; color: var(--text-muted); }
+.header-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+.back-link {
+  font-size: 12px; color: var(--text-muted); text-decoration: none;
+  padding: 5px 10px; border: 1px solid var(--border); border-radius: 5px;
+  transition: all .15s;
+}
+.back-link:hover { color: var(--text); border-color: var(--text-muted); }
+
+/* ── Toast 通知 ── */
+#toast-container {
+  position: fixed; top: 70px; right: 20px; z-index: 999;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.toast {
+  padding: 10px 16px; border-radius: 8px; font-size: 13px;
+  border: 1px solid; min-width: 200px;
+  animation: slideIn .2s ease;
+  backdrop-filter: blur(10px);
+}
+.toast.success { background: rgba(63,185,80,.15); border-color: rgba(63,185,80,.4); color: var(--green); }
+.toast.error   { background: rgba(248,81,73,.15);  border-color: rgba(248,81,73,.4);  color: var(--red);   }
+.toast.info    { background: rgba(88,166,255,.15); border-color: rgba(88,166,255,.4); color: var(--blue);  }
+@keyframes slideIn { from { transform: translateX(20px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+/* ── 主版面：sidebar + main ── */
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: calc(100vh - var(--header-h));
+  overflow: hidden;
+}
+
+/* ── 左側 Sidebar ── */
+.sidebar {
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.sidebar-top {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.search-box {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  padding: 7px 10px;
+  outline: none;
+  transition: border-color .15s;
+}
+.search-box:focus { border-color: var(--accent); }
+.filter-row { display: flex; gap: 4px; flex-wrap: wrap; }
+.filter-btn {
+  padding: 3px 8px; border-radius: 10px; font-size: 11px; cursor: pointer;
+  border: 1px solid var(--border); background: transparent; color: var(--text-muted);
+  transition: all .15s;
+}
+.filter-btn:hover { color: var(--text); }
+.filter-btn.active { color: var(--accent); border-color: var(--accent); background: rgba(88,166,255,.1); }
+
+.add-btn {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px dashed rgba(63,185,80,.5);
+  background: rgba(63,185,80,.05);
+  color: var(--green);
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all .15s;
+}
+.add-btn:hover { background: rgba(63,185,80,.12); border-style: solid; }
+
+/* 題目列表 */
+.problem-list {
+  overflow-y: auto;
+  flex: 1;
+  padding: 8px 0;
+}
+.list-item {
+  padding: 9px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(48,54,61,.4);
+  border-left: 3px solid transparent;
+  transition: background .1s, border-color .1s;
+}
+.list-item:hover { background: rgba(255,255,255,.03); }
+.list-item.active { background: rgba(88,166,255,.06); border-left-color: var(--accent); }
+.list-meta { font-size: 10px; color: var(--text-muted); margin-bottom: 3px; display: flex; align-items: center; gap: 6px; }
+.list-title { font-size: 13px; font-weight: 600; color: var(--text); }
+.diff-dot {
+  width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+}
+.diff-dot.easy    { background: var(--green); }
+.diff-dot.medium  { background: var(--yellow); }
+.diff-dot.midhigh { background: var(--purple); }
+.diff-dot.hard    { background: var(--red); }
+.list-count { font-size: 11px; color: var(--text-muted); padding: 16px; text-align: center; }
+
+/* ── 右側主面板 ── */
+.main-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 空白狀態 */
+.empty-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-muted);
+}
+.empty-state .icon { font-size: 52px; }
+.empty-state p { font-size: 14px; }
+
+/* ── 編輯器容器 ── */
+.editor-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 工具列 */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel-bg);
+  flex-shrink: 0;
+}
+.toolbar-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-right: 4px;
+}
+.toolbar-id {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 2px 8px;
+  background: rgba(255,255,255,.05);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.toolbar-spacer { flex: 1; }
+.btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: 500;
+  cursor: pointer; border: none; transition: all .15s;
+}
+.btn-save { background: var(--accent); color: #000; }
+.btn-save:hover { filter: brightness(1.1); }
+.btn-delete { background: rgba(248,81,73,.15); color: var(--red); border: 1px solid rgba(248,81,73,.3); }
+.btn-delete:hover { background: rgba(248,81,73,.25); }
+.btn-outline { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+.btn-outline:hover { color: var(--text); border-color: var(--text-muted); }
+
+/* ── 編輯器大 Tab ── */
+.tab-nav {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel-bg);
+  flex-shrink: 0;
+}
+.tab-btn {
+  padding: 10px 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all .15s;
+  font-weight: 500;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; flex: 1; overflow-y: auto; padding: 20px; }
+.tab-content.active { display: flex; flex-direction: column; gap: 16px; }
+
+/* ── 表單元件 ── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.form-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.form-group.full { grid-column: 1 / -1; }
+label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+input[type="text"], input[type="url"], select, textarea {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  padding: 8px 10px;
+  outline: none;
+  transition: border-color .15s;
+  font-family: inherit;
+  width: 100%;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+select option { background: var(--panel-bg); }
+textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.6;
+}
+textarea.mono {
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 12px;
+  min-height: 120px;
+}
+
+/* ── 難度選擇器 ── */
+.diff-select {
+  display: flex;
+  gap: 6px;
+}
+.diff-opt {
+  flex: 1;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  cursor: pointer;
+  text-align: center;
+  transition: all .15s;
+}
+.diff-opt[data-diff="easy"].selected    { border-color: var(--green);  background: rgba(63,185,80,.12);  color: var(--green);  }
+.diff-opt[data-diff="medium"].selected  { border-color: var(--yellow); background: rgba(210,153,34,.12); color: var(--yellow); }
+.diff-opt[data-diff="midhigh"].selected { border-color: var(--purple); background: rgba(188,140,255,.12);color: var(--purple); }
+.diff-opt[data-diff="hard"].selected    { border-color: var(--red);    background: rgba(248,81,73,.12);  color: var(--red);    }
+
+/* ── 測資區塊 ── */
+.section-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.section-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 11px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  transition: all .15s;
+}
+.btn-sm:hover { color: var(--text); border-color: var(--text-muted); }
+.btn-sm.danger:hover { color: var(--red); border-color: rgba(248,81,73,.5); }
+
+.sample-block {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  background: var(--panel-bg);
+}
+.sample-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(255,255,255,.02);
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.sample-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.sample-col { padding: 10px 12px; }
+.sample-col + .sample-col { border-left: 1px solid var(--border); }
+.sample-col label { display: block; margin-bottom: 4px; }
+.sample-col textarea {
+  min-height: 70px;
+  font-family: 'SFMono-Regular', Consolas, monospace;
+  font-size: 12px;
+}
+
+/* ── 解答 Tab（語言切換） ── */
+.lang-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  padding: 0 0 0 4px;
+  flex-shrink: 0;
+}
+.lang-tab {
+  padding: 8px 14px;
+  font-size: 12px;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all .15s;
+}
+.lang-tab:hover { color: var(--text); }
+.lang-tab.active.py   { color: #3fb950; border-color: #3fb950; }
+.lang-tab.active.cpp  { color: #79c0ff; border-color: #79c0ff; }
+.lang-tab.active.c    { color: #ffa657; border-color: #ffa657; }
+.lang-tab.active.java { color: #d2a8ff; border-color: #d2a8ff; }
+
+.sol-editor-wrap {
+  flex: 1;
+  overflow: hidden;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.sol-editor-wrap .CodeMirror {
+  flex: 1;
+  height: 340px !important;
+  font-size: 13px !important;
+  font-family: 'SFMono-Regular', Consolas, monospace !important;
+}
+
+/* ── 確認對話框 ── */
+.dialog-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.7);
+  z-index: 500;
+  align-items: center;
+  justify-content: center;
+}
+.dialog-overlay.open { display: flex; }
+.dialog {
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 40px rgba(0,0,0,.5);
+}
+.dialog h3 { font-size: 16px; margin-bottom: 10px; }
+.dialog p  { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; }
+.dialog-btns { display: flex; gap: 10px; justify-content: flex-end; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- ── Header ─────────────────────────────────────────────────────────────── -->
+<header>
+  <div>
+    <div class="logo">📋 APCS Judge — 教師後台</div>
+    <div class="sub">題目與解答管理系統</div>
+  </div>
+  <div class="header-right">
+    <span id="save-status" style="font-size:12px;color:var(--text-muted);"></span>
+    <a href="/index.html" class="back-link">← 返回主系統</a>
+  </div>
+</header>
+
+<!-- ── Toast 通知 ─────────────────────────────────────────────────────────── -->
+<div id="toast-container"></div>
+
+<!-- ── 刪除確認對話框 ──────────────────────────────────────────────────── -->
+<div class="dialog-overlay" id="delete-dialog">
+  <div class="dialog">
+    <h3>⚠️ 確認刪除</h3>
+    <p id="delete-msg">確定要刪除這道題目嗎？此操作需要儲存後才會寫入檔案，儲存前可以復原。</p>
+    <div class="dialog-btns">
+      <button class="btn btn-outline" onclick="closeDeleteDialog()">取消</button>
+      <button class="btn btn-delete" onclick="confirmDelete()">確認刪除</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 主版面 ──────────────────────────────────────────────────────────── -->
+<div class="layout">
+
+  <!-- 左側 Sidebar：題目列表 -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <input type="text" class="search-box" id="search-input" placeholder="🔍  搜尋題目標題或 ID..." oninput="filterList()">
+      <div class="filter-row">
+        <button class="filter-btn active" data-diff="all"     onclick="setFilter(this,'all')">全部</button>
+        <button class="filter-btn"        data-diff="easy"    onclick="setFilter(this,'easy')">初級</button>
+        <button class="filter-btn"        data-diff="medium"  onclick="setFilter(this,'medium')">中級</button>
+        <button class="filter-btn"        data-diff="midhigh" onclick="setFilter(this,'midhigh')">中高級</button>
+        <button class="filter-btn"        data-diff="hard"    onclick="setFilter(this,'hard')">高級</button>
+      </div>
+      <button class="add-btn" id="add-btn" onclick="newProblem()">＋ 新增題目</button>
+    </div>
+    <div class="problem-list" id="problem-list">
+      <div class="list-count">載入中...</div>
+    </div>
+  </aside>
+
+  <!-- 右側：主面板 -->
+  <main class="main-panel" id="main-panel">
+    <!-- 初始空白提示 -->
+    <div class="empty-state" id="empty-state">
+      <div class="icon">📝</div>
+      <p>從左側選擇題目進行編輯，或點擊「＋ 新增題目」</p>
+    </div>
+
+    <!-- 編輯器（選題後顯示） -->
+    <div class="editor-container" id="editor-container" style="display:none;">
+
+      <!-- 工具列 -->
+      <div class="toolbar">
+        <span class="toolbar-title" id="toolbar-title">—</span>
+        <span class="toolbar-id"   id="toolbar-id">—</span>
+        <div class="toolbar-spacer"></div>
+        <button class="btn btn-delete" onclick="deleteProblem()">🗑 刪除</button>
+        <button class="btn btn-save"   onclick="saveCurrent()">💾 儲存到檔案</button>
+      </div>
+
+      <!-- Tab 導覽：題目資訊 / 參考解答 -->
+      <div class="tab-nav">
+        <div class="tab-btn active" onclick="switchTab('info')"  id="tab-info">題目資訊</div>
+        <div class="tab-btn"        onclick="switchTab('sol')"   id="tab-sol">參考解答</div>
+      </div>
+
+      <!-- Tab 1：題目資訊 -->
+      <div class="tab-content active" id="content-info">
+
+        <!-- 基本欄位 -->
+        <div class="form-grid cols-3">
+          <div class="form-group">
+            <label>題目 ID *</label>
+            <input type="text" id="f-id" placeholder="例：my_001">
+          </div>
+          <div class="form-group">
+            <label>標題 *</label>
+            <input type="text" id="f-title" placeholder="例：最大子陣列">
+          </div>
+          <div class="form-group">
+            <label>主題 (topic)</label>
+            <input type="text" id="f-topic" placeholder="例：DP、排序">
+          </div>
+        </div>
+
+        <div class="form-grid cols-3">
+          <div class="form-group">
+            <label>日期標籤 (date)</label>
+            <input type="text" id="f-date" placeholder="例：2024/06 或 中級 ⭐⭐">
+          </div>
+          <div class="form-group">
+            <label>來源 (source，選填)</label>
+            <input type="text" id="f-source" placeholder="例：APCS、自製">
+          </div>
+          <div class="form-group">
+            <label>原題連結 (url，選填)</label>
+            <input type="url" id="f-url" placeholder="https://...">
+          </div>
+        </div>
+
+        <!-- 難度選擇 -->
+        <div class="form-group">
+          <label>難度</label>
+          <div class="diff-select" id="diff-select">
+            <div class="diff-opt" data-diff="easy"    onclick="selectDiff('easy')">📗 初級</div>
+            <div class="diff-opt" data-diff="medium"  onclick="selectDiff('medium')">📙 中級</div>
+            <div class="diff-opt" data-diff="midhigh" onclick="selectDiff('midhigh')">📘 中高級</div>
+            <div class="diff-opt" data-diff="hard"    onclick="selectDiff('hard')">📕 高級</div>
+          </div>
+        </div>
+
+        <!-- 題目說明 -->
+        <div class="form-group">
+          <label>題目說明 (desc) — 支援 Markdown</label>
+          <textarea id="f-desc" rows="5" placeholder="題目的詳細描述，支援 **粗體**、`code`..."></textarea>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>輸入說明 (input_desc)</label>
+            <textarea id="f-input-desc" rows="3" placeholder="輸入格式說明..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>輸出說明 (output_desc)</label>
+            <textarea id="f-output-desc" rows="3" placeholder="輸出格式說明..."></textarea>
+          </div>
+        </div>
+
+        <!-- 解題提示 -->
+        <div class="form-group">
+          <label>解題提示 (hint) — 支援 Markdown</label>
+          <textarea id="f-hint" rows="4" placeholder="關鍵字、思路、注意事項..."></textarea>
+        </div>
+
+        <!-- 範例測資 -->
+        <div>
+          <div class="section-hdr">
+            <span class="section-title">📋 範例測資</span>
+            <button class="btn-sm" onclick="addSample()">＋ 新增測資</button>
+          </div>
+          <div id="samples-container"></div>
+        </div>
+      </div>
+
+      <!-- Tab 2：參考解答 -->
+      <div class="tab-content" id="content-sol">
+        <div class="lang-tabs">
+          <div class="lang-tab active py"   onclick="switchSolLang('py')"  id="sol-tab-py">🐍 Python</div>
+          <div class="lang-tab cpp"          onclick="switchSolLang('cpp')" id="sol-tab-cpp">⚡ C++</div>
+          <div class="lang-tab c"            onclick="switchSolLang('c')"   id="sol-tab-c">🔧 C</div>
+          <div class="lang-tab java"         onclick="switchSolLang('java')" id="sol-tab-java">☕ Java</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--panel-bg);border-bottom:1px solid var(--border);font-size:11px;color:var(--text-muted);">
+          <span id="sol-lang-note">Pyodide 瀏覽器執行</span>
+          <span style="margin-left:auto;"></span>
+          <button class="btn-sm danger" onclick="clearSolEditor()">清空解答</button>
+        </div>
+        <div class="sol-editor-wrap">
+          <textarea id="sol-editor-area"></textarea>
+        </div>
+      </div>
+
+    </div><!-- /editor-container -->
+  </main>
+
+</div><!-- /layout -->
+
+<script>
+// ── 狀態 ────────────────────────────────────────────────────────────────────
+
+/** 目前所有題目（從 API 載入的可變副本） */
+let PROBLEMS = [];
+/** 目前所有解答 */
+let SOLUTIONS = { py:{}, cpp:{}, c:{}, java:{} };
+/** 目前選中的題目索引 */
+let currentIdx  = null;
+/** 目前解答語言 */
+let currentSolLang = 'py';
+/** 篩選條件 */
+let filterDiff = 'all';
+/** CodeMirror 解答編輯器實例 */
+let solEditor = null;
+/** 是否有未儲存變更（用於提示） */
+let dirty = false;
+
+// ── 解答語言設定 ──────────────────────────────────────────────────────────────
+const LANG_CONFIG = {
+  py:   { mode: 'python',        note: 'Pyodide 瀏覽器執行' },
+  cpp:  { mode: 'text/x-c++src', note: '線上 g++ (Judge0)'  },
+  c:    { mode: 'text/x-csrc',   note: '線上 gcc (Judge0)'  },
+  java: { mode: 'text/x-java',   note: 'Judge0 CE（需網路，約3秒）' },
+};
+
+// ── 初始化 ───────────────────────────────────────────────────────────────────
+
+window.addEventListener('DOMContentLoaded', async () => {
+  // 初始化 CodeMirror 解答編輯器
+  solEditor = CodeMirror.fromTextArea(document.getElementById('sol-editor-area'), {
+    mode: 'python', theme: 'dracula', lineNumbers: true,
+    indentUnit: 4, tabSize: 4, indentWithTabs: false,
+    styleActiveLine: true,
+    autoCloseBrackets: true,
+    matchBrackets: true,
+  });
+  solEditor.on('change', () => { dirty = true; });
+
+  await loadData();
+});
+
+/**
+ * 從 server.js 的 API 載入題目與解答資料。
+ * 若 server 未啟動會提示使用者。
+ */
+async function loadData() {
+  try {
+    const res  = await fetch('/api/data');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    PROBLEMS  = data.problems  || [];
+    SOLUTIONS = data.solutions || { py:{}, cpp:{}, c:{}, java:{} };
+    renderList();
+    toast('已載入 ' + PROBLEMS.length + ' 道題目', 'success');
+  } catch (e) {
+    toast('無法連線到本地伺服器，請確認 node server.js 正在執行', 'error');
+    document.getElementById('problem-list').innerHTML =
+      '<div class="list-count" style="color:var(--red)">⚠️ 無法載入資料<br><small>請執行 node server.js</small></div>';
+  }
+}
+
+// ── 題目列表渲染 ─────────────────────────────────────────────────────────────
+
+const DIFF_LABEL = { easy:'初級', medium:'中級', midhigh:'中高級', hard:'高級' };
+
+function renderList() {
+  const query = document.getElementById('search-input').value.toLowerCase();
+  const list  = document.getElementById('problem-list');
+
+  const filtered = PROBLEMS
+    .map((p, i) => ({ p, i }))
+    .filter(({ p }) => {
+      if (filterDiff !== 'all' && (p.diff || 'easy') !== filterDiff) return false;
+      if (query && !p.title.toLowerCase().includes(query) && !p.id.toLowerCase().includes(query)) return false;
+      return true;
+    });
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class="list-count">沒有符合條件的題目</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(({ p, i }) => {
+    const diff  = p.diff || 'easy';
+    const active = i === currentIdx ? ' active' : '';
+    return `<div class="list-item${active}" onclick="selectProblem(${i})" id="list-item-${i}">
+      <div class="list-meta">
+        <span class="diff-dot ${diff}"></span>
+        <span>${escH(p.id)}</span>
+        <span style="margin-left:auto;">${DIFF_LABEL[diff] || diff}</span>
+      </div>
+      <div class="list-title">${escH(p.title)}</div>
+    </div>`;
+  }).join('');
+}
+
+function filterList() { renderList(); }
+
+function setFilter(btn, diff) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  filterDiff = diff;
+  renderList();
+}
+
+// ── 選題 ─────────────────────────────────────────────────────────────────────
+
+function selectProblem(idx) {
+  // 若有未儲存，提示（不阻擋，僅提醒）
+  if (dirty) {
+    toast('提示：目前有未儲存的變更', 'info');
+  }
+
+  currentIdx = idx;
+  dirty = false;
+  renderList();
+  loadProblemToEditor(PROBLEMS[idx]);
+  showEditor();
+}
+
+/**
+ * 將題目物件的資料填入表單各欄位與解答編輯器。
+ */
+function loadProblemToEditor(p) {
+  // 基本欄位
+  document.getElementById('f-id').value          = p.id          || '';
+  document.getElementById('f-title').value       = p.title       || '';
+  document.getElementById('f-topic').value       = p.topic       || '';
+  document.getElementById('f-date').value        = p.date        || '';
+  document.getElementById('f-source').value      = p.source      || '';
+  document.getElementById('f-url').value         = p.url         || '';
+  document.getElementById('f-desc').value        = p.desc        || '';
+  document.getElementById('f-input-desc').value  = p.input_desc  || '';
+  document.getElementById('f-output-desc').value = p.output_desc || '';
+  document.getElementById('f-hint').value        = p.hint        || '';
+
+  // 難度
+  selectDiff(p.diff || 'easy');
+
+  // 工具列標題
+  document.getElementById('toolbar-title').textContent = p.title || '未命名題目';
+  document.getElementById('toolbar-id').textContent    = p.id    || '';
+
+  // 範例測資
+  renderSamples(p.samples || []);
+
+  // 解答編輯器（更新當前語言內容）
+  loadSolEditor(p.id, currentSolLang);
+}
+
+// ── 難度選擇 ─────────────────────────────────────────────────────────────────
+
+function selectDiff(diff) {
+  document.querySelectorAll('.diff-opt').forEach(el => {
+    el.classList.toggle('selected', el.dataset.diff === diff);
+  });
+}
+
+function getSelectedDiff() {
+  const el = document.querySelector('.diff-opt.selected');
+  return el ? el.dataset.diff : 'easy';
+}
+
+// ── 範例測資 ─────────────────────────────────────────────────────────────────
+
+/** 把測資陣列渲染為可編輯的 UI 區塊 */
+function renderSamples(samples) {
+  const container = document.getElementById('samples-container');
+  container.innerHTML = samples.map((s, i) => buildSampleBlock(i, s.input, s.output)).join('');
+}
+
+function buildSampleBlock(idx, inputVal, outputVal) {
+  return `<div class="sample-block" id="sample-${idx}">
+    <div class="sample-hdr">
+      <span>範例 ${idx + 1}</span>
+      <button class="btn-sm danger" onclick="removeSample(${idx})">✕ 移除</button>
+    </div>
+    <div class="sample-body">
+      <div class="sample-col">
+        <label>輸入</label>
+        <textarea id="sample-input-${idx}" class="mono" oninput="dirty=true">${escH(inputVal || '')}</textarea>
+      </div>
+      <div class="sample-col">
+        <label>輸出</label>
+        <textarea id="sample-output-${idx}" class="mono" oninput="dirty=true">${escH(outputVal || '')}</textarea>
+      </div>
+    </div>
+  </div>`;
+}
+
+function addSample() {
+  const container = document.getElementById('samples-container');
+  const idx = container.querySelectorAll('.sample-block').length;
+  container.insertAdjacentHTML('beforeend', buildSampleBlock(idx, '', ''));
+  dirty = true;
+}
+
+function removeSample(idx) {
+  // 移除後重新渲染所有測資（維持索引連貫）
+  const samples = collectSamples();
+  samples.splice(idx, 1);
+  renderSamples(samples);
+  dirty = true;
+}
+
+/** 從 DOM 收集當前所有測資 */
+function collectSamples() {
+  const blocks = document.querySelectorAll('.sample-block');
+  return Array.from(blocks).map((_, i) => ({
+    input:  document.getElementById(`sample-input-${i}`)?.value  || '',
+    output: document.getElementById(`sample-output-${i}`)?.value || '',
+  }));
+}
+
+// ── 解答編輯器 ───────────────────────────────────────────────────────────────
+
+/**
+ * 先將當前語言的內容存回記憶體，
+ * 再載入目標語言的解答到 CodeMirror。
+ */
+function switchSolLang(lang) {
+  // 儲存當前語言的編輯內容到記憶體
+  if (currentIdx !== null) {
+    const pid = PROBLEMS[currentIdx].id;
+    SOLUTIONS[currentSolLang] = SOLUTIONS[currentSolLang] || {};
+    SOLUTIONS[currentSolLang][pid] = solEditor.getValue();
+  }
+
+  // 切換 tab 樣式
+  document.querySelectorAll('.lang-tab').forEach(t => t.classList.remove('active'));
+  const activeTab = document.getElementById(`sol-tab-${lang}`);
+  if (activeTab) activeTab.classList.add('active');
+
+  currentSolLang = lang;
+
+  // 載入新語言的內容
+  if (currentIdx !== null) {
+    loadSolEditor(PROBLEMS[currentIdx].id, lang);
+  }
+
+  // 更新語言說明
+  document.getElementById('sol-lang-note').textContent = LANG_CONFIG[lang]?.note || '';
+  // 更新編輯器語法模式
+  solEditor.setOption('mode', LANG_CONFIG[lang]?.mode || 'text/plain');
+}
+
+function loadSolEditor(pid, lang) {
+  const code = (SOLUTIONS[lang] || {})[pid] || '';
+  solEditor.setValue(code);
+  solEditor.setOption('mode', LANG_CONFIG[lang]?.mode || 'text/plain');
+  // 清除 change flag（避免剛載入就顯示 dirty）
+  setTimeout(() => { dirty = false; }, 100);
+}
+
+function clearSolEditor() {
+  if (!confirm('確定要清空此語言的解答？')) return;
+  solEditor.setValue('');
+  dirty = true;
+}
+
+// ── Tab 切換 ─────────────────────────────────────────────────────────────────
+
+function switchTab(tab) {
+  ['info', 'sol'].forEach(t => {
+    document.getElementById(`tab-${t}`).classList.toggle('active', t === tab);
+    document.getElementById(`content-${t}`).classList.toggle('active', t === tab);
+  });
+  // 切到解答 tab 時刷新 CodeMirror 尺寸
+  if (tab === 'sol') setTimeout(() => solEditor.refresh(), 0);
+}
+
+// ── 新增題目 ─────────────────────────────────────────────────────────────────
+
+function newProblem() {
+  // 產生不重複的 custom ID
+  const existing = new Set(PROBLEMS.map(p => p.id));
+  let n = PROBLEMS.length + 1;
+  let id = `custom_${String(n).padStart(3, '0')}`;
+  while (existing.has(id)) { n++; id = `custom_${String(n).padStart(3, '0')}`; }
+
+  const newP = {
+    id, title: '新題目', topic: '', date: '', diff: 'easy',
+    desc: '', input_desc: '', output_desc: '', hint: '',
+    samples: [{ input: '', output: '' }],
+  };
+
+  PROBLEMS.push(newP);
+  currentIdx = PROBLEMS.length - 1;
+  dirty = false;
+
+  renderList();
+  loadProblemToEditor(newP);
+  showEditor();
+
+  // 聚焦到標題欄
+  setTimeout(() => document.getElementById('f-title').focus(), 50);
+  toast('已新增空白題目，請填寫後儲存', 'info');
+}
+
+// ── 從表單收集題目資料 ───────────────────────────────────────────────────────
+
+function collectProblemFromForm() {
+  const id    = document.getElementById('f-id').value.trim();
+  const title = document.getElementById('f-title').value.trim();
+
+  if (!id)    { toast('題目 ID 不可為空', 'error'); return null; }
+  if (!title) { toast('題目標題不可為空', 'error'); return null; }
+
+  // ID 唯一性檢查（新增時）
+  const isDuplicate = PROBLEMS.some((p, i) => p.id === id && i !== currentIdx);
+  if (isDuplicate) { toast(`ID "${id}" 已被其他題目使用`, 'error'); return null; }
+
+  return {
+    id,
+    title,
+    topic:      document.getElementById('f-topic').value.trim(),
+    date:       document.getElementById('f-date').value.trim(),
+    source:     document.getElementById('f-source').value.trim() || undefined,
+    url:        document.getElementById('f-url').value.trim()    || undefined,
+    diff:       getSelectedDiff(),
+    desc:       document.getElementById('f-desc').value,
+    input_desc: document.getElementById('f-input-desc').value,
+    output_desc:document.getElementById('f-output-desc').value,
+    hint:       document.getElementById('f-hint').value || undefined,
+    samples:    collectSamples(),
+  };
+}
+
+// ── 儲存 ─────────────────────────────────────────────────────────────────────
+
+/**
+ * 1. 從表單收集題目資料
+ * 2. 把解答編輯器的當前內容存回記憶體
+ * 3. 呼叫 API 同時寫入 problems.js 與 solutions.js
+ */
+async function saveCurrent() {
+  if (currentIdx === null) return;
+
+  // 收集題目
+  const p = collectProblemFromForm();
+  if (!p) return;
+
+  // 把解答編輯器內容存回記憶體
+  SOLUTIONS[currentSolLang] = SOLUTIONS[currentSolLang] || {};
+  SOLUTIONS[currentSolLang][p.id] = solEditor.getValue();
+
+  // 若 ID 被改了，要把舊 ID 的解答搬移到新 ID
+  const oldId = PROBLEMS[currentIdx].id;
+  if (oldId !== p.id) {
+    for (const lang of ['py', 'cpp', 'c', 'java']) {
+      if (SOLUTIONS[lang]?.[oldId] !== undefined) {
+        SOLUTIONS[lang][p.id]  = SOLUTIONS[lang][oldId];
+        delete SOLUTIONS[lang][oldId];
+      }
+    }
+  }
+
+  // 更新記憶體中的題目
+  PROBLEMS[currentIdx] = p;
+
+  // 更新工具列
+  document.getElementById('toolbar-title').textContent = p.title;
+  document.getElementById('toolbar-id').textContent    = p.id;
+
+  // 呼叫 API 寫入兩個檔案
+  const statusEl = document.getElementById('save-status');
+  statusEl.textContent = '儲存中...';
+
+  try {
+    const [r1, r2] = await Promise.all([
+      fetch('/api/save/problems',  { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ problems: PROBLEMS  }) }),
+      fetch('/api/save/solutions', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ solutions: SOLUTIONS }) }),
+    ]);
+    if (!r1.ok || !r2.ok) throw new Error('伺服器回應錯誤');
+    dirty = false;
+    renderList();
+    statusEl.textContent = `已儲存 ${new Date().toLocaleTimeString()}`;
+    toast('儲存成功！problems.js 與 solutions.js 已更新', 'success');
+  } catch (e) {
+    statusEl.textContent = '儲存失敗';
+    toast('儲存失敗：' + e.message, 'error');
+  }
+}
+
+// ── 刪除 ─────────────────────────────────────────────────────────────────────
+
+let pendingDeleteIdx = null;
+
+function deleteProblem() {
+  if (currentIdx === null) return;
+  pendingDeleteIdx = currentIdx;
+  const p = PROBLEMS[currentIdx];
+  document.getElementById('delete-msg').textContent =
+    `確定要刪除「${p.title}」（ID: ${p.id}）嗎？刪除後需點「儲存到檔案」才會永久生效。`;
+  document.getElementById('delete-dialog').classList.add('open');
+}
+
+function closeDeleteDialog() {
+  document.getElementById('delete-dialog').classList.remove('open');
+  pendingDeleteIdx = null;
+}
+
+function confirmDelete() {
+  if (pendingDeleteIdx === null) return;
+  const pid = PROBLEMS[pendingDeleteIdx].id;
+
+  // 從記憶體移除
+  PROBLEMS.splice(pendingDeleteIdx, 1);
+  for (const lang of ['py', 'cpp', 'c', 'java']) {
+    delete SOLUTIONS[lang]?.[pid];
+  }
+
+  closeDeleteDialog();
+  currentIdx = null;
+  renderList();
+  hideEditor();
+  toast(`「${pid}」已從列表移除，儲存後永久生效`, 'info');
+}
+
+// ── UI 切換 ──────────────────────────────────────────────────────────────────
+
+function showEditor() {
+  document.getElementById('empty-state').style.display    = 'none';
+  document.getElementById('editor-container').style.display = 'flex';
+}
+
+function hideEditor() {
+  document.getElementById('empty-state').style.display    = 'flex';
+  document.getElementById('editor-container').style.display = 'none';
+}
+
+// ── Toast 通知 ───────────────────────────────────────────────────────────────
+
+function toast(msg, type = 'info') {
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  document.getElementById('toast-container').appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+// ── 工具函數 ─────────────────────────────────────────────────────────────────
+
+function escH(s) {
+  return String(s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+</script>
+</body>
+</html>
