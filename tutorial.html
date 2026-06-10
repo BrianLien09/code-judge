@@ -187,6 +187,7 @@ header{height:var(--header-h);display:flex;align-items:center;padding:0 20px;bac
   <div class="editor-panel">
     <div class="editor-toolbar">
       <button class="btn btn-run" id="run-btn" onclick="runCode()" disabled>▶ 執行</button>
+      <button class="btn btn-sec" id="copy-btn" onclick="copyCode()">📋 複製</button>
       <button class="btn btn-sec" onclick="clearEditor()">清空</button>
       <button class="btn btn-sec" onclick="resetExample()">↺ 還原範例</button>
       <span style="flex:1"></span>
@@ -11800,6 +11801,21 @@ function selectChap(id, opts) {
 }
 
 function clearEditor() { cm.setValue(''); }
+
+function copyCode() {
+  const code = cm.getValue();
+  if (!code) return;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.getElementById('copy-btn');
+    if (btn) {
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '📋 已複製';
+      setTimeout(() => btn.innerHTML = originalText, 2000);
+    }
+  }).catch(err => {
+    console.error('複製失敗:', err);
+  });
+}
 function resetExample() {
   if (currentChap) {
     cm.setValue(getExample(currentChap));

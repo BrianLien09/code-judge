@@ -74,6 +74,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   window.selectProblem = selectProblem;
   window.loadSample = loadSample;
   window.clearEditor = clearEditor;
+  window.copyCode = copyCode;
   window.showHint = showHint;
   window.hideHint = hideHint;
   window.zoomDesc = zoomDesc;
@@ -565,6 +566,21 @@ function renderResults(results, passed, total) {
 }
 
 function clearEditor() { editor.setValue(''); editor.focus(); }
+
+function copyCode() {
+  const code = editor.getValue();
+  if (!code) return;
+  navigator.clipboard.writeText(code).then(() => {
+    const btn = document.getElementById('copy-btn');
+    if (btn) {
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '📋 已複製';
+      setTimeout(() => btn.innerHTML = originalText, 2000);
+    }
+  }).catch(err => {
+    console.error('複製失敗:', err);
+  });
+}
 
 async function loadSample() {
   if (!currentProblem || !currentLang) { alert('請先選擇語言和題目'); return; }
