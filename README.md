@@ -1,80 +1,184 @@
-# Code Judge (Serverless Edition)
+# APCS Code Judge — Serverless Edition
 
-> 基於 Firebase Firestore 重構的線上解題與管理系統，完美支援 GitHub Pages 部署。
-> **特別感謝原作者 [Yu-0312](https://github.com/Yu-0312) 開發的 [apcs-judge](https://github.com/Yu-0312/apcs-judge) 專案！本專案的核心介面、編譯架構與豐富的題庫皆來自於原作者的無私開源。**
+> 一個專案、四種語言、300 道題目、71 章互動式基礎教學，即時瀏覽器評分、附解題思路。
+>
+> One project, four languages, 300 problems, 71 interactive tutorial chapters, in-browser instant grading, with solution hints.
 
----
-
-## 🌟 專案特色與魔改亮點
-
-本專案由原始的靜態 JSON/JS 資料結構進行了深度重構，加入了完整的**無伺服器 (Serverless)** 資料庫與權限管理，讓老師或管理者能夠直接在線上安全地新增、修改題目，且完全無需維護後端伺服器。
-
-### 與原專案的差異功能：
-1. ☁️ **Firebase Firestore 雲端資料庫**
-   - 捨棄了原本寫死在 `data/*.js` 裡面的靜態題目庫，改為即時連線的 Firestore。
-   - **極限省錢架構**：採用 `Meta 總表` 與 `Details 詳情` 分離的設計。學生進入網站時，無論題庫有幾百題，都只需消耗 **1 次資料庫讀取 (Read)** 來載入目錄。
-2. ⚡ **智慧快取與記憶機制**
-   - **零浪費題庫快取**：點開過的題目與解答，會自動緩存於瀏覽器 LocalStorage。二次訪問時達到零延遲、零流量浪費。
-   - **程式碼即時防護**：加入防抖 (Debounced) 的程式碼自動快取，即使意外關閉網頁也能無縫接軌。
-   - **跳轉與狀態記憶**：支援 URL Hash 跳轉直達題目，且重新載入時會自動開啟最後練習的題目。
-3. 🔒 **Firebase Authentication 登入鎖定**
-   - 後台管理介面 (`admin.html`) 加上了嚴密的 Email/Password 身分驗證。
-   - 結合 Firestore Security Rules，只有登入的管理員能修改題目，阻絕外人惡意竄改，讓後台可以直接暴露在公網上。
-4. 📂 **多層次樹狀分類系統**
-   - 打破了原本只能用「難度」分類的限制，新增了自訂的**主分類 > 子分類**系統。
-   - 您可以自由建立「資料結構」、「演算法」等章節，並將題目歸入特定的子分類中，原有的「難度（⭐）」屬性依然獨立保留。
-5. 🎨 **使用者體驗 (UX) 大幅升級**
-   - **精準 Diff 對照**：在評測結果加入逐行高亮對照與「隱藏空白可視化 (·)」，幫助學生一眼抓出 WA (Wrong Answer) 的元兇。
-   - **完整的編輯體驗**：整合 CodeMirror 的 Auto-complete 與程式碼自動提示，並修復 onclick 綁定問題。
-   - **靈活排版**：可調整字體大小，且評測結果面板可一鍵展開收合，讓程式碼編輯區域最大化。
-   - **一鍵複製程式碼**：在編輯器工具列加入一鍵複製按鈕，方便快速複製撰寫的程式碼。
+[![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+[![Firebase](https://img.shields.io/badge/Firebase-Firestore-orange?logo=firebase)](https://firebase.google.com/)
+[![Deploy](https://img.shields.io/badge/Deploy-GitHub%20Pages-black?logo=github)](https://pages.github.com/)
 
 ---
 
-## 🚀 部署與使用方式
+## 📖 目錄
 
-因為本專案已經完全 Serverless 化，您**不需要 Node.js** 就可以將它部署到任何靜態網站代管平台（例如 GitHub Pages、Vercel、Netlify）。
+- [專案簡介](#-專案簡介)
+- [功能特色](#-功能特色)
+- [技術架構](#️-技術架構)
+- [快速開始](#-快速開始)
+- [專案結構](#-專案結構)
+- [部署指南](#-部署指南)
+- [致謝](#-致謝)
 
-### 1. 建立您的 Firebase 專案
-1. 到 Firebase Console 建立一個專案。
-2. 啟用 **Firestore Database** 與 **Authentication (Email/Password)**。
-3. 在 Authentication 面板手動為自己建立一組管理員帳號。
+---
 
-### 2. 設定專案金鑰
-打開原始碼中的 `js/firebase-config.js`，將 `firebaseConfig` 替換為您自己專案的設定。
+## 📌 專案簡介
 
-### 3. 設定安全性規則 (Security Rules)
-前往 Firestore 的 Rules 標籤，貼上以下規則以確保您的題庫安全：
-```javascript
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
-      allow read: if true; // 所有人都能看題目
-      allow write: if request.auth != null; // 只有登入的管理員能改題目
-    }
-  }
-}
-```
+本專案是基於 [Yu-0312/apcs-judge](https://github.com/Yu-0312/apcs-judge) 進行深度改造的 APCS 線上評測系統。核心目標是在**保留原專案完整功能**的前提下，將資料層全面升級為 **Firebase Firestore**，讓系統達到真正的「無伺服器 (Serverless)」架構，老師可以直接在線上即時管理題庫，無需任何後端部署。
 
-### 4. 部署
-將整個專案資料夾 Push 到 GitHub 並開啟 GitHub Pages 功能。
-- **學生前台**：`https://您的帳號.github.io/專案名稱/`
-- **教師後台**：`https://您的帳號.github.io/專案名稱/admin.html`
+支援語言：**Python · C++ · C · Java**
+
+---
+
+## ✨ 功能特色
+
+### 學生端
+
+| 功能 | 說明 |
+|------|------|
+| 📝 題庫練習 | 支援 Python / C++ / C / Java 四種語言，按難度與分類篩選 |
+| ⚡ 即時評測 | Python 使用 Pyodide (WebAssembly)，其餘語言使用 Judge0 CE 雲端評測 |
+| 📚 互動教學 | 71 章系統化基礎教學，含範例程式碼、小測驗與程式碼挑戰 |
+| 💡 解題思路 | 每題提供思路提示，避免直接看答案 |
+| 📋 一鍵複製 | 編輯器工具列支援一鍵複製程式碼 |
+| 🔡 字體縮放 | 題目內容與程式碼編輯器可獨立調整字體大小 |
+| 💾 自動存檔 | 程式碼透過 Debounced 機制自動快取至 LocalStorage，意外關閉也不遺失 |
+| 🔗 URL 跳轉 | 支援 Hash 路由直達指定題目，並記憶上次練習進度 |
+
+### 教師後台（`admin.html`）
+
+| 功能 | 說明 |
+|------|------|
+| 🔒 身分驗證 | Firebase Authentication 保護後台，防止未授權存取 |
+| ✏️ 題目管理 | 線上新增、編輯、刪除題目，即時同步至 Firestore |
+| 📂 分類管理 | 自訂主分類 > 子分類的多層樹狀結構 |
+| 📊 解答管理 | 為各語言版本分別管理參考解答 |
 
 ---
 
 ## 🛠️ 技術架構
 
-- **前端框架**：Vanilla HTML / CSS / JS (ES Modules)
-- **資料庫**：Firebase Firestore (Cloud NoSQL)
-- **身分驗證**：Firebase Authentication
-- **程式碼執行**：Pyodide (WebAssembly 執行 Python) / Judge0 CE (雲端執行 C/C++/Java)
+```
+前端 (Vanilla HTML / CSS / ES Modules)
+├── 程式碼編輯器  — CodeMirror 5 (含語法高亮、自動補全)
+├── Markdown 渲染 — marked.js
+├── Python 執行   — Pyodide 0.26.4 (WebAssembly)
+└── C/C++/Java 執行 — Judge0 CE (雲端 API)
+
+後端 / 資料層 (Serverless)
+├── 資料庫       — Firebase Firestore
+└── 身分驗證     — Firebase Authentication (Email/Password)
+```
+
+### 資料讀取最佳化
+
+採用 **Meta 總表 + Details 詳情** 分離設計：
+
+- 載入題庫列表：**1 次 Read**（無論題庫有幾百題）
+- 點開題目才拉取詳情：**按需讀取**
+- 已讀過的題目與解答：**LocalStorage 快取，二次訪問零 Read**
+
+---
+
+## 🚀 快速開始
+
+### 本地開發
+
+```bash
+# 安裝依賴
+npm install
+
+# 啟動本地伺服器（nodemon，含自動重載）
+npm run dev
+```
+
+伺服器啟動後開啟 `http://localhost:3000`。
+
+### 前提條件
+
+- Node.js 18+（僅用於本地開發，部署至靜態平台不需要）
+- Firebase 專案（Firestore + Authentication）
+
+---
+
+## 📁 專案結構
+
+```
+apcs-judge/
+├── index.html          # 學生前台（題庫 + 評測）
+├── tutorial.html       # 互動式基礎教學（71 章）
+├── admin.html          # 教師後台（題庫管理）
+├── migrate.html        # 資料遷移工具
+├── css/
+│   └── style.css       # 全域樣式
+├── js/
+│   ├── app.js          # 前台核心邏輯
+│   ├── db.js           # Firebase 資料存取層
+│   └── firebase-config.js  # Firebase 設定（需替換為自己的金鑰）
+├── data/               # 靜態題庫資料（歷史備份）
+└── server.js           # 本地開發伺服器（Express）
+```
+
+---
+
+## 📦 部署指南
+
+本專案完全 Serverless，可部署至任何靜態平台（GitHub Pages、Vercel、Netlify）。
+
+### 步驟一：建立 Firebase 專案
+
+1. 前往 [Firebase Console](https://console.firebase.google.com/) 建立新專案。
+2. 啟用 **Firestore Database**（生產模式）。
+3. 啟用 **Authentication**，並選擇「電子郵件/密碼」登入方式。
+4. 在 Authentication 面板手動建立一組管理員帳號。
+
+### 步驟二：填入金鑰
+
+將 `js/firebase-config.js` 中的 `firebaseConfig` 替換為您自己的專案設定：
+
+```javascript
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  // ...
+};
+```
+
+### 步驟三：設定 Firestore 安全性規則
+
+前往 Firestore > Rules，貼上以下規則：
+
+```javascript
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read: if true;                    // 所有人可讀（公開題庫）
+      allow write: if request.auth != null;   // 僅登入管理員可寫
+    }
+  }
+}
+```
+
+### 步驟四：部署
+
+將整個專案推送至 GitHub，並在 Repository Settings 中開啟 **GitHub Pages**。
+
+| 頁面 | 網址 |
+|------|------|
+| 學生前台 | `https://<帳號>.github.io/<專案名>/` |
+| 互動教學 | `https://<帳號>.github.io/<專案名>/tutorial.html` |
+| 教師後台 | `https://<帳號>.github.io/<專案名>/admin.html` |
 
 ---
 
 ## 🙏 致謝
 
-再次感謝 [Yu-0312/apcs-judge](https://github.com/Yu-0312/apcs-judge) 提供如此優秀的開源基底。原專案將 Pyodide、Judge0 與 CodeMirror 整合得十分完美，為前端的程式碼線上評測帶來了極佳的體驗。本專案站在巨人的肩膀上，補足了「動態資料管理」與「線上編輯題目」的最後一哩路。
+本專案的核心介面、程式碼評測架構與豐富題庫，皆源自 **[Yu-0312](https://github.com/Yu-0312)** 所開發的開源專案：
 
-如果您喜歡這個架構，請不要忘記去原作者的專案點個 ⭐ Star！
+> **[Yu-0312/apcs-judge](https://github.com/Yu-0312/apcs-judge)**
+
+原專案將 Pyodide、Judge0 與 CodeMirror 整合得十分完美，為前端的程式碼線上評測提供了極佳的體驗。本專案站在這個優秀基底上，補足了雲端動態資料管理的最後一哩路。
+
+如果你喜歡這個專案，請也去原作者的 Repository 點個 ⭐ Star！
