@@ -1,8 +1,6 @@
-# APCS Code Judge — Serverless Edition
+# Code Judge
 
-> 一個專案、四種語言、300 道題目、71 章互動式基礎教學，即時瀏覽器評分、附解題思路。
->
-> One project, four languages, 300 problems, 71 interactive tutorial chapters, in-browser instant grading, with solution hints.
+> 一個現代化的線上程式碼評測與教學系統，結合 Firebase 實現無伺服器 (Serverless) 的即時題庫管理與評測體驗。
 
 [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 [![Firebase](https://img.shields.io/badge/Firebase-Firestore-orange?logo=firebase)](https://firebase.google.com/)
@@ -13,7 +11,7 @@
 ## 📖 目錄
 
 - [專案簡介](#-專案簡介)
-- [與原專案的差異](#-與原專案的差異)
+- [新增與升級功能](#-新增與升級功能)
 - [功能特色](#-功能特色)
 - [技術架構](#️-技術架構)
 - [快速開始](#-快速開始)
@@ -31,26 +29,18 @@
 
 ---
 
-## 🔀 與原專案的差異
+## 🚀 新增與升級功能
 
-本專案基於 [Yu-0312/apcs-judge](https://github.com/Yu-0312/apcs-judge)（**58 題，靜態架構**）進行深度擴充，以下是兩者的核心差異：
+本專案在 [Yu-0312/apcs-judge](https://github.com/Yu-0312/apcs-judge) 的優異基礎上，進一步擴充並升級了以下核心功能：
 
-| 項目 | 原專案 (Yu-0312) | 本專案 (Fork) |
-|------|-----------------|--------------|
-| **題庫規模** | 58 題 | **300+ 題** |
-| **資料儲存** | 靜態 JS 檔案（`data/*.js`） | **Firebase Firestore 雲端資料庫** |
-| **題目管理** | 需手動修改原始碼 | **線上後台 (`admin.html`) 即時新增/修改** |
-| **管理員身分驗證** | 無 | **Firebase Authentication** |
-| **題目分類** | 僅能用難度（⭐）分類 | **自訂主分類 > 子分類** |
-| **題庫快取** | 無 | **LocalStorage 快取（二次訪問零 Read）** |
-| **資料讀取費用** | 無（本地靜態） | **1 次 Read 載入全部題目目錄** |
-| **程式碼防護** | 無 | **Debounced 自動儲存，意外關閉不遺失** |
-| **進度記憶** | 無 | **URL Hash 跳轉 + 記憶上次題目** |
-| **評測結果 Diff** | 無高亮 | **逐行高亮 + 隱藏空白可視化（·）** |
-| **版面彈性** | 固定 | **拖曳分隔線 + 字體縮放 + 面板收合** |
-| **複製程式碼** | 無 | **一鍵複製按鈕** |
-| **互動式教學** | 無 | **71 章系統化教學（含小測驗與程式碼挑戰）** |
-| **部署需求** | Node.js 本地伺服器 | **靜態部署（GitHub Pages / Vercel 等）** |
+- **Firebase Firestore 雲端資料庫**：實現線上即時新增與修改題目，無需手動更改原始碼。
+- **線上後台管理 (`admin.html`)**：具備 Firebase Authentication 安全驗證，讓管理者能安全且方便地管理題庫。
+- **多層次分類系統**：支援自訂「主分類 > 子分類」的樹狀結構，讓題庫整理更有條理。
+- **LocalStorage 智慧快取**：自動快取已讀過的題目，大幅節省資料庫讀取成本，二次訪問達到零延遲。
+- **Debounced 程式碼防護**：自動在背景儲存撰寫中的程式碼，防止意外關閉導致心血遺失。
+- **進階版面與 UX 提升**：新增評測結果的程式碼 Diff 逐行高亮與空白可視化、可拖曳調整的版面、自由縮放字體，以及實用的「一鍵複製程式碼」按鈕。
+- **URL Hash 跳轉記憶**：支援透過連結直達特定題目，並在重新載入時自動恢復最後的練習進度。
+- **靜態無伺服器部署**：完全脫離 Node.js 後端依賴，可輕鬆部署至 GitHub Pages 或 Vercel 等靜態託管平台。
 
 ---
 
