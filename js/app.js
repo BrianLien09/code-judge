@@ -615,6 +615,17 @@ function copyCode() {
 
 async function loadSample() {
   if (!currentProblem || !currentLang) { alert('請先選擇語言和題目'); return; }
+
+  const config = await dbService.getConfig();
+  const pwd = config.solutionPassword;
+  if (pwd) {
+    const input = prompt('請輸入密碼以觀看解答：');
+    if (input !== pwd) {
+      alert('密碼錯誤');
+      return;
+    }
+  }
+
   const solData = await dbService.getSolutions(currentProblem.id);
   const sol = solData?.[currentLang] || '';
   if (!sol) { alert('此題目目前沒有參考解答'); return; }

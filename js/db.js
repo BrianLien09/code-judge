@@ -69,6 +69,34 @@ export const dbService = {
     setCache('meta', data);
   },
 
+  /** 取得系統設定 (如解答密碼) */
+  async getConfig(forceRefresh = true) {
+    if (!forceRefresh) {
+      const cached = getCache('config');
+      if (cached) return cached;
+    }
+    try {
+      const docRef = doc(db, 'system', 'config');
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setCache('config', data);
+        return data;
+      }
+      return {};
+    } catch(err) {
+      return getCache('config') || {};
+    }
+  },
+
+  /** 儲存系統設定 */
+  async saveConfig(data) {
+    const docRef = doc(db, 'system', 'config');
+    await setDoc(docRef, data, { merge: true });
+    const current = await this.getConfig(false);
+    setCache('config', { ...current, ...data });
+  },
+
   /** 
    * 取得題目詳細資料
    * 優先讀快取，快取沒有才去抓遠端 (極大節省 Reads)

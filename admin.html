@@ -512,6 +512,7 @@ textarea.mono {
   </div>
   <div class="header-right">
     <span id="save-status" style="font-size:12px;color:var(--text-muted);"></span>
+    <button class="btn btn-outline" style="padding:4px 8px;font-size:12px;" onclick="setSolutionPassword()">設定解答密碼</button>
     <a href="./index.html" class="back-link">← 返回主系統</a>
   </div>
 </header>
@@ -858,6 +859,16 @@ async function logout() {
   }
 }
 
+async function setSolutionPassword() {
+  const currentConfig = await window.dbService.getConfig();
+  const currentPwd = currentConfig.solutionPassword || '';
+  const newPwd = prompt('請輸入新的解答觀看密碼（留空表示不需密碼）：', currentPwd);
+  if (newPwd !== null) {
+    await window.dbService.saveConfig({ solutionPassword: newPwd });
+    toast('解答密碼設定成功', 'success');
+  }
+}
+
 /**
  * 從 Firebase 載入題目與分類資料。
  */
@@ -896,7 +907,8 @@ function renderList() {
       }
       if (query && !p.title.toLowerCase().includes(query) && !p.id.toLowerCase().includes(query)) return false;
       return true;
-    });
+    })
+    .sort((a, b) => b.i - a.i);
 
   if (filtered.length === 0) {
     list.innerHTML = '<div class="list-count">沒有符合條件的題目</div>';
