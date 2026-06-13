@@ -10,6 +10,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/python/python.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked-katex-extension/lib/index.umd.js"></script>
 <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -11747,9 +11750,14 @@ function chapSection(id){
   if(id <= 51) return {key:'topic-data',  label:'📊 專項教學 · 資料分析', desc:'pandas、清理、groupby、視覺化'};
   if(id <= 59) return {key:'topic-bot',   label:'🤖 專項教學 · Bot', desc:'Discord / LINE、事件、指令、部署'};
   if(id <= 67) return {key:'topic-game', label:'🎮 專項教學 · pygame', desc:'game loop、輸入、碰撞、完整小遊戲'};
-  if(id === 68) return {key:'apcs-new', label:'📗 APCS 新制與識讀', desc:'四級題本、題目分級、程式追蹤'};
+  if(id <= 68) return {key:'apcs-new', label:'📗 APCS 新制與識讀', desc:'四級題本、題目分級、程式追蹤'};
   return {key:'advanced-practice', label:'🔥 高級題訓練', desc:'快速冪、模運算、分治與逆序對'};
 }
+
+if (window.marked && window.markedKatex) {
+  marked.use(markedKatex({ throwOnError: false, nonStandard: true }));
+}
+
 function renderChapList() {
   const list = document.getElementById('chap-list');
   list.innerHTML = '';

@@ -200,6 +200,9 @@ header{height:var(--header-h);display:flex;align-items:center;padding:0 20px;bac
 .section-label{font-size:max(10px, calc(var(--desc-size) - 3px));font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--text-muted);margin:14px 0 6px;}
 .desc-text{font-size:var(--desc-size);line-height:1.7;color:#cdd9e5;}
 .desc-text p{margin-bottom:8px;}
+.desc-text ul, .desc-text ol { margin-left: 24px; margin-bottom: 12px; }
+.desc-text li { margin-bottom: 4px; }
+.desc-text li ul, .desc-text li ol { margin-top: 4px; margin-bottom: 0; }
 .desc-text code{background:rgba(255,255,255,.08);padding:1px 5px;border-radius:3px;font-family:monospace;font-size:max(11px, calc(var(--desc-size) - 1px));}
 .sample-block{background:var(--bg);border:1px solid var(--border);border-radius:6px;margin-bottom:10px;overflow:hidden;}
 .sample-block-hdr{padding:7px 12px;background:rgba(255,255,255,.02);border-bottom:1px solid var(--border);font-size:max(11px, calc(var(--desc-size) - 2px));color:var(--text-muted);}

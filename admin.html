@@ -553,6 +553,32 @@ textarea.mono {
   </div>
 </div>
 
+<!-- ── AI 快速導入對話框 ────────────────────────────────────────────────── -->
+<div class="dialog-overlay" id="ai-import-dialog">
+  <div class="dialog" style="max-width: 700px; width: 90%;">
+    <h3>🤖 AI 快速導入題目</h3>
+    <p>請複製下方系統提示詞貼給 AI（例如 ChatGPT / Claude），AI 會為您生成題目結構。隨後請將 AI 輸出的內容（包含 JSON 與解答程式碼）完整貼到下方輸入框中。</p>
+    
+    <div style="margin-bottom: 12px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+        <span style="font-weight: 600; font-size: 13px;">📋 AI 系統提示詞</span>
+        <button class="btn" style="padding: 2px 8px; font-size: 12px; height: auto;" onclick="copyAiPrompt()">複製提示詞</button>
+      </div>
+      <pre id="ai-prompt-preview" style="max-height: 120px; overflow-y: auto; background: var(--bg-secondary); padding: 8px; border-radius: 6px; font-size: 11px; border: 1px solid var(--border); white-space: pre-wrap; word-break: break-all; margin: 0; color: var(--text-muted);"></pre>
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <span style="font-weight: 600; font-size: 13px; display: block; margin-bottom: 5px;">📥 貼上 AI 生成的完整內容</span>
+      <textarea id="ai-json-input" placeholder="貼上 AI 生成的 JSON 與參考解答程式碼區塊..." style="width: 100%; height: 250px; background: var(--bg-secondary); color: var(--text-normal); border: 1px solid var(--border); border-radius: 6px; padding: 10px; font-family: monospace; font-size: 12px; resize: vertical; box-sizing: border-box;"></textarea>
+    </div>
+
+    <div class="dialog-btns">
+      <button class="btn btn-outline" onclick="closeAiImportDialog()">取消</button>
+      <button class="btn btn-save" onclick="importAiJson()">⚡ 開始導入</button>
+    </div>
+  </div>
+</div>
+
 <!-- ── 主版面 ──────────────────────────────────────────────────────────── -->
 <div class="layout" style="display: none;" id="main-layout">
   
@@ -567,10 +593,11 @@ textarea.mono {
       <div class="filter-row" id="sidebar-filters">
         <button class="filter-btn active" data-cat="all" onclick="setFilter(this,'all')">全部</button>
       </div>
-      <div style="display:flex; gap: 6px; margin-top: 4px;">
-        <button class="add-btn" id="add-btn" onclick="newProblem()" style="flex: 1; padding: 6px; font-size: 0.9em;">＋ 新增</button>
-        <button class="add-btn" onclick="loadData(true)" style="flex: 1; padding: 6px; border-color: var(--orange); color: var(--orange); background: rgba(255,165,0,.05); font-size: 0.9em;" title="從資料庫強制刷新">🔄 刷新</button>
-        <button class="add-btn" onclick="openCategoryDialog()" style="flex: 1; padding: 6px; border-color: var(--blue); color: var(--blue); background: rgba(88,166,255,.05); font-size: 0.9em;">⚙️ 分類</button>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px;">
+        <button class="add-btn" id="add-btn" onclick="newProblem()" style="padding: 6px; font-size: 0.9em; width: 100%;">＋ 新增</button>
+        <button class="add-btn" onclick="loadData(true)" style="padding: 6px; border-color: var(--orange); color: var(--orange); background: rgba(255,165,0,.05); font-size: 0.9em; width: 100%;" title="從資料庫強制刷新">🔄 刷新</button>
+        <button class="add-btn" onclick="openCategoryDialog()" style="padding: 6px; border-color: var(--blue); color: var(--blue); background: rgba(88,166,255,.05); font-size: 0.9em; width: 100%;">⚙️ 分類</button>
+        <button class="add-btn" onclick="openAiImportDialog()" style="padding: 6px; border-color: var(--green); color: var(--green); background: rgba(63,185,80,.05); font-size: 0.9em; width: 100%;" title="AI 快速導入題目">🤖 AI 導入</button>
       </div>
     </div>
     <div class="problem-list" id="problem-list">
@@ -688,6 +715,15 @@ textarea.mono {
             <button class="btn-sm" onclick="addSample()">＋ 新增測資</button>
           </div>
           <div id="samples-container"></div>
+        </div>
+
+        <!-- 隱藏測資 -->
+        <div style="margin-top: 15px;">
+          <div class="section-hdr">
+            <span class="section-title" style="color: var(--red);">🔒 隱藏測資</span>
+            <button class="btn-sm" onclick="addTestcase()" style="border-color: var(--red); color: var(--red);">＋ 新增隱藏測資</button>
+          </div>
+          <div id="testcases-container"></div>
         </div>
       </div>
 
@@ -949,6 +985,18 @@ function loadProblemToEditor(p) {
     addSample();
   }
 
+  // 隱藏測資
+  const tcContainer = document.getElementById('testcases-container');
+  tcContainer.innerHTML = '';
+  if (p.testcases && p.testcases.length > 0) {
+    p.testcases.forEach(s => {
+      const idx = tcContainer.querySelectorAll('.testcase-block').length;
+      tcContainer.insertAdjacentHTML('beforeend', buildTestcaseBlock(idx, s.input, s.output));
+    });
+  } else {
+    addTestcase();
+  }
+
   // 解答
   switchSolLang('py');
   dirty = false;
@@ -1010,11 +1058,65 @@ function removeSample(idx) {
 
 /** 從 DOM 收集當前所有測資 */
 function collectSamples() {
-  const blocks = document.querySelectorAll('.sample-block');
-  return Array.from(blocks).map((_, i) => ({
-    input:  document.getElementById(`sample-input-${i}`)?.value  || '',
-    output: document.getElementById(`sample-output-${i}`)?.value || '',
-  }));
+  const blocks = document.querySelectorAll('.sample-block:not(.testcase-block)');
+  return Array.from(blocks).map(block => {
+    const textareas = block.querySelectorAll('textarea');
+    return {
+      input:  textareas[0]?.value || '',
+      output: textareas[1]?.value || '',
+    };
+  });
+}
+
+// ── 隱藏測資 ─────────────────────────────────────────────────────────────────
+
+function renderTestcases(testcases) {
+  const container = document.getElementById('testcases-container');
+  container.innerHTML = testcases.map((s, i) => buildTestcaseBlock(i, s.input, s.output)).join('');
+}
+
+function buildTestcaseBlock(idx, inputVal, outputVal) {
+  return `<div class="sample-block testcase-block" id="testcase-${idx}" style="border-left: 3px solid var(--red);">
+    <div class="sample-hdr">
+      <span style="color: var(--red);">隱藏測資 ${idx + 1}</span>
+      <button class="btn-sm danger" onclick="removeTestcase(${idx})">✕ 移除</button>
+    </div>
+    <div class="sample-body">
+      <div class="sample-col">
+        <label>輸入</label>
+        <textarea id="testcase-input-${idx}" class="mono" oninput="dirty=true">${escH(inputVal || '')}</textarea>
+      </div>
+      <div class="sample-col">
+        <label>輸出</label>
+        <textarea id="testcase-output-${idx}" class="mono" oninput="dirty=true">${escH(outputVal || '')}</textarea>
+      </div>
+    </div>
+  </div>`;
+}
+
+function addTestcase() {
+  const container = document.getElementById('testcases-container');
+  const idx = container.querySelectorAll('.testcase-block').length;
+  container.insertAdjacentHTML('beforeend', buildTestcaseBlock(idx, '', ''));
+  dirty = true;
+}
+
+function removeTestcase(idx) {
+  const testcases = collectTestcases();
+  testcases.splice(idx, 1);
+  renderTestcases(testcases);
+  dirty = true;
+}
+
+function collectTestcases() {
+  const blocks = document.querySelectorAll('.testcase-block');
+  return Array.from(blocks).map(block => {
+    const textareas = block.querySelectorAll('textarea');
+    return {
+      input:  textareas[0]?.value || '',
+      output: textareas[1]?.value || '',
+    };
+  });
 }
 
 // ── 解答編輯器 ───────────────────────────────────────────────────────────────
@@ -1122,6 +1224,7 @@ function collectProblemFromForm() {
     output_desc:document.getElementById('f-output-desc').value,
     hint:       document.getElementById('f-hint').value,
     samples:    collectSamples(),
+    testcases:  collectTestcases(),
   };
 }
 
@@ -1375,6 +1478,268 @@ function escH(s) {
   return String(s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;')
     .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// ── AI 快速導入 ─────────────────────────────────────────────────────────────
+
+const AI_PROMPT = `你是一個專門生成 APCS Judge 題目 JSON 資料的 AI 助手。
+請根據使用者提供的題目連結或題目文字內容，整理並產出題目資訊。另外，請將各語言的參考解答（程式碼）分開輸出於 JSON 區塊之外，以便教師複製。
+
+注意：
+1. 你的產出內容應包含兩個獨立部分：
+   - 第一部分：【題目資訊 JSON 區塊】（請以標準 Markdown 程式碼區塊呈現，如 \`\`\`json ... \`\`\`，且「不要」包含 solutions 欄位）。
+   - 第二部分：【各語言參考解答區塊】（以標準 Markdown 程式碼區塊呈現，如 \`\`\`cpp, \`\`\`py 等，置於 JSON 區塊之後，方便複製）。
+2. id 請自訂一個唯一的英文底線 ID（例如 apcs_2026_06_p1），只能包含小寫英文、數字與底線。
+3. title（題目名稱）請務必「完全依照老師提供的原始題目名稱」直接填入，絕對不要自己發明、修改或潤飾題目名稱。
+4. 題目說明、輸入說明、輸出說明、提示等欄位，請使用繁體中文，且「必須」保留完整的 Markdown 格式排版（包含程式碼區塊、粗體、列表、LaTeX 數學公式等）。
+5. 難度（diff）只能是 "easy" , "medium" , "midhigh" , "hard" 之一。
+6. 隱藏測資（testcases）的核心要求：除了範例測資外，你「必須」額外設計至少 2 到 4 組隱藏測資。隱藏測資的範圍應該涵蓋：邊界條件、極端值、或較大型的數據，用以進行背景防弊驗證。
+
+【第一部分：題目資訊 JSON 結構】
+\`\`\`json
+{
+  "id": "題目唯一ID (例如 apcs_2026_06_p1)",
+  "title": "請直接填入原始題目名稱，勿修改",
+  "topic": "單元主題 (選填，例如: 陣列, 貪心, 二分搜尋)",
+  "date": "年份月份 (選填，例如: 2026-06)",
+  "source": "來源 (選填，例如: APCS 實作題)",
+  "url": "原始連結 (選填)",
+  "diff": "easy / medium / midhigh / hard",
+  "categoryId": "",
+  "desc": "完整題目敘述 (支援 Markdown，使用繁體中文)",
+  "input_desc": "輸入說明 (支援 Markdown，使用繁體中文)",
+  "output_desc": "輸出說明 (支援 Markdown，使用繁體中文)",
+  "hint": "提示或說明 (支援 Markdown，選填)",
+  "samples": [
+    {
+      "input": "範例輸入1",
+      "output": "範例輸出1"
+    }
+  ],
+  "testcases": [
+    {
+      "input": "背景隱藏輸入1",
+      "output": "背景隱藏輸出1"
+    }
+  ]
+}
+\`\`\`
+
+【第二部分：各語言參考解答格式範例】
+（必須包含 py、cpp、c、java 之中至少一種。解答程式碼必須以「極致簡單、直覺、易於國高中生與初學者理解與教學閱讀」為主要原則。
+具體規範如下：
+- 【禁止炫技】：明文禁止 Python 的 lambda、List Comprehension（列表推導式）、One-liner（單行流寫法）；禁止 C++ 的 auto 推導、複雜 template、雙指標/指標運算與位元運算。
+- 【強制要求基礎結構】：一律使用最基礎的 for-loop、while-loop、簡單的 if-else 以及變數/陣列操作，確保邏輯線條最清晰。
+- 【要求加註】：必須適度加上繁體中文註解以說明核心邏輯思路。
+- 【禁止函式】：除非題目明確要求，否則「禁止自訂任何函式或類別」（例如 Python 禁寫 def func()，C++ 禁寫自訂 struct/class/helper function）。程式碼必須直接在主程式中，由上往下線性撰寫程式邏輯。
+- 【極簡輸入】：不要去考慮前後輸入空格或先輸入全部測資等情況，禁止寫複雜的輸入讀取與切分程式碼（例如 Python 的 sys.stdin.read().split()）。一律直接使用最基本的標準輸入輸出（如 Python 的 input()、C++ 的 cin）依序直接讀取測資處理即可。）
+
+### C++ 解答
+\`\`\`cpp
+// 程式碼...
+\`\`\`
+
+### Python 解答
+\`\`\`py
+# 程式碼...
+\`\`\`
+`;
+
+function openAiImportDialog() {
+  document.getElementById('ai-json-input').value = '';
+  document.getElementById('ai-prompt-preview').textContent = AI_PROMPT;
+  document.getElementById('ai-import-dialog').classList.add('open');
+}
+
+function closeAiImportDialog() {
+  document.getElementById('ai-import-dialog').classList.remove('open');
+}
+
+function copyAiPrompt() {
+  navigator.clipboard.writeText(AI_PROMPT)
+    .then(() => toast('提示詞已複製到剪貼簿！', 'success'))
+    .catch(err => toast('複製失敗：' + err, 'error'));
+}
+
+async function importAiJson() {
+  const jsonStr = document.getElementById('ai-json-input').value.trim();
+  if (!jsonStr) {
+    toast('請先貼上 AI 生成的內容！', 'error');
+    return;
+  }
+
+  // 1. 括號匹配掃描法精準提取第一個 JSON 區塊
+  let firstBrace = jsonStr.indexOf('{');
+  if (firstBrace === -1) {
+    toast('找不到 JSON 資料區塊！請確認內容是否包含 { ... }', 'error');
+    return;
+  }
+
+  let braceCount = 0;
+  let inString = false;
+  let escape = false;
+  let jsonEnd = -1;
+
+  for (let i = firstBrace; i < jsonStr.length; i++) {
+    let char = jsonStr[i];
+    if (escape) {
+      escape = false;
+      continue;
+    }
+    if (char === '\\') {
+      escape = true;
+      continue;
+    }
+    if (char === '"') {
+      inString = !inString;
+      continue;
+    }
+    if (!inString) {
+      if (char === '{') {
+        braceCount++;
+      } else if (char === '}') {
+        braceCount--;
+        if (braceCount === 0) {
+          jsonEnd = i;
+          break;
+        }
+      }
+    }
+  }
+
+  if (jsonEnd === -1) {
+    toast('JSON 資料區塊大括號未閉合，解析失敗！', 'error');
+    return;
+  }
+
+  const cleanJsonStr = jsonStr.substring(firstBrace, jsonEnd + 1);
+
+  let data;
+  try {
+    data = JSON.parse(cleanJsonStr);
+  } catch (err) {
+    // 容錯策略：試試用非嚴格 object 解析 (eval-like)
+    try {
+      data = Function("return (" + cleanJsonStr + ")")();
+    } catch (evalErr) {
+      toast('JSON 解析失敗，請確認貼上的內容格式是否正確！', 'error');
+      console.error('JSON.parse error:', err);
+      console.error('eval error:', evalErr);
+      return;
+    }
+  }
+
+  // 欄位防呆與檢查
+  if (!data.id) {
+    toast('導入失敗：JSON 資料中缺少 "id" 欄位。', 'error');
+    return;
+  }
+  if (!data.title) {
+    toast('導入失敗：JSON 資料中缺少 "title" 欄位。', 'error');
+    return;
+  }
+
+  // ID 唯一性檢查
+  const targetId = data.id.trim();
+  let targetIdx = PROBLEMS.findIndex(p => p.id === targetId);
+  
+  if (targetIdx !== -1) {
+    const confirmOverwrite = confirm(`題目 ID "${targetId}" 已被其他題目使用。\n\n點擊「確定」將覆蓋該題目內容。\n點擊「取消」將自動產生一個新 ID 導入為新題目。`);
+    if (confirmOverwrite) {
+      currentIdx = targetIdx;
+    } else {
+      // 產生新不重複的 ID
+      const existing = new Set(PROBLEMS.map(p => p.id));
+      let n = PROBLEMS.length + 1;
+      let newId = `${targetId}_new_${n}`;
+      while (existing.has(newId)) {
+        n++;
+        newId = `${targetId}_new_${n}`;
+      }
+      data.id = newId;
+      targetIdx = -1;
+    }
+  }
+
+  // 2. 嘗試從貼上內容的 Markdown 程式碼區塊中提取解答
+  const mdExtracted = { py: '', cpp: '', c: '', java: '' };
+  
+  // 匹配 ```cpp ... ```
+  const cppMatch = jsonStr.match(/```cpp\b\s*([\s\S]*?)```/i);
+  if (cppMatch) mdExtracted.cpp = cppMatch[1].trim();
+
+  // 匹配 ```py 或 ```python ... ```
+  const pyMatch = jsonStr.match(/```(?:py|python)\b\s*([\s\S]*?)```/i);
+  if (pyMatch) mdExtracted.py = pyMatch[1].trim();
+
+  // 匹配 ```c ... ``` (避免與 cpp 衝突)
+  const cMatch = jsonStr.match(/```c\b\s*([\s\S]*?)```/i);
+  if (cMatch) {
+    const isCpp = jsonStr.match(/```cpp\b\s*([\s\S]*?)```/i);
+    // 如果 cMatch 抓到的內容和 cpp 抓到的內容不完全一致，才認定是 c
+    if (!isCpp || cMatch[1].trim() !== isCpp[1].trim()) {
+      mdExtracted.c = cMatch[1].trim();
+    }
+  }
+
+  // 匹配 ```java ... ```
+  const javaMatch = jsonStr.match(/```java\b\s*([\s\S]*?)```/i);
+  if (javaMatch) mdExtracted.java = javaMatch[1].trim();
+
+  // 設定 solutions (優先使用從 Markdown 區塊中提取出的乾淨程式碼，無則退回 data.solutions 中的欄位)
+  currentSolutions = {
+    py: mdExtracted.py || data.solutions?.py || '',
+    cpp: mdExtracted.cpp || data.solutions?.cpp || '',
+    c: mdExtracted.c || data.solutions?.c || '',
+    java: mdExtracted.java || data.solutions?.java || ''
+  };
+
+  const pDetails = {
+    id: data.id,
+    title: data.title,
+    topic: data.topic || '',
+    date: data.date || '',
+    source: data.source || '',
+    url: data.url || '',
+    diff: data.diff || 'easy',
+    categoryId: data.categoryId || '',
+    desc: data.desc || '',
+    input_desc: data.input_desc || '',
+    output_desc: data.output_desc || '',
+    hint: data.hint || '',
+    samples: data.samples || [{ input: '', output: '' }],
+    testcases: data.testcases || []
+  };
+
+  // 更新記憶體中的 meta 題目
+  const meta = {
+    id: pDetails.id,
+    title: pDetails.title,
+    categoryId: pDetails.categoryId,
+    topic: pDetails.topic,
+    date: pDetails.date,
+    diff: pDetails.diff
+  };
+
+  if (targetIdx !== -1) {
+    PROBLEMS[targetIdx] = meta;
+    currentIdx = targetIdx;
+  } else {
+    PROBLEMS.push(meta);
+    currentIdx = PROBLEMS.length - 1;
+  }
+
+  // 載入至編輯表單
+  loadProblemToEditor(pDetails);
+  
+  // 觸發 dirty
+  dirty = true;
+  
+  // 更新 UI 題目列表
+  renderList();
+
+  closeAiImportDialog();
+  toast('🤖 題目與解答資料已成功載入！請檢查各語言分頁，確認後點擊上方「儲存到檔案」同步！', 'success');
 }
 </script>
 </body>

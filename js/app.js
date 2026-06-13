@@ -1,5 +1,9 @@
 import { dbService } from './db.js';
 
+if (window.marked && window.markedKatex) {
+  marked.use(markedKatex({ throwOnError: false, nonStandard: true }));
+}
+
 // ── Language config ───────────────────────────────────────────────────────────
 const LANGS = {
   py:   { name:'Python', icon:'🐍', color:'#3fb950', mode:'python',        note:'Pyodide 瀏覽器執行',          label:'Python' },
@@ -373,10 +377,21 @@ async function runCode() {
   btn.textContent = currentLang === 'java' ? '⏳ 執行中（約3秒）...' : '⏳ 執行中...';
 
   const results = [];
+  
+  // 1. 範例測資
   for (let i = 0; i < currentProblem.samples.length; i++) {
     const s = currentProblem.samples[i];
     const r = await runSingle(code, s.input, s.output);
-    results.push({ ...r, idx: i + 1 });
+    results.push({ ...r, idx: i + 1, isHidden: false });
+  }
+
+  // 2. 隱藏測資
+  if (currentProblem.testcases && currentProblem.testcases.length > 0) {
+    for (let i = 0; i < currentProblem.testcases.length; i++) {
+      const s = currentProblem.testcases[i];
+      const r = await runSingle(code, s.input, s.output);
+      results.push({ ...r, idx: currentProblem.samples.length + i + 1, isHidden: true });
+    }
   }
 
   btn.disabled = false;
@@ -528,23 +543,39 @@ function renderResults(results, passed, total) {
 
   const rows = results.map(r => {
     let gotHtml = '';
-    if (r.error) {
-      gotHtml = escH(r.error);
-    } else if (r.pass) {
-      gotHtml = escH(r.got || '(無輸出)');
+    let expectedHtml = '';
+    
+    if (r.isHidden) {
+      expectedHtml = '<span style="color:var(--text-muted)">[已隱藏]</span>';
+      if (r.error) {
+        gotHtml = escH(r.error);
+      } else if (r.pass) {
+        gotHtml = '<span style="color:var(--green)">[已隱藏，結果正確]</span>';
+      } else {
+        gotHtml = '<span style="color:var(--red)">[已隱藏，答案錯誤]</span>';
+      }
     } else {
-      gotHtml = getDiffHtml(r.expected, r.got);
+      expectedHtml = escH(r.expected);
+      if (r.error) {
+        gotHtml = escH(r.error);
+      } else if (r.pass) {
+        gotHtml = escH(r.got || '(無輸出)');
+      } else {
+        gotHtml = getDiffHtml(r.expected, r.got);
+      }
     }
+
+    const titleText = r.isHidden ? `隱藏測資 ${r.idx}` : `測資 ${r.idx}`;
 
     return `
     <div class="test-case">
       <div class="test-col"><div class="test-label">
         <div class="icon ${r.pass?'icon-pass':'icon-fail'}">${r.pass?'✓':'✗'}</div>
-        <span style="color:var(--${r.pass?'green':'red'})">測資 ${r.idx} · ${r.pass?'AC':'WA'}</span>
+        <span style="color:var(--${r.pass?'green':'red'})">${titleText} · ${r.pass?'AC':'WA'}</span>
       </div></div>
       <div class="test-col">
         <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">預期輸出</div>
-        <pre>${escH(r.expected)}</pre>
+        <pre>${expectedHtml}</pre>
       </div>
       <div class="test-col">
         <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px">你的輸出</div>

@@ -165,6 +165,10 @@ function generateProblemsJS(problems) {
       return `{input:${JSON.stringify(s.input)},output:${JSON.stringify(s.output)}}`;
     }).join(',');
 
+    const testcases = (p.testcases || []).map((s) => {
+      return `{input:${JSON.stringify(s.input)},output:${JSON.stringify(s.output)}}`;
+    }).join(',');
+
     // 各欄位序列化（選填欄位若為空則省略）
     const parts = [
       `id:${JSON.stringify(p.id)}`,
@@ -180,6 +184,7 @@ function generateProblemsJS(problems) {
     parts.push(`input_desc:${JSON.stringify(p.input_desc || '')}`);
     parts.push(`output_desc:${JSON.stringify(p.output_desc || '')}`);
     parts.push(`samples:[${samples}]`);
+    parts.push(`testcases:[${testcases}]`);
     if (p.hint)   parts.push(`hint:${JSON.stringify(p.hint)}`);
 
     return `{${parts.join(',\n')}}`;
